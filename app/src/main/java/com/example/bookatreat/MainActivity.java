@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * That's a method man
+     * That's a nice method man
      * @param savedInstanceState
      */
     @Override
