@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * That's a method man
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
