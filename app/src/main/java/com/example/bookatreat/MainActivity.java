@@ -10,8 +10,6 @@ public class MainActivity extends AppCompatActivity {
      * @param savedInstanceState
      */
 
-//Test 1234 connected
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
