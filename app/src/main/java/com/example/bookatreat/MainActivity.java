@@ -6,9 +6,11 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * That's a nice method man
+     * That's a nice method man test push floobits testefefefef
      * @param savedInstanceState
      */
+
+//Test 1234 connected
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,3 +18,4 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
+

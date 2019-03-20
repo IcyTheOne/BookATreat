@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "17507465562",
+    "firebase_url": "https://book-a-treat.firebaseio.com",
+    "project_id": "book-a-treat",
+    "storage_bucket": "book-a-treat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17507465562:android:58caea7ecdc02925",
+        "android_client_info": {
+          "package_name": "com.example.bookatreat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17507465562-ku5a4hbggugtj5bpuai80nn3ar5h2ppl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookatreat",
+            "certificate_hash": "731100c1a0565c9c03938b8290b6ec9fe557fc34"
+          }
+        },
+        {
+          "client_id": "17507465562-hho4fq78vi93nhnmradrckohqaabru7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDApLrfT4H9tl-fV0j3oE9lSclJIeJ1TX4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17507465562-hho4fq78vi93nhnmradrckohqaabru7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
