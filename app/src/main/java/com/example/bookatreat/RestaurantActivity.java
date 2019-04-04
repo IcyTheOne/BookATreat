@@ -20,7 +20,7 @@ public class RestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant); // End of removing ActionBar
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        fm.beginTransaction().add(R.id.fragment_container, new SignupCustomer()).commit();
-    }
+        Fragment fragment = fm.findFragmentById(R.id.container_restaurant);
+        fm.beginTransaction().add(R.id.container_restaurant, new SignupCustomerFrag()).commit();
+}
 }

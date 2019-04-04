@@ -19,6 +19,6 @@ public class SignupActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        fm.beginTransaction().add(R.id.fragment_container, new SignupCustomer()).commit();
+        fm.beginTransaction().add(R.id.fragment_container, new SignupCustomerFrag()).commit();
     }
 }

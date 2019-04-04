@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignupCustomer extends Fragment{
+public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
 
     private EditText firstname, lastname, password,passwordConfirm, email;
@@ -44,7 +43,7 @@ public class SignupCustomer extends Fragment{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 FragmentTransaction cusToRes = getFragmentManager().beginTransaction();
-                cusToRes.replace(R.id.fragment_container, new SignupRestaurant());
+                cusToRes.replace(R.id.fragment_container, new SignupRestaurantFrag());
                 cusToRes.commit();
             }
         });
