@@ -15,14 +15,18 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SignupRestaurant extends Fragment {
+import com.google.firebase.auth.FirebaseAuth;
 
+public class SignupRestaurant extends Fragment {
+    private FirebaseAuth mAuth;
     EditText resName, resDsc, resPass, resPassConfirm, resEmail, resAddress;
     String resNameST, resDscST, resPassST, resPassConfirmST, resEmailST, resAddressST;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_restaurant, container, false);
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         // Find input views
         resName = view.findViewById(R.id.restaurantName);
         resDsc = view.findViewById(R.id.restaurantDscSignup);

@@ -15,7 +15,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignupCustomer extends Fragment{
+    private FirebaseAuth mAuth;
 
     EditText firstname, lastname, password,passwordConfirm, email;
     String firstnameST, lastnameST, passwordST, passwordConfirmST, emailST;
@@ -24,6 +27,9 @@ public class SignupCustomer extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_customer, container, false);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         // Find input views
         firstname = view.findViewById(R.id.firstNameSignup);
         lastname = view.findViewById(R.id.lastNameSignup);
