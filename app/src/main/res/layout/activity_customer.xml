@@ -9,6 +9,22 @@
     <FrameLayout
         android:id="@+id/fragment_container_cus"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="318dp">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="425dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="FIND NEARBY RESTAURANTS" />
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ public class CustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
+
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
