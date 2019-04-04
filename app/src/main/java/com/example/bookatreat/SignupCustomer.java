@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignupCustomer extends Fragment{
     private FirebaseAuth mAuth;
 
-    EditText firstname, lastname, password,passwordConfirm, email;
+    private EditText firstname, lastname, password,passwordConfirm, email;
     String firstnameST, lastnameST, passwordST, passwordConfirmST, emailST;
 
     @Nullable
@@ -36,13 +37,6 @@ public class SignupCustomer extends Fragment{
         password = view.findViewById(R.id.passwordSignup);
         passwordConfirm = view.findViewById(R.id.confirmPassSignup);
         email = view.findViewById(R.id.emailSignup);
-        // Convert to Strings
-        firstnameST = firstname.getText().toString();
-        lastnameST = lastname.getText().toString();
-        passwordST = password.getText().toString();
-        passwordConfirmST = passwordConfirm.getText().toString();
-        emailST = email.getText().toString();
-
 
         // Click Switch to go to Restaurant Signup
         Switch btnToResSignup = view.findViewById(R.id.switchRestaurant);
@@ -71,6 +65,11 @@ public class SignupCustomer extends Fragment{
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstnameST = firstname.getText().toString();
+                lastnameST = lastname.getText().toString();
+                passwordST = password.getText().toString();
+                passwordConfirmST = passwordConfirm.getText().toString();
+                emailST = email.getText().toString();
 
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
 

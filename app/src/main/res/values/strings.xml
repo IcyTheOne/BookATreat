@@ -22,4 +22,7 @@
     <string name="signup_restaurant_name">Restaurant Name</string>
     <string name="signup_restaurant_description">Restaurant Description</string>
     <string name="signup_restaurant_address">Restaurant Address</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

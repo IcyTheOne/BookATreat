@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,12 +39,7 @@ public class SignupRestaurant extends Fragment {
         resAddress = view.findViewById(R.id.addressSignup);
 
         // Convert to Strings
-        resNameST = resName.getText().toString();
-        resDscST = resDsc.getText().toString();
-        resPassST = resPass.getText().toString();
-        resPassConfirmST = resPassConfirm.getText().toString();
-        resEmailST = resEmail.getText().toString();
-        resAddressST = resAddress.getText().toString();
+
 
         // Switch to Customer signup page
         Switch btnToCusSignup = view.findViewById(R.id.switchRestaurant);
@@ -73,6 +69,13 @@ public class SignupRestaurant extends Fragment {
             @Override
             public void onClick(View v) {
 
+                resNameST = resName.getText().toString();
+                resDscST = resDsc.getText().toString();
+                resPassST = resPass.getText().toString();
+                resPassConfirmST = resPassConfirm.getText().toString();
+                resEmailST = resEmail.getText().toString();
+                resAddressST = resAddress.getText().toString();
+
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
 
                 if(resNameST.isEmpty() || resDscST.isEmpty() || resPassST.isEmpty() || resPassConfirmST.isEmpty() || resEmailST.isEmpty() || resAddressST.isEmpty()){
@@ -83,7 +86,7 @@ public class SignupRestaurant extends Fragment {
 
                 } else {
                     // Insert data to database under unique id then login and change to CustomerActivity
-                    Intent secondIntent = new Intent(getActivity(), CustomerActivity.class);
+                    Intent secondIntent = new Intent(getActivity(), RestaurantActivity.class);
 
                     startActivity(secondIntent);
                 }
