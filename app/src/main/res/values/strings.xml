@@ -1,23 +1,25 @@
 <resources>
     <string name="app_name">BookATreat</string>
+
     <!-- Login Strings -->
-    <string name="logintext_login_tv">Login</string>
-    <string name="username_login">Username&#8230;</string>
-    <string name="password_login">Password&#8230;</string>
-    <string name="loginbtn_login">Login</string>
-    <string name="signupbtn_login">Signup here&#8230;</string>
+    <string name="login_title">Login</string>
+    <string name="login_username">Username&#8230;</string>
+    <string name="login_password">Password&#8230;</string>
+    <string name="login_button">Login</string>
+    <string name="login_signup_button">Signup here&#8230;</string>
+
     <!-- Sign-up Strings -->
-    <string name="signuptext_signup">Sign-up</string>
-    <string name="customer_signup">Customer</string>
-    <string name="restaurant_signup">Restaurant</string>
-    <string name="firstnameet_signup">First Name</string>
-    <string name="lastnameet_signup">Last Name</string>
-    <string name="passwordet_signup">Password</string>
-    <string name="confirmpass_signup">Confirm Password</string>
-    <string name="emailet_signup">E-mail</string>
-    <string name="signupbtn_signup">Sign-up</string>
-    <string name="tologin_signup">Already have an account?</string>
-    <string name="restaurant_name_signup">Restaurant Name</string>
-    <string name="restaurant_description_signup">Restaurant Description</string>
-    <string name="restaurant_address_signup">Restaurant Address</string>
+    <string name="signup_title">Sign up</string>
+    <string name="signup_choice_customer">Customer</string>
+    <string name="signup_choice_restaurant">Restaurant</string>
+    <string name="signup_first_name">First Name</string>
+    <string name="signup_last_name">Last Name</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_password_confirmation">Confirm Password</string>
+    <string name="signup_email">E-mail</string>
+    <string name="signup_button">Sign up</string>
+    <string name="signup_existing_user">Already have an account?</string>
+    <string name="signup_restaurant_name">Restaurant Name</string>
+    <string name="signup_restaurant_description">Restaurant Description</string>
+    <string name="signup_restaurant_address">Restaurant Address</string>
 </resources>

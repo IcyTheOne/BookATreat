@@ -71,7 +71,9 @@ public class SignupCustomer extends Fragment{
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
+
                 if(firstnameST.isEmpty() || lastnameST.isEmpty() || passwordST.isEmpty() || passwordConfirmST.isEmpty() || emailST.isEmpty()){
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }else if (!passwordST.equals(passwordConfirmST)){

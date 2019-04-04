@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupRestaurant extends Fragment {
     private FirebaseAuth mAuth;
+
     EditText resName, resDsc, resPass, resPassConfirm, resEmail, resAddress;
     String resNameST, resDscST, resPassST, resPassConfirmST, resEmailST, resAddressST;
 
@@ -27,6 +28,7 @@ public class SignupRestaurant extends Fragment {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
         // Find input views
         resName = view.findViewById(R.id.restaurantName);
         resDsc = view.findViewById(R.id.restaurantDscSignup);
@@ -34,6 +36,7 @@ public class SignupRestaurant extends Fragment {
         resPassConfirm = view.findViewById(R.id.confirmPassSignup);
         resEmail = view.findViewById(R.id.emailSignup);
         resAddress = view.findViewById(R.id.addressSignup);
+
         // Convert to Strings
         resNameST = resName.getText().toString();
         resDscST = resDsc.getText().toString();
@@ -69,7 +72,9 @@ public class SignupRestaurant extends Fragment {
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
+
                 if(resNameST.isEmpty() || resDscST.isEmpty() || resPassST.isEmpty() || resPassConfirmST.isEmpty() || resEmailST.isEmpty() || resAddressST.isEmpty()){
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }else if (!resPassST.equals(resPassConfirmST)){
