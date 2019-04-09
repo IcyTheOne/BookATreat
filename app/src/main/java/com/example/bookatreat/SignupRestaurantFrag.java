@@ -51,7 +51,7 @@ public class SignupRestaurant extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isNotChecked) {
                 FragmentTransaction resToCus = getFragmentManager().beginTransaction();
-                resToCus.replace(R.id.fragment_container, new SignupCustomer());
+                resToCus.replace(R.id.fragment_container, new SignupCustomerFrag());
                 resToCus.commit();
             }
         });
