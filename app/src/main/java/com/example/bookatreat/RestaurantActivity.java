@@ -15,12 +15,12 @@ public class RestaurantActivity extends AppCompatActivity {
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
         }
-        catch (NullPointerException e){}
         setContentView(R.layout.activity_restaurant); // End of removing ActionBar
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.container_restaurant);
-        fm.beginTransaction().add(R.id.container_restaurant, new SignupCustomerFrag()).commit();
-}
+        fm.beginTransaction().add(R.id.container_restaurant, new NewBookingFrag()).commit();
+    }
 }

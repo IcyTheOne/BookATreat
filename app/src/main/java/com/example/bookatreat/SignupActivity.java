@@ -13,8 +13,8 @@ public class SignupActivity extends AppCompatActivity {
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
         }
-        catch (NullPointerException e){}
         setContentView(R.layout.activity_signup); // End of removing ActionBar
 
         FragmentManager fm = getSupportFragmentManager();
