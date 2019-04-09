@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     EditText usernameET, passwordET;
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 //} else if(/* If username and password doesn't match any id in database*/){
                 //    Toast.makeText(getApplicationContext(), "The inserted data is not correct", Toast.LENGTH_SHORT).show();
                 else {
-                    Intent loginIntent = new Intent(LoginActivity.this, CustomerSearchActivity.class);
+                    Intent loginIntent = new Intent(LoginActivity.this, CustomerActivity.class);
 
                     startActivity(loginIntent);
                 }

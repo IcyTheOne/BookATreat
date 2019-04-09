@@ -38,12 +38,7 @@ public class SignupRestaurantFrag extends Fragment {
         resAddress = view.findViewById(R.id.addressSignup);
 
         // Convert to Strings
-        resNameST = resName.getText().toString();
-        resDscST = resDsc.getText().toString();
-        resPassST = resPass.getText().toString();
-        resPassConfirmST = resPassConfirm.getText().toString();
-        resEmailST = resEmail.getText().toString();
-        resAddressST = resAddress.getText().toString();
+
 
         // Switch to Customer signup page
         Switch btnToCusSignup = view.findViewById(R.id.switchRestaurant);
@@ -73,6 +68,13 @@ public class SignupRestaurantFrag extends Fragment {
             @Override
             public void onClick(View v) {
 
+                resNameST = resName.getText().toString();
+                resDscST = resDsc.getText().toString();
+                resPassST = resPass.getText().toString();
+                resPassConfirmST = resPassConfirm.getText().toString();
+                resEmailST = resEmail.getText().toString();
+                resAddressST = resAddress.getText().toString();
+
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
 
                 if(resNameST.isEmpty() || resDscST.isEmpty() || resPassST.isEmpty() || resPassConfirmST.isEmpty() || resEmailST.isEmpty() || resAddressST.isEmpty()){
@@ -82,8 +84,8 @@ public class SignupRestaurantFrag extends Fragment {
                     //} else if (emailST/*is already in database or address is already used*/){
 
                 } else {
-                    // Insert data to database under unique id then login and change to CustomerSearchActivity
-                    Intent secondIntent = new Intent(getActivity(), CustomerSearchActivity.class);
+                    // Insert data to database under unique id then login and change to CustomerActivity
+                    Intent secondIntent = new Intent(getActivity(), RestaurantActivity.class);
 
                     startActivity(secondIntent);
                 }
