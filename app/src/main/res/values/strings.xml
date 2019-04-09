@@ -22,7 +22,13 @@
     <string name="signup_restaurant_name">Restaurant Name</string>
     <string name="signup_restaurant_description">Restaurant Description</string>
     <string name="signup_restaurant_address">Restaurant Address</string>
+    <string name="title_activity_customer_maps">Map</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- CustomerSearch Strings -->
+
+    <string name="search_box_text">Cuisine, restaurant name...</string>
+
+
+
 </resources>
