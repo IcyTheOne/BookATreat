@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignupRestaurant extends Fragment {
+public class SignupRestaurantFrag extends Fragment {
     private FirebaseAuth mAuth;
 
     EditText resName, resDsc, resPass, resPassConfirm, resEmail, resAddress;
