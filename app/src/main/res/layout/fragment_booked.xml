@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewBookingFrag">
+    tools:context=".BookedFrag">
 
     <ListView
         android:id="@+id/list_view1"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/button_reserved"
+        android:id="@+id/button_new_booking"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
         android:background="#3587c7"
-        android:text="booked ->"
+        android:text="not booked ->"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +53,6 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="72dp"
-        android:text="Here u can view all available tables" />
+        android:text="Here u can view all booked tables" />
 
 </RelativeLayout>
