@@ -82,8 +82,8 @@ public class SignupRestaurant extends Fragment {
                     //} else if (emailST/*is already in database or address is already used*/){
 
                 } else {
-                    // Insert data to database under unique id then login and change to CustomerActivity
-                    Intent secondIntent = new Intent(getActivity(), CustomerActivity.class);
+                    // Insert data to database under unique id then login and change to CustomerSearchActivity
+                    Intent secondIntent = new Intent(getActivity(), CustomerSearchActivity.class);
 
                     startActivity(secondIntent);
                 }

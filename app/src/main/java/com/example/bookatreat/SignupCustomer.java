@@ -81,8 +81,8 @@ public class SignupCustomer extends Fragment{
                     //} else if (emailST/*is already in database*/){
 
                 } else {
-                    // Insert data to database under unique id then login and change to CustomerActivity
-                    Intent cusIntent = new Intent(getActivity(), CustomerActivity.class);
+                    // Insert data to database under unique id then login and change to CustomerSearchActivity
+                    Intent cusIntent = new Intent(getActivity(), CustomerSearchActivity.class);
 
                     startActivity(cusIntent);
                 }
