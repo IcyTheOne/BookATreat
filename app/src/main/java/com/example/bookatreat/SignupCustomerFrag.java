@@ -15,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookatreat.Customer.CustomerActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupCustomerFrag extends Fragment{
