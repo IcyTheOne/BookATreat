@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignupCustomer extends Fragment{
+public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
 
-    EditText firstname, lastname, password,passwordConfirm, email;
+    private EditText firstname, lastname, password,passwordConfirm, email;
     String firstnameST, lastnameST, passwordST, passwordConfirmST, emailST;
 
     @Nullable
@@ -36,13 +36,6 @@ public class SignupCustomer extends Fragment{
         password = view.findViewById(R.id.passwordSignup);
         passwordConfirm = view.findViewById(R.id.confirmPassSignup);
         email = view.findViewById(R.id.emailSignup);
-        // Convert to Strings
-        firstnameST = firstname.getText().toString();
-        lastnameST = lastname.getText().toString();
-        passwordST = password.getText().toString();
-        passwordConfirmST = passwordConfirm.getText().toString();
-        emailST = email.getText().toString();
-
 
         // Click Switch to go to Restaurant Signup
         Switch btnToResSignup = view.findViewById(R.id.switchRestaurant);
@@ -50,7 +43,7 @@ public class SignupCustomer extends Fragment{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 FragmentTransaction cusToRes = getFragmentManager().beginTransaction();
-                cusToRes.replace(R.id.fragment_container, new SignupRestaurant());
+                cusToRes.replace(R.id.fragment_container, new SignupRestaurantFrag());
                 cusToRes.commit();
             }
         });
@@ -71,6 +64,11 @@ public class SignupCustomer extends Fragment{
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstnameST = firstname.getText().toString();
+                lastnameST = lastname.getText().toString();
+                passwordST = password.getText().toString();
+                passwordConfirmST = passwordConfirm.getText().toString();
+                emailST = email.getText().toString();
 
                 // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
 

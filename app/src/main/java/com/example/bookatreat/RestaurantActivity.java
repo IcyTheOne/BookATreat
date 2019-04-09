@@ -5,20 +5,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SignupActivity extends AppCompatActivity {
+public class RestaurantActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_restaurant);
+
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-        setContentView(R.layout.activity_signup); // End of removing ActionBar
+        setContentView(R.layout.activity_restaurant); // End of removing ActionBar
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        fm.beginTransaction().add(R.id.fragment_container, new SignupCustomerFrag()).commit();
-    }
+        Fragment fragment = fm.findFragmentById(R.id.container_restaurant);
+        fm.beginTransaction().add(R.id.container_restaurant, new SignupCustomerFrag()).commit();
+}
 }
