@@ -38,7 +38,13 @@ public class CustomerActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container_cus);
         fm.beginTransaction().add(R.id.fragment_container_cus, new MapsViewFrag()).commit();
 
-        ImageButton mapsButton = findViewById(R.id.mapsbutton);
+        ImageButton mapButton = findViewById(R.id.mapsbtn);
+        ImageButton restaurantButton = findViewById(R.id.restaurantbtn);
+        ImageButton calendarButton = findViewById(R.id.calendarbtn);
+        ImageButton messageButton = findViewById(R.id.messagesbtn);
+        ImageButton settingsButton = findViewById(R.id.settingsbtn);
+
+
         ListView lv = findViewById(R.id.restaurantlist);
 
         String[] restaurants = new String[]{
@@ -66,7 +72,6 @@ public class CustomerActivity extends AppCompatActivity {
         };
 
 
-
         List<String> restaurants_list = new ArrayList<String>(Arrays.asList(restaurants));
 
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, restaurants_list);
@@ -75,7 +80,11 @@ public class CustomerActivity extends AppCompatActivity {
 
         // Click listeners
 
-        mapsButton.setOnClickListener(new View.OnClickListener() {
+
+
+        //google maps
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -86,6 +95,55 @@ public class CustomerActivity extends AppCompatActivity {
 
             }
         });
+
+        //restaurant search
+
+        restaurantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent restaurantIntent = new Intent(CustomerActivity.this, CustomerActivity.class);
+                startActivity(restaurantIntent);
+
+            }
+        });
+
+        //Calendar bookings
+
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //messages
+
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //settings
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/mapsbutton"
+        android:id="@+id/mapsbtn"
         android:layout_width="45dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.004" />
 
     <ImageButton
-        android:id="@+id/searchButton"
+        android:id="@+id/restaurantbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/reservationsButton"
+        android:id="@+id/calendarbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -111,7 +111,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/messagesButton"
+        android:id="@+id/messagesbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -127,7 +127,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/settingsButton"
+        android:id="@+id/settingsbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
