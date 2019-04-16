@@ -39,6 +39,10 @@ public class CustomerActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.fragment_container_cus, new MapsViewFrag()).commit();
 
 
+        /**
+         * Need to add fragments for all the buttons and their layout
+         *
+         */
 
         ImageButton mapButton = findViewById(R.id.mapsbtn);
         ImageButton restaurantButton = findViewById(R.id.restaurantbtn);
