@@ -38,11 +38,13 @@ public class CustomerActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container_cus);
         fm.beginTransaction().add(R.id.fragment_container_cus, new MapsViewFrag()).commit();
 
+
+
         ImageButton mapButton = findViewById(R.id.mapsbtn);
         ImageButton restaurantButton = findViewById(R.id.restaurantbtn);
         ImageButton calendarButton = findViewById(R.id.calendarbtn);
         ImageButton messageButton = findViewById(R.id.messagesbtn);
-        ImageButton settingsButton = findViewById(R.id.settingsbtn);
+        ImageButton settingsButton = findViewById(R.id.favoritesbtn);
 
 
         ListView lv = findViewById(R.id.restaurantlist);
