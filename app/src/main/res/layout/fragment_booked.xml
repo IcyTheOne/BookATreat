@@ -7,7 +7,7 @@
     tools:context=".BookedFrag">
 
     <ListView
-        android:id="@+id/list_view1"
+        android:id="@+id/list_view_booked"
         android:layout_width="match_parent"
         android:layout_height="624dp"
         android:layout_alignParentTop="true"

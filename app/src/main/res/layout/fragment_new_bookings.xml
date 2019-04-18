@@ -7,7 +7,7 @@
     tools:context=".NewBookingFrag">
 
     <ListView
-        android:id="@+id/list_view1"
+        android:id="@+id/list_view_new_book"
         android:layout_width="match_parent"
         android:layout_height="624dp"
         android:layout_alignParentTop="true"
