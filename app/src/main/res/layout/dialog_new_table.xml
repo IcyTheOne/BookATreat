@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add new table"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="35dp"
+        android:text="Table id" />
+
+    <EditText
+        android:id="@+id/edit_id"
+        android:layout_width="39dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/textView5"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="-9dp"
+        android:layout_toRightOf="@id/textView5"
+        android:ems="10"
+        android:hint="id"
+        android:inputType="number"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView5"
+        android:layout_marginTop="29dp"
+        android:text="Number of people" />
+
+    <EditText
+        android:id="@+id/edit_number"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/textView6"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="-12dp"
+        android:layout_toRightOf="@id/textView6"
+        android:ems="10"
+        android:hint="num"
+        android:inputType="number"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:layout_marginTop="31dp"
+        android:background="@color/colorAccent"
+        android:text="add"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

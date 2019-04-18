@@ -94,9 +94,9 @@ public class CustomerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent mapsIntent = new Intent(CustomerActivity.this, CustomerMapsActivity.class);
-
-                startActivity(mapsIntent);
+//                Intent mapsIntent = new Intent(CustomerActivity.this, CustomerMapsActivity.class);
+//
+//                startActivity(mapsIntent);
 
 
             }

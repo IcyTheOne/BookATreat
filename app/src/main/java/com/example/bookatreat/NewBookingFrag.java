@@ -1,5 +1,6 @@
 package com.example.bookatreat;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -39,15 +41,34 @@ public class NewBookingFrag extends Fragment {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction cusToRes2 = getFragmentManager().beginTransaction();
-                cusToRes2.replace(R.id.container_restaurant, new AddTableFrag());
-                cusToRes2.commit();
+                openAddNewTableDialog();
+            }
+        });
+        return view;
+    }
+    public void openAddNewTableDialog(){
+        final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
+
+        final EditText tableId = mView.findViewById(R.id.edit_id);
+        final EditText numberOfPeople = mView.findViewById(R.id.edit_number);
+        Button add = mView.findViewById(R.id.button_add);
+
+        myBuild.setView(mView);
+        final AlertDialog dialog = myBuild.create();
+        dialog.show();
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tableId.getText().toString().isEmpty() || numberOfPeople.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_LONG).show();
+                } else {
+                    dialog.dismiss();
+                }
             }
         });
 
 
-
-
-        return view;
     }
 }
