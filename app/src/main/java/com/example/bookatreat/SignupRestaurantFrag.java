@@ -68,6 +68,9 @@ public class SignupRestaurantFrag extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+                // committed
+
                 resNameST = resName.getText().toString();
                 resDscST = resDsc.getText().toString();
                 resPassST = resPass.getText().toString();
