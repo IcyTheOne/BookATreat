@@ -26,7 +26,7 @@ public class SignupRestaurantFrag extends Fragment {
 
     // TEST BUTTON FOR COMMITING
 
-    Button printButton, restartButton;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
