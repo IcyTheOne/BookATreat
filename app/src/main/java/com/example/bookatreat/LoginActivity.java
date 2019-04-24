@@ -23,6 +23,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        //kan du se min comment
+        //hehe
 
         try // Remove ActionBar
         {
@@ -45,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(secondIntent);
             }
         });
-
+// fjfhsefhdhf
         loginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
