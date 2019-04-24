@@ -70,6 +70,7 @@ public class SignupRestaurantFrag extends Fragment {
 
 
                 // committed
+                // LALALALALLA LHER ER DEN
 
                 resNameST = resName.getText().toString();
                 resDscST = resDsc.getText().toString();
