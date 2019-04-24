@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mAuth = FirebaseAuth.getInstance();
         //kan du se min comment
+        //hehe
 
         try // Remove ActionBar
         {
