@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -22,6 +23,11 @@ public class SignupRestaurantFrag extends Fragment {
 
     EditText resName, resDsc, resPass, resPassConfirm, resEmail, resAddress;
     String resNameST, resDscST, resPassST, resPassConfirmST, resEmailST, resAddressST;
+
+    // TEST BUTTON FOR COMMITING
+
+    Button printButton;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_restaurant, container, false);
