@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        //kan du se min comment
 
         try // Remove ActionBar
         {
