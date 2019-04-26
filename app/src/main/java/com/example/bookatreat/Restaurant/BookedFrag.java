@@ -1,4 +1,4 @@
-package com.example.bookatreat;
+package com.example.bookatreat.Restaurant;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookatreat.DataBaseHandler;
+import com.example.bookatreat.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
