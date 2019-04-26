@@ -36,7 +36,7 @@ public class BookedFrag extends Fragment {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         dbHandler = new DataBaseHandler();
-        listBooked = view.findViewById(R.id.list_view_new_book);
+        listBooked = view.findViewById(R.id.list_view_booked);
         arrBooked = new ArrayList<>();
 
         TextView btnToNewBooking = view.findViewById(R.id.button_new_booking);
