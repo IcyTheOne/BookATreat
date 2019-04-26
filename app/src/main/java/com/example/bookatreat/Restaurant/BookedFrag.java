@@ -27,8 +27,8 @@ import java.util.ArrayList;
 public class BookedFrag extends Fragment {
     private FirebaseAuth mAuth;
     private DataBaseHandler dbHandler;
-    private ArrayList<String> arrBooked;
-    private ListView listBooked;
+    private ArrayList<String> bookedTablesArr;
+    private ListView bookedTablesList;
 
 
     @Nullable
@@ -38,8 +38,8 @@ public class BookedFrag extends Fragment {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         dbHandler = new DataBaseHandler();
-        listBooked = view.findViewById(R.id.list_view_booked);
-        arrBooked = new ArrayList<>();
+        bookedTablesList = view.findViewById(R.id.list_view_booked);
+        bookedTablesArr = new ArrayList<>();
 
         TextView btnToNewBooking = view.findViewById(R.id.button_new_booking);
         btnToNewBooking.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +61,8 @@ public class BookedFrag extends Fragment {
 
         //TODO insert the data from DB to an array
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrBooked);
-        listBooked.setAdapter(adapter);
+        ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, bookedTablesArr);
+        bookedTablesList.setAdapter(adapter);
 
         return view;
     }

@@ -41,16 +41,16 @@ public class SignupRestaurantFrag extends Fragment {
         // Find input views
         resName = view.findViewById(R.id.restaurantName);
         resDsc = view.findViewById(R.id.restaurantDscSignup);
-        resPass = view.findViewById(R.id.passwordSignup);
-        resPassConfirm = view.findViewById(R.id.confirmPassSignup);
-        resEmail = view.findViewById(R.id.emailSignup);
+        resPass = view.findViewById(R.id.signupPassword);
+        resPassConfirm = view.findViewById(R.id.signupPassConfirm);
+        resEmail = view.findViewById(R.id.signupEmail);
         resAddress = view.findViewById(R.id.addressSignup);
 
         // Convert to Strings
 
 
         // Switch to Customer signup page
-        Switch btnToCusSignup = view.findViewById(R.id.switchRestaurant);
+        Switch btnToCusSignup = view.findViewById(R.id.restaurantSwitch);
         btnToCusSignup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isNotChecked) {
@@ -61,7 +61,7 @@ public class SignupRestaurantFrag extends Fragment {
         });
 
         // Go to login page
-        TextView btnToLogin = view.findViewById(R.id.goToLoginBtn);
+        TextView btnToLogin = view.findViewById(R.id.existingUser);
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +72,7 @@ public class SignupRestaurantFrag extends Fragment {
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.signupBtn);
+        TextView btnToSignup = view.findViewById(R.id.SignupBTN);
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

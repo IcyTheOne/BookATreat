@@ -36,7 +36,7 @@
             android:layout_height="604dp">
 
             <ListView
-                android:id="@+id/restaurantlist"
+                android:id="@+id/RestaurantList"
                 android:layout_width="378dp"
                 android:layout_height="537dp"
                 android:layout_marginStart="8dp"
@@ -90,7 +90,7 @@
 
 
     <ImageButton
-        android:id="@+id/restaurantbtn"
+        android:id="@+id/RestaurantBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/mapsbtn"
+        android:id="@+id/MapsBTN"
         android:layout_width="45dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -123,7 +123,7 @@
         app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
-        android:id="@+id/calendarbtn"
+        android:id="@+id/CalendarBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -139,7 +139,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/messagesbtn"
+        android:id="@+id/MessagesBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -155,7 +155,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/favoritesbtn"
+        android:id="@+id/FavoritesBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
