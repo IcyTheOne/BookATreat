@@ -1,4 +1,4 @@
-package com.example.bookatreat.Customer;
+package com.example.bookatreat.LoginSignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
-import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
-import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupCustomerFrag extends Fragment{

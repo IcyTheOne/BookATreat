@@ -1,4 +1,4 @@
-package com.example.bookatreat;
+package com.example.bookatreat.LoginSignUp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
+import com.example.bookatreat.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {

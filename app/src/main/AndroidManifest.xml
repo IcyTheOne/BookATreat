@@ -34,8 +34,8 @@
             <!--android:label="@string/title_activity_customer_maps"></activity>-->
         <activity android:name=".Restaurant.RestaurantActivity" />
         <activity android:name=".Customer.CustomerActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginSignUp.SignupActivity" />
+        <activity android:name=".LoginSignUp.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
