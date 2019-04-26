@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/SignupTV"
+            android:id="@+id/signupTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switchRestaurant"
+            app:layout_constraintTop_toBottomOf="@+id/restaurantSwitch"
             tools:targetApi="o" />
 
         <EditText
@@ -65,7 +65,7 @@
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/passwordSignup"
+            android:id="@+id/signupPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -83,7 +83,7 @@
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/confirmPassSignup"
+            android:id="@+id/signupPassConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -97,11 +97,11 @@
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordSignup"
+            app:layout_constraintTop_toBottomOf="@+id/signupPassword"
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/emailSignup"
+            android:id="@+id/signupEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -115,11 +115,11 @@
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPassSignup"
+            app:layout_constraintTop_toBottomOf="@+id/signupPassConfirm"
             tools:targetApi="o" />
 
         <Button
-            android:id="@+id/signupBtn"
+            android:id="@+id/SignupBTN"
             android:layout_width="209dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@+id/addressSignup" />
 
         <TextView
-            android:id="@+id/goToLoginBtn"
+            android:id="@+id/existingUser"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -145,10 +145,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/SignupBTN" />
 
         <Switch
-            android:id="@+id/switchRestaurant"
+            android:id="@+id/restaurantSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -157,7 +157,7 @@
             android:checked="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignupTV" />
+            app:layout_constraintTop_toBottomOf="@+id/signupTitle" />
 
         <TextView
             android:id="@+id/CustomerTV"
@@ -169,11 +169,11 @@
             android:textColor="#3587c7"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/switchRestaurant"
-            app:layout_constraintEnd_toStartOf="@+id/switchRestaurant"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurantSwitch"
+            app:layout_constraintEnd_toStartOf="@+id/restaurantSwitch"
             app:layout_constraintHorizontal_bias="0.879"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/switchRestaurant" />
+            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch" />
 
         <TextView
             android:id="@+id/RestaurantTV"
@@ -185,11 +185,11 @@
             android:textColor="#3587c7"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/switchRestaurant"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurantSwitch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.128"
-            app:layout_constraintStart_toEndOf="@+id/switchRestaurant"
-            app:layout_constraintTop_toTopOf="@+id/switchRestaurant" />
+            app:layout_constraintStart_toEndOf="@+id/restaurantSwitch"
+            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch" />
 
         <EditText
             android:id="@+id/addressSignup"
@@ -203,7 +203,7 @@
             android:inputType="textPostalAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailSignup"
+            app:layout_constraintTop_toBottomOf="@+id/signupEmail"
             android:autofillHints="no"
             tools:targetApi="o"
             android:textColorHint="#3587c7"/>

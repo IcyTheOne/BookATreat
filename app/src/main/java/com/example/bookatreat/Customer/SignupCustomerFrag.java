@@ -15,7 +15,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bookatreat.Customer.CustomerActivity;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
@@ -24,8 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
 
-    private EditText firstname, lastname, password,passwordConfirm, email;
-    String firstnameST, lastnameST, passwordST, passwordConfirmST, emailST;
+    private EditText mFirstName, mLastName, mPassword, mPasswordConfirm, mEmail;
+    String firstNameValue, lastNameValue, passwordValue, confirmPassValue, emailValue;
 
     @Nullable
     @Override
@@ -34,16 +33,17 @@ public class SignupCustomerFrag extends Fragment{
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
         // Find input views
-        firstname = view.findViewById(R.id.firstNameSignup);
-        lastname = view.findViewById(R.id.lastNameSignup);
-        password = view.findViewById(R.id.passwordSignup);
-        passwordConfirm = view.findViewById(R.id.confirmPassSignup);
-        email = view.findViewById(R.id.emailSignup);
+        mFirstName = view.findViewById(R.id.signupFirstName);
+        mLastName = view.findViewById(R.id.signupLastName);
+        mPassword = view.findViewById(R.id.signupPassword);
+        mPasswordConfirm = view.findViewById(R.id.signupPassConfirm);
+        mEmail = view.findViewById(R.id.signupEmail);
 
         // Click Switch to go to Restaurant Signup
-        Switch btnToResSignup = view.findViewById(R.id.switchRestaurant);
-        btnToResSignup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch restaurantSwitch = view.findViewById(R.id.restaurantSwitch);
+        restaurantSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 FragmentTransaction cusToRes = getFragmentManager().beginTransaction();
@@ -53,8 +53,8 @@ public class SignupCustomerFrag extends Fragment{
         });
 
         // Click text to go to Login page
-        TextView btnToLogin = view.findViewById(R.id.goToLoginBtn);
-        btnToLogin.setOnClickListener(new View.OnClickListener() {
+        TextView existingUser = view.findViewById(R.id.existingUser);
+        existingUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent secondIntent = new Intent(getActivity(), LoginActivity.class);
@@ -64,23 +64,23 @@ public class SignupCustomerFrag extends Fragment{
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.signupBtn);
+        TextView btnToSignup = view.findViewById(R.id.SignupBTN);
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstnameST = firstname.getText().toString();
-                lastnameST = lastname.getText().toString();
-                passwordST = password.getText().toString();
-                passwordConfirmST = passwordConfirm.getText().toString();
-                emailST = email.getText().toString();
+                firstNameValue = mFirstName.getText().toString();
+                lastNameValue = mLastName.getText().toString();
+                passwordValue = mPassword.getText().toString();
+                confirmPassValue = mPasswordConfirm.getText().toString();
+                emailValue = mEmail.getText().toString();
 
-                // If any field is empty else if confirm password doesn't match password else if email is already in database else signup and login
+                // If any field is empty else if confirm mPassword doesn't match mPassword else if mEmail is already in database else signup and login
 
-                if(firstnameST.isEmpty() || lastnameST.isEmpty() || passwordST.isEmpty() || passwordConfirmST.isEmpty() || emailST.isEmpty()){
+                if(firstNameValue.isEmpty() || lastNameValue.isEmpty() || passwordValue.isEmpty() || confirmPassValue.isEmpty() || emailValue.isEmpty()){
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                }else if (!passwordST.equals(passwordConfirmST)){
+                }else if (!passwordValue.equals(confirmPassValue)){
                     Toast.makeText(getContext(), "The passwords doesn't match", Toast.LENGTH_SHORT).show();
-                    //} else if (emailST/*is already in database*/){
+                    //} else if (emailValue/*is already in database*/){
 
                 } else {
                     // Insert data to database under unique id then login and change to CustomerActivity

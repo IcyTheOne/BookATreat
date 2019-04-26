@@ -42,14 +42,14 @@ public class CustomerActivity extends AppCompatActivity {
          *
          */
 
-        ImageButton mapButton = findViewById(R.id.mapsbtn);
-        ImageButton restaurantButton = findViewById(R.id.restaurantbtn);
-        ImageButton calendarButton = findViewById(R.id.calendarbtn);
-        ImageButton messageButton = findViewById(R.id.messagesbtn);
-        ImageButton settingsButton = findViewById(R.id.favoritesbtn);
+        ImageButton mapButton = findViewById(R.id.MapsBTN);
+        ImageButton restaurantButton = findViewById(R.id.RestaurantBTN);
+        ImageButton calendarButton = findViewById(R.id.CalendarBTN);
+        ImageButton messageButton = findViewById(R.id.MessagesBTN);
+        ImageButton settingsButton = findViewById(R.id.FavoritesBTN);
 
 
-        ListView lv = findViewById(R.id.restaurantlist);
+        ListView restaurantList = findViewById(R.id.RestaurantList);
 
         String[] restaurants = new String[]{
           "New dehli",
@@ -59,27 +59,13 @@ public class CustomerActivity extends AppCompatActivity {
           "Dominos",
           "Schipka",
           "El nacionale",
-                "New dehli",
-                "TGI friday",
-                "Gastornomia",
-                "Burger King",
-                "Dominos",
-                "Schipka",
-                "El nacionale",
-                "New dehli",
-                "TGI friday",
-                "Gastornomia",
-                "Burger King",
-                "Dominos",
-                "Schipka",
-                "El nacionale"
         };
 
 
-        List<String> restaurants_list = new ArrayList<String>(Arrays.asList(restaurants));
+        List<String> restaurants_list = new ArrayList<>(Arrays.asList(restaurants));
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, restaurants_list);
-        lv.setAdapter(arrayAdapter);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, restaurants_list);
+        restaurantList.setAdapter(arrayAdapter);
 
 
         // Click listeners
@@ -89,6 +75,7 @@ public class CustomerActivity extends AppCompatActivity {
         //google maps
 
         mapButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
