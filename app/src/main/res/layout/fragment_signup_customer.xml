@@ -65,7 +65,7 @@
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/signupPassword"
+            android:id="@+id/signupRPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -83,7 +83,7 @@
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/signupPassConfirm"
+            android:id="@+id/signupRPassConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -97,11 +97,11 @@
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupPassword"
+            app:layout_constraintTop_toBottomOf="@+id/signupRPassword"
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/signupEmail"
+            android:id="@+id/signupREmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -115,11 +115,11 @@
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupPassConfirm"
+            app:layout_constraintTop_toBottomOf="@+id/signupRPassConfirm"
             tools:targetApi="o" />
 
         <Button
-            android:id="@+id/SignupBTN"
+            android:id="@+id/SignupRBTN"
             android:layout_width="209dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
@@ -130,7 +130,7 @@
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/signupREmail" />
 
         <TextView
             android:id="@+id/existingUser"
@@ -144,7 +144,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignupBTN" />
+            app:layout_constraintTop_toBottomOf="@+id/SignupRBTN" />
 
         <Switch
             android:id="@+id/restaurantSwitch"

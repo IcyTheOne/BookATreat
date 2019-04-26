@@ -7,7 +7,7 @@
     tools:context=".Customer.CustomerActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/buttonBar"
         android:layout_width="431dp"
         android:layout_height="73dp"
         android:layout_marginStart="8dp"
@@ -21,8 +21,8 @@
 
     <FrameLayout
         android:id="@+id/fragment_container_cus"
-        android:layout_width="382dp"
-        android:layout_height="606dp"
+        android:layout_width="397dp"
+        android:layout_height="642dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -32,58 +32,53 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="604dp">
+            android:layout_height="match_parent">
 
-            <ListView
-                android:id="@+id/RestaurantList"
-                android:layout_width="378dp"
-                android:layout_height="537dp"
-                android:layout_marginStart="8dp"
+            <ImageButton
+                android:id="@+id/MapsBTN"
+                android:layout_width="45dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_weight="1"
+                android:src="@android:drawable/ic_menu_mylocation"
+                app:layout_constraintBottom_toTopOf="@+id/RestaurantList"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchView"
-                app:layout_constraintVertical_bias="0.384">
-
-
-            </ListView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/searchBoxText"
-                android:layout_width="243dp"
-                android:layout_height="45dp"
+                android:id="@+id/searchBar"
+                android:layout_width="272dp"
+                android:layout_height="38dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/search_box_text"
                 android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/RestaurantList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ListView
+                android:id="@+id/RestaurantList"
+                android:layout_width="380dp"
+                android:layout_height="540dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.276"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
-            </SearchView>
+            </ListView>
+
         </android.support.constraint.ConstraintLayout>
 
     </FrameLayout>
@@ -104,23 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <ImageButton
-        android:id="@+id/MapsBTN"
-        android:layout_width="45dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:src="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
 
     <ImageButton
         android:id="@+id/CalendarBTN"

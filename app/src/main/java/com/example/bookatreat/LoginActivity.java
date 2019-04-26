@@ -31,11 +31,11 @@ public class LoginActivity extends AppCompatActivity {
         catch (NullPointerException e){}
         setContentView(R.layout.activity_login); // End of removing ActionBar
 
-        usernameET = findViewById(R.id.usernameET);
-        passwordET = findViewById(R.id.passwordET);
+        usernameET = findViewById(R.id.loginUsername);
+        passwordET = findViewById(R.id.loginPassword);
 
-        TextView btnToSignup = findViewById(R.id.signupBTN);
-        Button loginBtn = findViewById(R.id.loginbtn_login);
+        TextView btnToSignup = findViewById(R.id.signupHyperlink);
+        Button loginBtn = findViewById(R.id.loginBTN);
 
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override

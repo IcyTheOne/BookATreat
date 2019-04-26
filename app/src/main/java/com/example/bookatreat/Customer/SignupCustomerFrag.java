@@ -37,9 +37,9 @@ public class SignupCustomerFrag extends Fragment{
         // Find input views
         mFirstName = view.findViewById(R.id.signupFirstName);
         mLastName = view.findViewById(R.id.signupLastName);
-        mPassword = view.findViewById(R.id.signupPassword);
-        mPasswordConfirm = view.findViewById(R.id.signupPassConfirm);
-        mEmail = view.findViewById(R.id.signupEmail);
+        mPassword = view.findViewById(R.id.signupRPassword);
+        mPasswordConfirm = view.findViewById(R.id.signupRPassConfirm);
+        mEmail = view.findViewById(R.id.signupREmail);
 
         // Click Switch to go to Restaurant Signup
         Switch restaurantSwitch = view.findViewById(R.id.restaurantSwitch);
@@ -64,7 +64,7 @@ public class SignupCustomerFrag extends Fragment{
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.SignupBTN);
+        TextView btnToSignup = view.findViewById(R.id.SignupRBTN);
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

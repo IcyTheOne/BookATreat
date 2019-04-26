@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
-import com.example.bookatreat.Restaurant.BookedFrag;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class NewBookingFrag extends Fragment {
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_new_book);
 
-        Button btnToReserved = view.findViewById(R.id.button_reserved);
+        Button btnToReserved = view.findViewById(R.id.bookedListBTN);
         btnToReserved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +50,7 @@ public class NewBookingFrag extends Fragment {
             }
         });
 
-        FloatingActionButton btnAddNew = view.findViewById(R.id.floating_add_new);
+        FloatingActionButton btnAddNew = view.findViewById(R.id.addNewBTN);
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,9 +71,9 @@ public class NewBookingFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
 
-        final EditText tableId = mView.findViewById(R.id.edit_id);
-        final EditText numberOfPeople = mView.findViewById(R.id.edit_number);
-        Button add = mView.findViewById(R.id.button_add);
+        final EditText tableId = mView.findViewById(R.id.TableID);
+        final EditText numberOfPeople = mView.findViewById(R.id.NumberOfGuests);
+        Button add = mView.findViewById(R.id.AddTableBTN);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();

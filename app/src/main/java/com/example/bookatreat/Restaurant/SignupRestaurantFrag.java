@@ -38,12 +38,12 @@ public class SignupRestaurantFrag extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         // Find input views
-        resName = view.findViewById(R.id.restaurantName);
-        resDsc = view.findViewById(R.id.restaurantDscSignup);
-        resPass = view.findViewById(R.id.signupPassword);
-        resPassConfirm = view.findViewById(R.id.signupPassConfirm);
-        resEmail = view.findViewById(R.id.signupEmail);
-        resAddress = view.findViewById(R.id.addressSignup);
+        resName = view.findViewById(R.id.signupRName);
+        resDsc = view.findViewById(R.id.signupRDescription);
+        resPass = view.findViewById(R.id.signupRPassword);
+        resPassConfirm = view.findViewById(R.id.signupRPassConfirm);
+        resEmail = view.findViewById(R.id.signupREmail);
+        resAddress = view.findViewById(R.id.signupRAddress);
 
         // Convert to Strings
 
@@ -71,7 +71,7 @@ public class SignupRestaurantFrag extends Fragment {
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.SignupBTN);
+        TextView btnToSignup = view.findViewById(R.id.SignupRBTN);
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
