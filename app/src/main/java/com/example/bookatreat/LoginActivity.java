@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,17 +47,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-// fjfhsefhdhf
+        // Login Button Pressed
         loginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 usernameST = usernameET.getText().toString();
                 passwordST = passwordET.getText().toString();
-                if(!usernameST.isEmpty() && passwordST.isEmpty()){
+                if(!usernameST.isEmpty() && passwordST.isEmpty()){ // If password field is empty --> Error Message
                     Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_SHORT).show();
-                } else if (!passwordST.isEmpty() && usernameST.isEmpty()){
+                } else if (!passwordST.isEmpty() && usernameST.isEmpty()){ // If username field is empty --> Error Message
                     Toast.makeText(getApplicationContext(), "Please enter your username", Toast.LENGTH_SHORT).show();
-                } else if (usernameST.isEmpty()) {
+                } else if (usernameST.isEmpty()) { // If both fields are empty --> Error Message
                     Toast.makeText(getApplicationContext(), "Please fill in all the fields", Toast.LENGTH_SHORT).show();
                 }
                 //} else if(/* If username and password doesn't match any id in database*/){

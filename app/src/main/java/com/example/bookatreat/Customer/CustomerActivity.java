@@ -1,7 +1,6 @@
 package com.example.bookatreat.Customer;
 
 import android.support.v4.app.FragmentTransaction;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -27,36 +26,28 @@ public class CustomerActivity extends AppCompatActivity {
         catch (NullPointerException e){}
         setContentView(R.layout.activity_customer_search); // End of removing ActionBar
 
+        // Setting up Fragment Manager for Customer View
         FragmentManager fm = getSupportFragmentManager();
         final Fragment fragment = fm.findFragmentById(R.id.fragment_container_cus);
         fm.beginTransaction().add(R.id.fragment_container_cus, new CustomerListResFrag()).commit();
 
-
-        /**
-         * Need to add fragments for all the buttons and their layout
-         *
-         */
-
+        // Buttons
         ImageButton restaurantButton = findViewById(R.id.RestaurantBTN);
         ImageButton calendarButton = findViewById(R.id.CalendarBTN);
         ImageButton messageButton = findViewById(R.id.MessagesBTN);
-        ImageButton settingsButton = findViewById(R.id.FavoritesBTN);
+        ImageButton favoritesButton = findViewById(R.id.FavoritesBTN);
 
-
-        // Click listeners
-        //Restaurant search
-
+        // Go to RestaurantView
         restaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent restaurantIntent = new Intent(getBaseContext(), CustomerActivity.class);
-                startActivity(restaurantIntent);
-
+                FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
+                toCalendar.replace(R.id.fragment_container_cus, new CustomerListResFrag());
+                toCalendar.commit();
             }
         });
 
-        //Calendar bookings
-
+        // Go to Calendar
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,33 +57,25 @@ public class CustomerActivity extends AppCompatActivity {
             }
         });
 
-        //messages
-
+        // Go to Messages
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
+                toCalendar.replace(R.id.fragment_container_cus, new MessageFrag());
+                toCalendar.commit();
             }
         });
 
-        //settings
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        // Go to Favorites
+        favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
+                toCalendar.replace(R.id.fragment_container_cus, new FavoritesFrag());
+                toCalendar.commit();
             }
         });
-
-
-
-
-
-
-
-
-
-
 
     }
 }
