@@ -6,93 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".Customer.CustomerActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container_cus"
+        android:layout_width="match_parent"
+        android:layout_height="660dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/buttonBar"
-        android:layout_width="431dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:contentDescription="@string/toolbar_content_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_container_cus"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@color/colorPrimary" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container_cus"
-        android:layout_width="397dp"
-        android:layout_height="642dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/MapsBTN"
-                android:layout_width="45dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/ic_menu_mylocation"
-                app:layout_constraintBottom_toTopOf="@+id/RestaurantList"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/searchBar"
-                android:layout_width="272dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="@string/search_box_text"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/RestaurantList"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ListView
-                android:id="@+id/RestaurantList"
-                android:layout_width="380dp"
-                android:layout_height="540dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
-
-
-            </ListView>
-
-        </android.support.constraint.ConstraintLayout>
-
-    </FrameLayout>
-
-
     <ImageButton
         android:id="@+id/RestaurantBTN"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="@string/toolbar_search_content_description"
         android:src="@android:drawable/ic_menu_search"
+        android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.082"
@@ -102,13 +49,17 @@
 
     <ImageButton
         android:id="@+id/CalendarBTN"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="@string/toolbar_calendar_content_description"
         android:src="@android:drawable/ic_menu_today"
+        android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.646"
@@ -118,13 +69,17 @@
 
     <ImageButton
         android:id="@+id/MessagesBTN"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="@string/toolbar_message_content_description"
         android:src="@android:drawable/ic_dialog_email"
+        android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.935"
@@ -134,13 +89,17 @@
 
     <ImageButton
         android:id="@+id/FavoritesBTN"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="@string/toolbar_favorites_content_description"
         android:src="@android:drawable/btn_star"
+        android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.362"

@@ -1,20 +1,15 @@
 package com.example.bookatreat.Customer;
 
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.example.bookatreat.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -33,8 +28,8 @@ public class CustomerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_search); // End of removing ActionBar
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container_cus);
-        fm.beginTransaction().add(R.id.fragment_container_cus, new MapsViewFrag()).commit();
+        final Fragment fragment = fm.findFragmentById(R.id.fragment_container_cus);
+        fm.beginTransaction().add(R.id.fragment_container_cus, new CustomerListResFrag()).commit();
 
 
         /**
@@ -42,58 +37,19 @@ public class CustomerActivity extends AppCompatActivity {
          *
          */
 
-        ImageButton mapButton = findViewById(R.id.MapsBTN);
         ImageButton restaurantButton = findViewById(R.id.RestaurantBTN);
         ImageButton calendarButton = findViewById(R.id.CalendarBTN);
         ImageButton messageButton = findViewById(R.id.MessagesBTN);
         ImageButton settingsButton = findViewById(R.id.FavoritesBTN);
 
 
-        ListView restaurantList = findViewById(R.id.RestaurantList);
-
-        String[] restaurants = new String[]{
-          "New dehli",
-          "TGI friday",
-          "Gastornomia",
-          "Burger King",
-          "Dominos",
-          "Schipka",
-          "El nacionale",
-        };
-
-
-        List<String> restaurants_list = new ArrayList<>(Arrays.asList(restaurants));
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, restaurants_list);
-        restaurantList.setAdapter(arrayAdapter);
-
-
         // Click listeners
-
-
-
-        //google maps
-
-        mapButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-//                Intent mapsIntent = new Intent(CustomerActivity.this, CustomerMapsActivity.class);
-//
-//                startActivity(mapsIntent);
-
-
-            }
-        });
-
-        //restaurant search
+        //Restaurant search
 
         restaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent restaurantIntent = new Intent(CustomerActivity.this, CustomerActivity.class);
+                Intent restaurantIntent = new Intent(getBaseContext(), CustomerActivity.class);
                 startActivity(restaurantIntent);
 
             }
@@ -104,7 +60,9 @@ public class CustomerActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
+                toCalendar.replace(R.id.fragment_container_cus, new CalendarFrag());
+                toCalendar.commit();
             }
         });
 
