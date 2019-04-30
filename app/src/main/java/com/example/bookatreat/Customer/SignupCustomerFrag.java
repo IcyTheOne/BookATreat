@@ -101,7 +101,7 @@ public class SignupCustomerFrag extends Fragment{
         return view;
     }
 
-    //TODO: Fix this methot
+    //TODO: Fix this methot lol
 
     private void createAccount(String email, String password) {
 
