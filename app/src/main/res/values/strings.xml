@@ -24,10 +24,17 @@
     <string name="signup_restaurant_address">Restaurant Address</string>
     <string name="title_activity_customer_maps">Map</string>
 
-
     <!-- CustomerSearch Strings -->
-
     <string name="search_box_text">Cuisine, restaurant name...</string>
+    <string name="maps_button_content_description">Maps Button</string>
+
+    <!-- Customer ToolBar -->
+    <string name="toolbar_content_description">Button Bar</string>
+    <string name="toolbar_search_content_description">Search Button</string>
+    <string name="toolbar_favorites_content_description">Favorites Button</string>
+    <string name="toolbar_calendar_content_description">Calendar Button</string>
+    <string name="toolbar_message_content_description">Message Button</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
