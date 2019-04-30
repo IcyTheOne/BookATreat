@@ -29,8 +29,6 @@ public class SignupRestaurantFrag extends Fragment {
     // TEST BUTTON FOR COMMITING
 
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_restaurant, container, false);
 
