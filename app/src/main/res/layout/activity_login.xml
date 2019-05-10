@@ -7,7 +7,7 @@
     tools:context=".LoginSignUp.LoginActivity">
 
     <TextView
-        android:id="@+id/customerTV2"
+        android:id="@+id/loginCustomerSwitch"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_marginStart="8dp"
@@ -18,28 +18,28 @@
         android:textColor="#3587c7"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/usernameET"
+        app:layout_constraintBottom_toTopOf="@+id/loginUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginTV"
+        app:layout_constraintTop_toBottomOf="@+id/loginTitle"
         app:layout_constraintVertical_bias="0.627" />
 
     <Switch
-        android:id="@+id/switchRestaurant3"
+        android:id="@+id/loginSwitchBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/usernameET"
-        app:layout_constraintEnd_toStartOf="@+id/restaurantTV2"
-        app:layout_constraintStart_toEndOf="@+id/customerTV2"
-        app:layout_constraintTop_toBottomOf="@+id/loginTV" />
+        app:layout_constraintBottom_toTopOf="@+id/loginUsername"
+        app:layout_constraintEnd_toStartOf="@+id/loginRestaurantSwitch"
+        app:layout_constraintStart_toEndOf="@+id/loginCustomerSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/loginTitle" />
 
     <TextView
-        android:id="@+id/restaurantTV2"
+        android:id="@+id/loginRestaurantSwitch"
         android:layout_width="wrap_content"
         android:layout_height="14dp"
         android:layout_marginStart="8dp"
@@ -50,15 +50,15 @@
         android:textColor="#3587c7"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/usernameET"
+        app:layout_constraintBottom_toTopOf="@+id/loginUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/customerTV2"
+        app:layout_constraintStart_toStartOf="@+id/loginCustomerSwitch"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.935" />
 
     <TextView
-        android:id="@+id/loginTV"
+        android:id="@+id/loginTitle"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -71,7 +71,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/usernameET"
+        app:layout_constraintBottom_toTopOf="@+id/loginUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.713" />
 
     <EditText
-        android:id="@+id/usernameET"
+        android:id="@+id/loginUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -96,11 +96,11 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/passwordET"
+        android:id="@+id/loginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:autofillHints="no"
         android:ems="10"
@@ -109,11 +109,11 @@
         android:textColor="#3587c7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameET"
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
         tools:targetApi="o" />
 
     <TextView
-        android:id="@+id/signupBTN"
+        android:id="@+id/signupHyperlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -124,10 +124,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBTN" />
 
     <Button
-        android:id="@+id/loginbtn_login"
+        android:id="@+id/loginBTN"
         android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -138,6 +138,6 @@
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
 </android.support.constraint.ConstraintLayout>

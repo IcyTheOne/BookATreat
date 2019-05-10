@@ -7,6 +7,8 @@
     <string name="login_password">Password&#8230;</string>
     <string name="login_button">Login</string>
     <string name="login_signup_button">Signup here&#8230;</string>
+    <string name="sign_out">Sign out&#8230;</string>
+    <string name="delete_acc">Delete acc</string>
 
     <!-- Sign-up Strings -->
     <string name="signup_title">Sign up</string>
@@ -24,12 +26,25 @@
     <string name="signup_restaurant_address">Restaurant Address</string>
     <string name="title_activity_customer_maps">Map</string>
 
+    <!-- Exception Strings -->
+    <string name="weak_password_exception">Password needs to be at least 6 characters.</string>
+    <string name="wrong_email_format">Pleave enter a valid email.</string>
+    <string name="email_is_in_use">The entered email is already in use.</string>
 
     <!-- CustomerSearch Strings -->
-
     <string name="search_box_text">Cuisine, restaurant name...</string>
+    <string name="maps_button_content_description">Maps Button</string>
+
+    <!-- Customer ToolBar -->
+    <string name="toolbar_content_description">Button Bar</string>
+    <string name="toolbar_search_content_description">Search Button</string>
+    <string name="toolbar_favorites_content_description">Favorites Button</string>
+    <string name="toolbar_calendar_content_description">Calendar Button</string>
+    <string name="toolbar_message_content_description">Message Button</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder">placeholder</string>
+    <string name="hello_blank_fragment">Hello World!</string>
 
 </resources>
