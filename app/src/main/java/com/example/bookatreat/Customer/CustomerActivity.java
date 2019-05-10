@@ -13,8 +13,6 @@ import com.example.bookatreat.R;
 
 public class CustomerActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +39,6 @@ public class CustomerActivity extends AppCompatActivity {
         ImageButton calendarButton = findViewById(R.id.CalendarBTN);
         ImageButton messageButton = findViewById(R.id.MessagesBTN);
         ImageButton settingsButton = findViewById(R.id.FavoritesBTN);
-
 
         // Click listeners
         //Restaurant search
@@ -80,6 +77,10 @@ public class CustomerActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FragmentTransaction toSettings = getSupportFragmentManager().beginTransaction();
+                toSettings.replace(R.id.fragment_container_cus, new CustomerSettingsFrag());
+                toSettings.commit();
 
             }
         });

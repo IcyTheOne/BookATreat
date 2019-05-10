@@ -18,10 +18,15 @@ import android.widget.Toast;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Customer.SignupCustomerFrag;
+import com.example.bookatreat.UserType;
 import com.google.firebase.auth.FirebaseAuth;
+
+import static com.example.bookatreat.UserType.USER_TYPE;
 
 public class SignupRestaurantFrag extends Fragment {
     private FirebaseAuth mAuth;
+
+    UserType type = new UserType();
 
     EditText resName, resDsc, resPass, resPassConfirm, resEmail, resAddress;
     String resNameST, resDscST, resPassST, resPassConfirmST, resEmailST, resAddressST;
@@ -38,19 +43,18 @@ public class SignupRestaurantFrag extends Fragment {
         // Find input views
         resName = view.findViewById(R.id.signupRName);
         resDsc = view.findViewById(R.id.signupRDescription);
-        resPass = view.findViewById(R.id.signupRPassword);
-        resPassConfirm = view.findViewById(R.id.signupRPassConfirm);
-        resEmail = view.findViewById(R.id.signupREmail);
+        resPass = view.findViewById(R.id.signupPassword);
+        resPassConfirm = view.findViewById(R.id.signupPassConfirm);
+        resEmail = view.findViewById(R.id.signupEmail);
         resAddress = view.findViewById(R.id.signupRAddress);
-
-        // Convert to Strings
-
 
         // Switch to Customer signup page
         Switch btnToCusSignup = view.findViewById(R.id.restaurantSwitch);
         btnToCusSignup.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isNotChecked) {
+                USER_TYPE = 1;
+                System.out.println("USER_TYPE set to: " + type.getUserType());
                 FragmentTransaction resToCus = getFragmentManager().beginTransaction();
                 resToCus.replace(R.id.fragment_container, new SignupCustomerFrag());
                 resToCus.commit();
@@ -69,14 +73,10 @@ public class SignupRestaurantFrag extends Fragment {
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.SignupRBTN);
+        TextView btnToSignup = view.findViewById(R.id.signupBTN);
         btnToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                // committed
-                // LALALALALLA LHER ER DEN
 
                 resNameST = resName.getText().toString();
                 resDscST = resDsc.getText().toString();
