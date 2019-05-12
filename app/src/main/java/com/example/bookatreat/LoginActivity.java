@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
-    UserType type;
+    UserType type = new UserType();
 
     @Override
     protected void onStart() {
