@@ -1,48 +1,47 @@
 package com.example.bookatreat;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
-import com.example.bookatreat.Customer.SignupCustomerFrag;
+import com.example.bookatreat.Restaurant.RestaurantActivity;
+import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.example.bookatreat.UserType.USER_TYPE;
+
 public class LoginActivity extends AppCompatActivity {
 
-    EditText usernameET, passwordET;
-    String usernameST, passwordST;
+    private EditText mUserNameField, mPasswordField;
+    private TextView mNewUserText;
+    private Button mLoginButton;
+    private Switch mLoginSwitch;
 
+    private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
-    //TODO: Fix this whole class
-
-    private void updateUI(FirebaseUser user) {
-
-        if (user != null) {
-
-            Intent notSignedIn = new Intent(LoginActivity.this, SignupCustomerFrag.class);
-            startActivity(notSignedIn);
-
-        } else {
-            Intent signedIn = new Intent(LoginActivity.this, CustomerActivity.class);
-            startActivity(signedIn);
-        }
-    }
+    UserType type = new UserType();
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -57,45 +56,108 @@ public class LoginActivity extends AppCompatActivity {
         {
             this.getSupportActionBar().hide();
         }
+
         catch (NullPointerException e){}
+
         setContentView(R.layout.activity_login); // End of removing ActionBar
 
-        usernameET = findViewById(R.id.loginUsername);
-        passwordET = findViewById(R.id.loginPassword);
+        // Find input views
+        mLoginSwitch = findViewById(R.id.loginSwitchBTN);
 
-        TextView existingUserLink = findViewById(R.id.signupHyperlink);
-        Button loginBTN = findViewById(R.id.loginBTN);
+        mUserNameField = findViewById(R.id.loginUsername);
+        mPasswordField = findViewById(R.id.loginPassword);
 
-        existingUserLink.setOnClickListener(new View.OnClickListener() {
+        mLoginButton = findViewById(R.id.loginBTN);
+        mNewUserText = findViewById(R.id.signupHyperlink);
+
+        // Click text to go to sign up page
+        mNewUserText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupIntent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
 
-                startActivity(signupIntent);
             }
         });
 
-        loginBTN.setOnClickListener(new View.OnClickListener(){
+        // Click switch to either sign in as restaurant or user
+        //TODO: above^
+        mLoginSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                loginSwitch(type.getUserType());
+
+            }
+        });
+
+        // Click button to sign in to the app
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameST = usernameET.getText().toString();
-                passwordST = passwordET.getText().toString();
-                if(!usernameST.isEmpty() && passwordST.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Please enter your password", Toast.LENGTH_SHORT).show();
-                } else if (!passwordST.isEmpty() && usernameST.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Please enter your username", Toast.LENGTH_SHORT).show();
-                } else if (usernameST.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please fill in all the fields", Toast.LENGTH_SHORT).show();
-                }
-                //} else if(/* If username and password doesn't match any id in database*/){
-                //    Toast.makeText(getApplicationContext(), "The inserted data is not correct", Toast.LENGTH_SHORT).show();
-                else {
-                    Intent loginIntent = new Intent(LoginActivity.this, CustomerActivity.class);
 
-                    startActivity(loginIntent);
+                String username = mUserNameField.getText().toString().trim();
+                String password = mPasswordField.getText().toString().trim();
+
+                if (username.isEmpty() || password.isEmpty()) {
+
+                    if (username.length() == 0) {
+                        mUserNameField.requestFocus();
+                        mUserNameField.setError("Please enter a valid email.");
+                    }
+
+                    if (password.length() == 0) {
+                        mPasswordField.requestFocus();
+                        mPasswordField.setError("Please enter a password.");
+                    }
+                } else {
+                    signIn(username, password);
                 }
             }
         });
+    }
+
+    private void loginSwitch(int i) {
+
+        if (i == 1) {
+            USER_TYPE = 2;
+            System.out.println("USER_TYPE set to: " + type.getUserType());
+        }
+
+        if (i == 2) {
+            USER_TYPE = 1;
+            System.out.println("USER_TYPE set to: " + type.getUserType());
+        }
+    }
+
+    private void signIn(String username, String password) {
+
+        Log.d(TAG, "signIn:" + username);
+
+        mAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            currentUser = mAuth.getCurrentUser();
+                            finish();
+
+                            if (type.getUserType() == 1) {
+                                startActivity(new Intent(getApplicationContext(), CustomerActivity.class));
+                            } else {
+                                startActivity(new Intent(getApplicationContext(), RestaurantActivity.class));
+                            }
+
+
+                        } else {
+
+                            System.out.println("Sign-in Failed: " + task.getException().getMessage());
+
+                            Toast.makeText(LoginActivity.this, "couldn't login", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
     }
 }
 
