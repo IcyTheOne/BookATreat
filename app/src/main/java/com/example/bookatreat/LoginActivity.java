@@ -2,29 +2,35 @@ package com.example.bookatreat;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
-import com.example.bookatreat.Customer.SignupCustomerFrag;
 import com.example.bookatreat.Restaurant.RestaurantActivity;
+import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.example.bookatreat.UserType.USER_TYPE;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mUserNameField, mPasswordField;
     private TextView mNewUserText;
     private Button mLoginButton;
+    private Switch mLoginSwitch;
 
     private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
@@ -56,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login); // End of removing ActionBar
 
         // Find input views
+        mLoginSwitch = findViewById(R.id.loginSwitchBTN);
+
         mUserNameField = findViewById(R.id.loginUsername);
         mPasswordField = findViewById(R.id.loginPassword);
 
@@ -66,12 +74,23 @@ public class LoginActivity extends AppCompatActivity {
         mNewUserText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
 
             }
         });
 
+        // Click switch to either sign in as restaurant or user
+        //TODO: above^
+        mLoginSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                loginSwitch(type.getUserType());
+
+            }
+        });
+
+        // Click button to sign in to the app
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +114,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void loginSwitch(int i) {
+
+        if (i == 1) {
+            USER_TYPE = 2;
+            System.out.println("USER_TYPE set to: " + type.getUserType());
+        }
+
+        if (i == 2) {
+            USER_TYPE = 1;
+            System.out.println("USER_TYPE set to: " + type.getUserType());
+        }
     }
 
     private void signIn(String username, String password) {

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -41,6 +42,7 @@ public class SignupCustomerFrag extends Fragment{
 
     private TextView mExistingUser, mError;
     private Switch mSignupSwitch;
+    private Button mSignupButton;
     private EditText mFirstNameField, mLastNameField, mPasswordField, mPasswordConfirmField, mEmailField;
     String firstNameVal, lastNameVal, passwordVal, passwordConfirmVal, emailVal;
 
@@ -58,11 +60,12 @@ public class SignupCustomerFrag extends Fragment{
         mPasswordField = view.findViewById(R.id.signupPassword);
         mPasswordConfirmField = view.findViewById(R.id.signupPassConfirm);
         mEmailField = view.findViewById(R.id.signupEmail);
+        mSignupButton = view.findViewById(R.id.signupBTN);
         mSignupSwitch = view.findViewById(R.id.restaurantSwitch);
         mExistingUser = view.findViewById(R.id.existingUser);
         mError = view.findViewById(R.id.signupError);
 
-        // Click to switch between signup pages
+        // Switch to restaurant signup
         mSignupSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -84,8 +87,7 @@ public class SignupCustomerFrag extends Fragment{
         });
 
         // Click Signup Button to signup
-        TextView btnToSignup = view.findViewById(R.id.signupBTN);
-        btnToSignup.setOnClickListener(new View.OnClickListener() {
+        mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firstNameVal = mFirstNameField.getText().toString();
