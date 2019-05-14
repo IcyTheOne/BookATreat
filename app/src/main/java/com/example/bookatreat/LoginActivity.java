@@ -148,6 +148,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(), RestaurantActivity.class));
                             }
 
+                            USER_TYPE = 1;
+
 
                         } else {
 
