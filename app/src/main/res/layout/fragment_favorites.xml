@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="660dp"
-    tools:context=".Customer.CalendarFrag">
+    android:layout_height="match_parent"
+    tools:context=".Customer.FavoritesFrag">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="660dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/TopBar"
@@ -32,16 +32,16 @@
             android:src="@android:drawable/ic_menu_manage"
             android:tint="#FFF"
             app:layout_constraintBottom_toBottomOf="@+id/TopBar"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/TopBar"
             app:layout_constraintTop_toTopOf="@+id/TopBar" />
 
         <TextView
-            android:id="@+id/bookingTextView"
+            android:id="@+id/favoritesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:padding="2dp"
-            android:text="@string/calendar_title_textview"
+            android:text="@string/favorites_title_textview"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -53,7 +53,6 @@
             app:layout_constraintEnd_toEndOf="@+id/TopBar"
             app:layout_constraintStart_toStartOf="@+id/TopBar"
             app:layout_constraintTop_toTopOf="@+id/TopBar" />
-
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
