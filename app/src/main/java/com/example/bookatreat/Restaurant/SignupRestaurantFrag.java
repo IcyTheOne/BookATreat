@@ -128,7 +128,7 @@ public class SignupRestaurantFrag extends Fragment {
                                 //start Profile Activity here
                                 Toast.makeText(getActivity(), "registration successful", Toast.LENGTH_SHORT).show();
                                 //finish();
-                                startActivity(new Intent(getActivity(), CustomerActivity.class));
+                                startActivity(new Intent(getActivity(), RestaurantActivity.class));
                             } else {
                                 Toast.makeText(getActivity(), "Couldn't register, try again", Toast.LENGTH_SHORT).show();
                                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
