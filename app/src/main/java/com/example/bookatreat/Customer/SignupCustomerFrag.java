@@ -46,7 +46,7 @@ public class SignupCustomerFrag extends Fragment{
 
     UserType type = new UserType();
 
-    private static final String TAG = "CustomerSignupActivity";
+    private static final String TAG = "CustomerSignupFrag";
     private static final String KEY_NAME = "Name";
     private static final String KEY_LNAME = "Last Name";
     private static final String KEY_EMAIL = "Email";
