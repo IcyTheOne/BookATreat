@@ -23,6 +23,8 @@ import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 import com.example.bookatreat.UserType;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,15 +32,25 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.bookatreat.UserType.USER_TYPE;
 
 public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     UserType type = new UserType();
 
-    private String TAG = "SignupActivity";
+    private static final String TAG = "CustomerSignupActivity";
+    private static final String KEY_NAME = "Name";
+    private static final String KEY_LNAME = "Last Name";
+    private static final String KEY_EMAIL = "Email";
+    private static final String KEY_PASSWORD = "Password";
 
     private TextView mExistingUser, mError;
     private Switch mSignupSwitch;
@@ -100,11 +112,35 @@ public class SignupCustomerFrag extends Fragment{
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(emailVal, passwordVal);
+                    saveUser();
                 }
             }
         });
 
         return view;
+    }
+
+    public void saveUser() {
+        Map<String, Object> user = new HashMap<>();
+        user.put(KEY_NAME, firstNameVal);
+        user.put(KEY_LNAME, lastNameVal);
+        user.put(KEY_EMAIL, emailVal);
+        user.put(KEY_PASSWORD, passwordVal);
+
+        db.collection("users").document(emailVal)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
     }
 
     public void createAccount(String username, String password) {
@@ -205,7 +241,5 @@ public class SignupCustomerFrag extends Fragment{
 
         return valid;
     }
-
-
 
 }
