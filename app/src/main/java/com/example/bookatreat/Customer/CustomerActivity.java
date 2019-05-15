@@ -1,15 +1,22 @@
 package com.example.bookatreat.Customer;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.bookatreat.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -38,11 +45,11 @@ public class CustomerActivity extends AppCompatActivity {
         ImageButton restaurantButton = findViewById(R.id.RestaurantBTN);
         ImageButton calendarButton = findViewById(R.id.CalendarBTN);
         ImageButton messageButton = findViewById(R.id.MessagesBTN);
-        ImageButton settingsButton = findViewById(R.id.FavoritesBTN);
+        ImageButton favoritesButton = findViewById(R.id.FavoritesBTN);
+
 
         // Click listeners
         //Restaurant search
-
         restaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +60,6 @@ public class CustomerActivity extends AppCompatActivity {
         });
 
         //Calendar bookings
-
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,37 +69,25 @@ public class CustomerActivity extends AppCompatActivity {
             }
         });
 
-        //messages
+        // Go to Favorites
+        favoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction toFavorites = getSupportFragmentManager().beginTransaction();
+                toFavorites.replace(R.id.fragment_container_cus, new FavoritesFrag());
+                toFavorites.commit();
+            }
+        });
 
+        // Go to Messages
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction toMessages = getSupportFragmentManager().beginTransaction();
+                toMessages.replace(R.id.fragment_container_cus, new MessageFrag());
+                toMessages.commit();
             }
         });
-
-        //settings
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentTransaction toSettings = getSupportFragmentManager().beginTransaction();
-                toSettings.replace(R.id.fragment_container_cus, new CustomerSettingsFrag());
-                toSettings.commit();
-
-            }
-        });
-
-
-
-
-
-
-
-
-
-
 
     }
 }

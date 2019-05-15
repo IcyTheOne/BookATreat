@@ -10,4 +10,5 @@ public class UserType {
     public int getUserType() {
         return USER_TYPE;
     }
+
 }

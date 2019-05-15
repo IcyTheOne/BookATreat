@@ -1,5 +1,6 @@
 package com.example.bookatreat.Customer;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,15 +13,15 @@ import android.widget.ImageButton;
 
 import com.example.bookatreat.R;
 
-
-public class MapsViewFrag extends Fragment {
+public class FavoritesFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_maps_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
         // Find IDs
         ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
 
+
         // Go to Settings
-        settingsButton.setOnClickListener(new View. OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -29,6 +30,9 @@ public class MapsViewFrag extends Fragment {
                 ft.commit();
             }
         });
+
+
+
         return view;
     }
 }

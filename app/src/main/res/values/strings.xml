@@ -34,6 +34,7 @@
     <!-- CustomerSearch Strings -->
     <string name="search_box_text">Cuisine, restaurant name...</string>
     <string name="maps_button_content_description">Maps Button</string>
+    <string name="customer_favorites_content_description">Favorites Button</string>
 
     <!-- Customer ToolBar -->
     <string name="toolbar_content_description">Button Bar</string>
@@ -42,6 +43,18 @@
     <string name="toolbar_calendar_content_description">Calendar Button</string>
     <string name="toolbar_message_content_description">Message Button</string>
 
+    <!-- Settings Button (In all toolbar frags) -->
+    <string name="settings_button_content_description">Settings Button</string>
+    <string name="settings_title_textview">Settings</string>
+
+    <!-- Calendar Frag -->
+    <string name="calendar_title_textview">Calendar</string>
+
+    <!-- Favorites Frag -->
+    <string name="favorites_title_textview">Favorites</string>
+
+    <!-- Messages Frag -->
+    <string name="messages_title_textview">Messages</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="placeholder">placeholder</string>

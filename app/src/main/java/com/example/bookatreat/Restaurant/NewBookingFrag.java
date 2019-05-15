@@ -99,7 +99,6 @@ public class NewBookingFrag extends Fragment {
             }
         });
 
-
     }
 
 }
