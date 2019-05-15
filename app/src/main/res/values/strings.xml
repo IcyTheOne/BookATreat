@@ -34,6 +34,7 @@
     <!-- CustomerSearch Strings -->
     <string name="search_box_text">Cuisine, restaurant name...</string>
     <string name="maps_button_content_description">Maps Button</string>
+    <string name="customer_favorites_content_description">Favorites Button</string>
 
     <!-- Customer ToolBar -->
     <string name="toolbar_content_description">Button Bar</string>
