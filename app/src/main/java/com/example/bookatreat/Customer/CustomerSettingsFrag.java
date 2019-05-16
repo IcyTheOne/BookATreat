@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.firebase.ui.auth.AuthUI;
@@ -20,7 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerSettingsFrag extends Fragment {
     private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    DataBaseHandler db = new DataBaseHandler();
+
+    private String username;
 
     Button mSignout, mDeleteAcc;
 
@@ -48,17 +53,11 @@ public class CustomerSettingsFrag extends Fragment {
         });
 
 
+
         return view;
     }
 
     public void signOut() {
-
-        /*
-        mAuth.getInstance().signOut();
-        Intent signOut = new Intent(getActivity(), LoginActivity.class);
-        signOut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(signOut);
-        */
 
         AuthUI.getInstance()
                 .signOut(getContext())
@@ -69,10 +68,11 @@ public class CustomerSettingsFrag extends Fragment {
                         getActivity().finish();
                     }
                 });
-
     }
 
     public void deleteAcc() {
+        db.delete();
+
         AuthUI.getInstance()
                 .delete(getActivity())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -83,4 +83,5 @@ public class CustomerSettingsFrag extends Fragment {
                     }
                 });
     }
+
 }
