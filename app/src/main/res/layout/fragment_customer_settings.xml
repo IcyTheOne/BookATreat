@@ -34,7 +34,7 @@
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="@+id/TopBar"
