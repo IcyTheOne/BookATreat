@@ -22,6 +22,7 @@ import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
+import com.example.bookatreat.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,9 +35,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    DataBaseHandler db = new DataBaseHandler();
+    private DataBaseHandler db = new DataBaseHandler();
+    //public static User newCustomer;
 
     private static final String TAG = "CustomerSignupFrag";
 
@@ -90,34 +90,25 @@ public class SignupCustomerFrag extends Fragment{
         mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstNameVal = mFirstNameField.getText().toString();
-                lastNameVal = mLastNameField.getText().toString();
-                passwordVal = mPasswordField.getText().toString();
-                passwordConfirmVal = mPasswordConfirmField.getText().toString();
-                emailVal = mEmailField.getText().toString();
+                firstNameVal = mFirstNameField.getText().toString().trim();
+                lastNameVal = mLastNameField.getText().toString().trim();
+                passwordVal = mPasswordField.getText().toString().trim();
+                passwordConfirmVal = mPasswordConfirmField.getText().toString().trim();
+                emailVal = mEmailField.getText().toString().trim();
 
                 if (!passwordConfirmVal.equals(passwordVal)) {
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(emailVal, passwordVal);
                     db.saveUser(firstNameVal, lastNameVal, emailVal, passwordVal);
+                    //newCustomer = new User(firstNameVal, lastNameVal, emailVal, passwordVal);
+                    //user = newCustomer;
+                    db.emailVerification();
                 }
             }
         });
 
         return view;
-    }
-
-    public void emailVerification() {
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                        }
-                    }
-                });
     }
 
     public void createAccount(String username, String password) {
@@ -135,7 +126,6 @@ public class SignupCustomerFrag extends Fragment{
                             //check if successful
                             if (task.isSuccessful()) {
                                 //User is successfully registered and logged in
-                                emailVerification();
                                 //start Profile Activity here
                                 Toast.makeText(getActivity(), "registration successful", Toast.LENGTH_SHORT).show();
                                 //finish();

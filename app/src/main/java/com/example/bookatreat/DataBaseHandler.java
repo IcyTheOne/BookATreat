@@ -21,9 +21,7 @@ public class DataBaseHandler {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    private User data;
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
     private String emailAddress;
 
@@ -51,12 +49,19 @@ public class DataBaseHandler {
         return true;
     }
 
-    public String getEmailAddress() {
-        if (user != null) {
-            emailAddress = user.getEmail();
-            return emailAddress;
+    public void emailVerification() {
+
+        if (fUser != null) {
+            fUser.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Email sent to: " + fUser.getEmail());
+                            }
+                        }
+                    });
         }
-        return null;
     }
 
     public void saveUser(String firstNameVal, String lastNameVal, String emailVal, String passwordVal) {
@@ -119,9 +124,15 @@ public class DataBaseHandler {
                 });
     }
 
+    private void getUserEmail() {
+        if (fUser != null) {
+            emailAddress = fUser.getEmail();
+        }
+    }
+
     public void delete() {
 
-        getEmailAddress();
+        getUserEmail();
 
         if (USER_TYPE == 1) {
             users.document(emailAddress).delete();
