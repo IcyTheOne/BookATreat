@@ -31,11 +31,12 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignupRestaurantFrag extends Fragment {
     private FirebaseAuth mAuth;
-
-    DataBaseHandler db = new DataBaseHandler();
+    private DataBaseHandler db = new DataBaseHandler();
+    //public static User newRestaurant;
 
     private static final String TAG = "RestaurantSignupFrag";
 
@@ -101,8 +102,10 @@ public class SignupRestaurantFrag extends Fragment {
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(resEmailVal, resPassVal);
-                    //UID = mAuth.getUid();
                     db.saveUser(resNameVal, resDescVal, resEmailVal, resPassVal, resAddressVal);
+                    //newRestaurant = new User(resNameVal, resDescVal, resEmailVal, resPassVal, resAddressVal);
+                    //user = newRestaurant;
+                    db.emailVerification();
                 }
             }
         });

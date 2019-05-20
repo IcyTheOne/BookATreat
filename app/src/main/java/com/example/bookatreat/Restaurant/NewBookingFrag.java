@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.bookatreat.Customer.CustomerSettingsFrag;
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,10 +29,10 @@ public class NewBookingFrag extends Fragment {
     private DataBaseHandler dbHandler;
     private ArrayList<String> arrNew;
     private ListView listNew;
+    private Button settingsButton, btnToReserved;
 
     @Nullable
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_bookings, container, false);
         // Initialize Firebase Auth
@@ -39,8 +40,9 @@ public class NewBookingFrag extends Fragment {
         dbHandler = new DataBaseHandler();
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_new_book);
+        settingsButton = view.findViewById(R.id.restaurantSettingsBTN);
 
-        Button btnToReserved = view.findViewById(R.id.bookedListBTN);
+        btnToReserved = view.findViewById(R.id.bookedListBTN);
         btnToReserved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +98,17 @@ public class NewBookingFrag extends Fragment {
                     Toast.makeText(getContext(), "Error: unable to add the table.", Toast.LENGTH_LONG).show();
 
 
+            }
+        });
+
+        // Go to Settings
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container_restaurant, new RestaurantSettingsFrag());
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
             }
         });
 
