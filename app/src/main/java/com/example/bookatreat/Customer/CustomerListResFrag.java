@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,39 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
+import static com.example.bookatreat.DataBaseHandler.emailCredentials;
 
 
 public class CustomerListResFrag extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private static final String KEY_NAME = "Name";
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference restaurants = db.collection("restaurants");
+
+
+    private static final String TAG = "CustomerListResFrag";
+
+    CustomerExampleAdapter adapter;
+
+    private String resName;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_list_res, container, false);
@@ -32,44 +57,33 @@ public class CustomerListResFrag extends Fragment {
         final ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
         final ImageButton mapButton = view.findViewById(R.id.mapsBtn);
 
-//        String[] restaurants = new String[]{
-//                "New dehli",
-//                "TGI friday",
-//                "Gastornomia",
-//                "Burger King",
-//                "Dominos",
-//                "Schipka",
-//                "El nacionale",
-//        };
-//
-//
-//        List<String> restaurants_list = new ArrayList<>(Arrays.asList(restaurants));
-//        final ArrayAdapter arrayAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_list_item_1, restaurants_list);
-//        restaurantList.setAdapter(arrayAdapter);
+        // DU ARBEJDER HER
 
-        ArrayList<CustomerExampleItem> resList = new ArrayList<>();
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "1 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "2 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "3 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "4 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "5 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "6 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "7 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "8 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "9 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "10 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "11 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "12 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "13 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "14 Le Bahli", "We make good food..."));
-        resList.add(new CustomerExampleItem(R.drawable.ic_star_border, "15 Le Bahli", "We make good food..."));
+        final ArrayList<String> resList = new ArrayList<>();
+
+        restaurants.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot documentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                resList.clear();
+
+                for (DocumentSnapshot doc : documentSnapshots) {
+                    resList.add(doc.getString(KEY_NAME));
+                }
+            }
+        });
+
+        adapter = new CustomerExampleAdapter(resList);
+        mRecyclerView.setAdapter(adapter);
+
+        ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_selectable_list_item, resList);
+        adapter.notifyDataSetChanged();
 
         mRecyclerView = view.findViewById(R.id.restaurantList);
         mLayoutManager = new LinearLayoutManager(this.getActivity());
-        mAdapter = new CustomerExampleAdapter(resList);
+        //mAdapter = new CustomerExampleAdapter(resList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        //mRecyclerView.setAdapter(mAdapter);
 
         // Go to Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -95,4 +109,31 @@ public class CustomerListResFrag extends Fragment {
 
     return view;
     }
+
+    public void getUserDoc() {
+
+        DocumentReference docRef = db.collection("restaurants").document(emailCredentials);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        resName = document.getString(KEY_NAME);
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void fillSearchList() {
+
+    }
+
 }
