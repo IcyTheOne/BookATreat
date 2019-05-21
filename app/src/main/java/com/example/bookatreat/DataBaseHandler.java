@@ -42,7 +42,7 @@ public class DataBaseHandler {
 
     private static final String TAG = "CustomerSignupFrag";
     private static final String KEY_NAME = "Name";
-    private static final String KEY_LNAME = "Last Name";
+    private static final String KEY_LAST_NAME = "Last Name";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
     private static final String KEY_ADDRESS = "Address";
@@ -61,7 +61,7 @@ public class DataBaseHandler {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Log.d(TAG, "Email sent to: " + fUser.getEmail());
+                                Log.d(TAG, "Email sent to: " + emailCredentials);
                             }
                         }
                     });
@@ -71,7 +71,7 @@ public class DataBaseHandler {
     public void saveUser(String firstNameVal, String lastNameVal, String emailVal, String passwordVal) {
         Map<String, Object> user = new HashMap<>();
         user.put(KEY_NAME, firstNameVal);
-        user.put(KEY_LNAME, lastNameVal);
+        user.put(KEY_LAST_NAME, lastNameVal);
         user.put(KEY_EMAIL, emailVal);
         user.put(KEY_PASSWORD, passwordVal);
 
@@ -119,7 +119,7 @@ public class DataBaseHandler {
         // Get auth credentials from the user for re-authentication. The example below shows
         // email and password credentials but there are multiple possible providers,
         // such as GoogleAuthProvider or FacebookAuthProvider.
-        AuthCredential credential = EmailAuthProvider.getCredential("Email", "Password");
+        AuthCredential credential = EmailAuthProvider.getCredential(emailCredentials, passwordCredentials);
 
         // Prompt the user to re-provide their sign-in credentials
         fUser.reauthenticate(credential)
@@ -142,25 +142,6 @@ public class DataBaseHandler {
                         }
                     }
                 });
-    }
-
-    public void getUserDoc() {
-        DocumentReference docRef = db.collection("cities").document(emailCredentials);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
     public void delete() {
