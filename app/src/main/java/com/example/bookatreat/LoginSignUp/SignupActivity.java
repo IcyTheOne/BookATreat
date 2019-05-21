@@ -9,7 +9,7 @@ import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 
 public class SignupActivity extends AppCompatActivity {
 
-    UserType type = new UserType();
+    DataBaseHandler db = new DataBaseHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +22,12 @@ public class SignupActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_signup); // End of removing ActionBar
 
-        if (type.getUserType() == 1) {
+        if (db.getUserType() == 1) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().add(R.id.fragment_container, new SignupCustomerFrag()).commit();
         }
 
-        if (type.getUserType() == 2) {
+        if (db.getUserType() == 2) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().add(R.id.fragment_container, new SignupRestaurantFrag()).commit();
         }

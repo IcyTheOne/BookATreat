@@ -1,6 +1,8 @@
-package com.example.bookatreat.Customer;
+package com.example.bookatreat.Restaurant;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +21,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class CustomerSettingsFrag extends Fragment {
+public class RestaurantSettingsFrag extends Fragment {
+
     private FirebaseAuth mAuth;
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -30,7 +33,7 @@ public class CustomerSettingsFrag extends Fragment {
     Button mSignout, mDeleteAcc;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurant_settings, container, false);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

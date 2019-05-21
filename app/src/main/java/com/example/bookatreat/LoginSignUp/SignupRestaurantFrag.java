@@ -18,14 +18,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bookatreat.Customer.CustomerActivity;
+import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Customer.SignupCustomerFrag;
-import com.example.bookatreat.UserType;
+import com.example.bookatreat.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,32 +32,19 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.example.bookatreat.UserType.USER_TYPE;
 
 public class SignupRestaurantFrag extends Fragment {
     private FirebaseAuth mAuth;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseUser newUser;
-
-    UserType type = new UserType();
+    private DataBaseHandler db = new DataBaseHandler();
+    //public static User newRestaurant;
 
     private static final String TAG = "RestaurantSignupFrag";
-    private static final String KEY_NAME = "Name";
-    private static final String KEY_ADDRESS = "Address";
-    private static final String KEY_DESCRIPTION = "Description";
-    private static final String KEY_EMAIL = "Email";
-    private static final String KEY_PASSWORD = "Password";
 
     private TextView mExistingUser, mError;
     private Switch mSignupSwitch;
     private Button mSignupButton;
     private EditText mResNameField, mResDescField, mResPassField, mResPassConfirmField, mResEmailField, mResAddressField;
-    String resNameVal, resDescVal, resPassVal, resPassConfirmVal, resEmailVal, resAddressVal, UID;
+    String resNameVal, resDescVal, resPassVal, resPassConfirmVal, resEmailVal, resAddressVal;
 
     @Nullable
     @Override
@@ -85,8 +70,8 @@ public class SignupRestaurantFrag extends Fragment {
         mSignupSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isNotChecked) {
-                USER_TYPE = 1;
-                System.out.println("USER_TYPE set to: " + type.getUserType());
+                db.setUserType(1);
+                System.out.println("USER_TYPE set to: " + db.getUserType());
                 FragmentTransaction resToCus = getFragmentManager().beginTransaction();
                 resToCus.replace(R.id.fragment_container, new SignupCustomerFrag());
                 resToCus.commit();
@@ -117,37 +102,15 @@ public class SignupRestaurantFrag extends Fragment {
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(resEmailVal, resPassVal);
-                    UID = mAuth.getUid();
-                    saveUser();
+                    db.saveUser(resNameVal, resDescVal, resEmailVal, resPassVal, resAddressVal);
+                    //newRestaurant = new User(resNameVal, resDescVal, resEmailVal, resPassVal, resAddressVal);
+                    //user = newRestaurant;
+                    db.emailVerification();
                 }
             }
         });
 
         return view;
-    }
-
-    public void saveUser() {
-        Map<String, Object> user = new HashMap<>();
-        user.put(KEY_NAME, resNameVal);
-        user.put(KEY_DESCRIPTION, resDescVal);
-        user.put(KEY_EMAIL, resEmailVal);
-        user.put(KEY_PASSWORD, resPassVal);
-        user.put(KEY_ADDRESS, resAddressVal);
-
-        db.collection("restaurants").document(UID)
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
     }
 
     public void createAccount(String username, String password) {
