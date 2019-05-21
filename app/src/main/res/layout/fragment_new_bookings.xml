@@ -26,19 +26,6 @@
         android:text="booked ->"
         android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/restaurantSettingsBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/list_view_new_book"
-        android:layout_alignParentTop="false"
-        android:layout_marginStart="8sp"
-        android:layout_marginTop="8sp"
-        android:layout_marginBottom="8dp"
-        android:background="#3587c7"
-        android:text="settings"
-        android:textSize="12sp" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addNewBTN"
         android:layout_width="wrap_content"
@@ -55,11 +42,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="16sp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="82dp"
         android:layout_toStartOf="@+id/bookedListBTN"
         android:layout_toEndOf="@+id/restaurantSettingsBTN"
         android:text="info stuff" />
+
+    <ImageButton
+        android:id="@+id/restaurantSettingsBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@android:drawable/ic_menu_manage" />
 
 </RelativeLayout>

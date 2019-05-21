@@ -124,7 +124,7 @@ public class DataBaseHandler {
                 });
     }
 
-    private void getUserEmail() {
+    private void setUserEmail() {
         if (fUser != null) {
             emailAddress = fUser.getEmail();
         }
@@ -132,11 +132,13 @@ public class DataBaseHandler {
 
     public void delete() {
 
-        getUserEmail();
+        setUserEmail();
 
         if (USER_TYPE == 1) {
             users.document(emailAddress).delete();
-        } else {
+        }
+
+        if (USER_TYPE == 2){
             restaurants.document(emailAddress).delete();
         }
     }
