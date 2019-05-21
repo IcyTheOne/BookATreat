@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class RestaurantSettingsFrag extends Fragment {
 
     private FirebaseAuth mAuth;
-    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     DataBaseHandler db = new DataBaseHandler();
 
@@ -74,6 +74,7 @@ public class RestaurantSettingsFrag extends Fragment {
     }
 
     public void deleteAcc() {
+        db.reAuthUser();
         db.delete();
 
         AuthUI.getInstance()

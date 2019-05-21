@@ -11,14 +11,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerActivity extends AppCompatActivity {
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    DataBaseHandler db = new DataBaseHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,7 @@ public class CustomerActivity extends AppCompatActivity {
 
         /**
          * Need to add fragments for all the buttons and their layout
-         *
-         */
+         **/
 
         ImageButton restaurantButton = findViewById(R.id.RestaurantBTN);
         ImageButton calendarButton = findViewById(R.id.CalendarBTN);
