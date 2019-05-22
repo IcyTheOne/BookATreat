@@ -21,6 +21,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.example.bookatreat.DataBaseHandler.emailCredentials;
+import static com.example.bookatreat.DataBaseHandler.passwordCredentials;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mUserNameField, mPasswordField;
@@ -29,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private Switch mLoginSwitch;
 
     private String TAG = "LoginActivity";
-    private String emailAddress;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         mLoginSwitch = findViewById(R.id.loginSwitchBTN);
 
         mUserNameField = findViewById(R.id.loginUsername);
-        emailAddress = mUserNameField.getText().toString().trim();
+        emailCredentials = mUserNameField.getText().toString().trim();
         mPasswordField = findViewById(R.id.loginPassword);
 
         mLoginButton = findViewById(R.id.loginBTN);
@@ -96,21 +98,25 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String username = mUserNameField.getText().toString().trim();
-                String password = mPasswordField.getText().toString().trim();
+                String passwordVal = mPasswordField.getText().toString().trim();
 
-                if (username.isEmpty() || password.isEmpty()) {
+                if (username.isEmpty() || passwordVal.isEmpty()) {
 
                     if (username.length() == 0) {
                         mUserNameField.requestFocus();
                         mUserNameField.setError("Please enter a valid email.");
                     }
 
-                    if (password.length() == 0) {
+                    if (passwordVal.length() == 0) {
                         mPasswordField.requestFocus();
-                        mPasswordField.setError("Please enter a password.");
+                        mPasswordField.setError("Please enter a passwordCredentials.");
                     }
                 } else {
-                    signIn(username, password);
+                    emailCredentials = username;
+                    passwordCredentials = passwordVal;
+                    Log.d(TAG, "Username credentials set to: " + username);
+                    Log.d(TAG, "Password credentials set to: " + passwordVal);
+                    signIn(username, passwordVal);
                 }
             }
         });
@@ -162,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void forgotPassword() {
-        mAuth.sendPasswordResetEmail(emailAddress)
+        mAuth.sendPasswordResetEmail(emailCredentials)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

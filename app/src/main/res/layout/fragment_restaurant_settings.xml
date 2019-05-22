@@ -39,8 +39,10 @@
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="@+id/TopBar"
             app:layout_constraintEnd_toEndOf="@+id/TopBar"
+            app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="@+id/TopBar"
-            app:layout_constraintTop_toTopOf="@+id/TopBar" />
+            app:layout_constraintTop_toTopOf="@+id/TopBar"
+            app:layout_constraintVertical_bias="0.47" />
 
         <Button
             android:id="@+id/signOutBTN"

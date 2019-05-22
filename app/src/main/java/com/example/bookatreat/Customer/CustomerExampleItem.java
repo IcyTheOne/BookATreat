@@ -2,13 +2,12 @@ package com.example.bookatreat.Customer;
 
 public class CustomerExampleItem {
     private int mImageResource;
-    private String mRestaurantName;
-    private String mRestaurantDes;
+    private String mRestaurantName, mRestaurantCuisine;
 
-    public CustomerExampleItem(int imageRes, String resName, String resDes){
+    public CustomerExampleItem(int imageRes, String resName, String resCuis){
         mImageResource = imageRes;
         mRestaurantName = resName;
-        mRestaurantDes = resDes;
+        mRestaurantCuisine = resCuis;
     }
 
     public int getImageResource() {
@@ -19,7 +18,7 @@ public class CustomerExampleItem {
         return mRestaurantName;
     }
 
-    public String getRestaurantDes() {
-        return mRestaurantDes;
+    public String getRestaurantCuisine() {
+        return mRestaurantCuisine;
     }
 }

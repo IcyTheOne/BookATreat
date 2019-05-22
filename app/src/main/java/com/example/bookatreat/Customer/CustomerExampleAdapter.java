@@ -13,22 +13,22 @@ import com.example.bookatreat.R;
 import java.util.ArrayList;
 
 public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExampleAdapter.ExampleViewHolder> {
-    private ArrayList<CustomerExampleItem> mExampleList;
+    private ArrayList<String> mExampleList;
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
+        //public ImageView mImageView;
         public TextView mTextResName;
         public TextView mTextResDes;
 
         public ExampleViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.customerStar);
+            //mImageView = itemView.findViewById(R.id.customerStar);
             mTextResName = itemView.findViewById(R.id.restaurantName);
             mTextResDes = itemView.findViewById(R.id.restaurantDes);
         }
     }
 
-    public CustomerExampleAdapter(ArrayList<CustomerExampleItem> exampleList) {
+    public CustomerExampleAdapter(ArrayList<String> exampleList) {
         mExampleList = exampleList;
     }
 
@@ -40,13 +40,16 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
         return evh;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int  position) {
+        /*
         CustomerExampleItem currentItem = mExampleList.get(position);
 
         holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mTextResName.setText(currentItem.getRestaurantName());
-        holder.mTextResDes.setText(currentItem.getRestaurantDes());
+        holder.mTextResDes.setText(currentItem.getRestaurantCuisine());
+        */
     }
 
     @Override

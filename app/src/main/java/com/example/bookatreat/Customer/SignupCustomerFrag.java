@@ -22,7 +22,6 @@ import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
-import com.example.bookatreat.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,12 +30,13 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
+
+import static com.example.bookatreat.DataBaseHandler.emailCredentials;
+import static com.example.bookatreat.DataBaseHandler.passwordCredentials;
 
 public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
     private DataBaseHandler db = new DataBaseHandler();
-    //public static User newCustomer;
 
     private static final String TAG = "CustomerSignupFrag";
 
@@ -100,9 +100,9 @@ public class SignupCustomerFrag extends Fragment{
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(emailVal, passwordVal);
+                    emailCredentials = emailVal;
+                    passwordCredentials = passwordVal;
                     db.saveUser(firstNameVal, lastNameVal, emailVal, passwordVal);
-                    //newCustomer = new User(firstNameVal, lastNameVal, emailVal, passwordVal);
-                    //user = newCustomer;
                     db.emailVerification();
                 }
             }
@@ -193,7 +193,7 @@ public class SignupCustomerFrag extends Fragment{
 
             if (mPasswordField.length() == 0) {
                 mPasswordField.requestFocus();
-                mPasswordField.setError("Please enter a password.");
+                mPasswordField.setError("Please enter a passwordCredentials.");
             }
 
             if (mPasswordConfirmField.length() == 0) {
