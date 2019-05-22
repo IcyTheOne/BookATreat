@@ -53,7 +53,7 @@ public class CustomerSettingsFrag extends Fragment {
             }
         });
 
-        mEditBTN.setOnClickListener();
+        //mEditBTN.setOnClickListener();
 
 
 
