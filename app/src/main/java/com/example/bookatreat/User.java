@@ -13,12 +13,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String description, String email, String password, String address) {
-        this.name = name;
-        this.lastName = description;
-        this.email = email;
-        this.password = password;
-        this.address = address;
+    public static String getTAG() {
+        return TAG;
     }
 
     public String getName() {
