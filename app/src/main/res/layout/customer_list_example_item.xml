@@ -14,22 +14,22 @@
             android:id="@+id/restaurantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/background_dark"
-            android:text="Resturant Name"
             android:layout_marginStart="6dp"
-            android:paddingTop="4dp"/>
+            android:paddingTop="4dp"
+            android:text="aasdf"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/restaurantDes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resturant Description"
-            android:textSize="14sp"
-            android:textStyle="italic"
             android:layout_below="@+id/restaurantName"
-            android:layout_marginStart="6dp"/>
+            android:layout_marginStart="6dp"
+            android:text="asdfasdf"
+            android:textSize="14sp"
+            android:textStyle="italic" />
 
         <ImageView
             android:id="@+id/customerStar"

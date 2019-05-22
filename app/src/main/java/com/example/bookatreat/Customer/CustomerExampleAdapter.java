@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bookatreat.R;
+import com.example.bookatreat.Restaurants;
 
 import java.util.ArrayList;
 
 public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExampleAdapter.ExampleViewHolder> {
-    private ArrayList<String> mExampleList;
+
+    public CustomerListResFrag customerListResFrag;
+    private ArrayList<Restaurants> mExampleList;
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         //public ImageView mImageView;
@@ -28,28 +31,23 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
         }
     }
 
-    public CustomerExampleAdapter(ArrayList<String> exampleList) {
-        mExampleList = exampleList;
+    public CustomerExampleAdapter(CustomerListResFrag customerListResFrag, ArrayList<Restaurants> mExampleList) {
+        this.customerListResFrag = customerListResFrag;
+        this.mExampleList = mExampleList;
     }
 
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_list_example_item, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(v);
-        return evh;
-    }
+        LayoutInflater layoutInflater = LayoutInflater.from(customerListResFrag.getContext());
+        View view = layoutInflater.inflate(R.layout.customer_list_example_item,parent,false);
 
+        return new ExampleViewHolder(view);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int  position) {
-        /*
-        CustomerExampleItem currentItem = mExampleList.get(position);
-
-        holder.mImageView.setImageResource(currentItem.getImageResource());
-        holder.mTextResName.setText(currentItem.getRestaurantName());
-        holder.mTextResDes.setText(currentItem.getRestaurantCuisine());
-        */
+        holder.mTextResName.setText(mExampleList.get(position).getName());
     }
 
     @Override
