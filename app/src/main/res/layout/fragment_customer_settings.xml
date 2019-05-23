@@ -53,8 +53,9 @@
             android:text="@string/sign_out"
             android:textColor="#FFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView3" />
+            app:layout_constraintStart_toStartOf="parent"/>
+            <!--app:layout_constraintTop_toBottomOf="@id/textView3" -->
+            />
 
         <Button
             android:id="@+id/deleteAccBTN"
