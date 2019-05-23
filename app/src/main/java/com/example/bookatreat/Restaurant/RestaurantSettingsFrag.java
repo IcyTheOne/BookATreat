@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.bookatreat.DataBaseHandler;
-import com.example.bookatreat.LoginSignUp.LoginActivity;
+import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;

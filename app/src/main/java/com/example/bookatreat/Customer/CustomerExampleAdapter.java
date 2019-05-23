@@ -54,4 +54,9 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
     public int getItemCount() {
         return mExampleList.size();
     }
+
+    public void filterList(ArrayList<Restaurants> filteredList){
+        mExampleList = filteredList;
+        notifyDataSetChanged();
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.bookatreat.Restaurant;
+package com.example.bookatreat.Customer;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,9 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
-import com.example.bookatreat.LoginSignUp.LoginActivity;
+import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
-import com.example.bookatreat.Customer.SignupCustomerFrag;
+import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,56 +34,55 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import static com.example.bookatreat.DataBaseHandler.emailCredentials;
 import static com.example.bookatreat.DataBaseHandler.passwordCredentials;
 
-public class SignupRestaurantFrag extends Fragment {
+public class SignupCustomerFrag extends Fragment{
     private FirebaseAuth mAuth;
     private DataBaseHandler db = new DataBaseHandler();
 
-    private static final String TAG = "RestaurantSignupFrag";
+    private static final String TAG = "CustomerSignupFrag";
 
     private TextView mExistingUser, mError;
     private Switch mSignupSwitch;
     private Button mSignupButton;
-    private EditText mResNameField, mResDescField, mResPassField, mResPassConfirmField, mResEmailField, mResAddressField;
-    String resNameVal, resDescVal, resPassVal, resPassConfirmVal, resEmailVal, resAddressVal;
+    private EditText mFirstNameField, mLastNameField, mPasswordField, mPasswordConfirmField, mEmailField;
+    String firstNameVal, lastNameVal, passwordVal, passwordConfirmVal, emailVal;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup_restaurant, container, false);
+        View view = inflater.inflate(R.layout.fragment_signup_customer, container, false);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         // Find input views
-        mResNameField = view.findViewById(R.id.signupRName);
-        mResDescField = view.findViewById(R.id.signupRDescription);
-        mResPassField = view.findViewById(R.id.signupPassword);
-        mResPassConfirmField = view.findViewById(R.id.signupPassConfirm);
-        mResEmailField = view.findViewById(R.id.signupEmail);
-        mResAddressField = view.findViewById(R.id.signupRAddress);
+        mFirstNameField = view.findViewById(R.id.signupFirstName);
+        mLastNameField = view.findViewById(R.id.signupLastName);
+        mPasswordField = view.findViewById(R.id.signupPassword);
+        mPasswordConfirmField = view.findViewById(R.id.signupPassConfirm);
+        mEmailField = view.findViewById(R.id.signupEmail);
         mSignupButton = view.findViewById(R.id.signupBTN);
         mSignupSwitch = view.findViewById(R.id.restaurantSwitch);
         mExistingUser = view.findViewById(R.id.existingUser);
         mError = view.findViewById(R.id.signupError);
 
-        // Switch to customer signup
+        // Switch to restaurant signup
         mSignupSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isNotChecked) {
-                db.setUserType(1);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                db.setUserType(2);
                 System.out.println("USER_TYPE set to: " + db.getUserType());
-                FragmentTransaction resToCus = getFragmentManager().beginTransaction();
-                resToCus.replace(R.id.fragment_container, new SignupCustomerFrag());
-                resToCus.commit();
+                FragmentTransaction cusToRes = getFragmentManager().beginTransaction();
+                cusToRes.replace(R.id.fragment_container, new SignupRestaurantFrag());
+                cusToRes.commit();
             }
         });
 
-        // Go to login page
+        // Click text to go to Login page
         mExistingUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent secondIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(secondIntent);
+                Intent existingUser = new Intent(getActivity(), LoginActivity.class);
+                startActivity(existingUser);
             }
         });
 
@@ -91,21 +90,16 @@ public class SignupRestaurantFrag extends Fragment {
         mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resNameVal = mResNameField.getText().toString();
-                resDescVal = mResDescField.getText().toString();
-                resPassVal = mResPassField.getText().toString();
-                resPassConfirmVal = mResPassConfirmField.getText().toString();
-                resEmailVal = mResEmailField.getText().toString();
-                resAddressVal = mResAddressField.getText().toString();
+                firstNameVal = mFirstNameField.getText().toString().trim();
+                lastNameVal = mLastNameField.getText().toString().trim();
+                passwordVal = mPasswordField.getText().toString().trim();
+                passwordConfirmVal = mPasswordConfirmField.getText().toString().trim();
+                emailVal = mEmailField.getText().toString().trim();
 
-                if (!resPassConfirmVal.equals(resPassVal)) {
+                if (!passwordConfirmVal.equals(passwordVal)) {
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
-                    createAccount(resEmailVal, resPassVal);
-                    emailCredentials = resEmailVal;
-                    passwordCredentials = resPassVal;
-                    db.saveUser(resNameVal, resDescVal, resEmailVal, resPassVal, resAddressVal);
-                    db.emailVerification();
+                    createAccount(emailVal, passwordVal);
                 }
             }
         });
@@ -120,6 +114,9 @@ public class SignupRestaurantFrag extends Fragment {
             return;
         }
 
+        emailCredentials = username;
+        passwordCredentials = password;
+
         mAuth.createUserWithEmailAndPassword(username, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -131,7 +128,9 @@ public class SignupRestaurantFrag extends Fragment {
                                 //start Profile Activity here
                                 Toast.makeText(getActivity(), "registration successful", Toast.LENGTH_SHORT).show();
                                 //finish();
-                                startActivity(new Intent(getActivity(), RestaurantActivity.class));
+                                db.saveUser(firstNameVal, lastNameVal, emailVal);
+                                db.emailVerification();
+                                startActivity(new Intent(getActivity(), CustomerActivity.class));
                             } else {
                                 Toast.makeText(getActivity(), "Couldn't register, try again", Toast.LENGTH_SHORT).show();
                                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
@@ -144,19 +143,19 @@ public class SignupRestaurantFrag extends Fragment {
 
                                     mError.setText(R.string.weak_password_exception);
                                     mError.setTextColor(Color.RED);
-                                    mResPassField.requestFocus();
+                                    mPasswordField.requestFocus();
 
                                 } catch(FirebaseAuthInvalidCredentialsException err) {
 
                                     mError.setText(R.string.wrong_email_format);
                                     mError.setTextColor(Color.RED);
-                                    mResEmailField.requestFocus();
+                                    mEmailField.requestFocus();
 
                                 } catch(FirebaseAuthUserCollisionException err) {
 
                                     mError.setText(R.string.email_is_in_use);
                                     mError.setTextColor(Color.RED);
-                                    mResEmailField.requestFocus();
+                                    mEmailField.requestFocus();
 
                                 } catch(Exception err) {
                                     Log.e(TAG, e.getMessage());
@@ -173,49 +172,43 @@ public class SignupRestaurantFrag extends Fragment {
 
         boolean valid;
 
-        if (mResNameField.getText().toString().isEmpty() || mResDescField.getText().toString().isEmpty() ||
-                mResAddressField.getText().toString().isEmpty() || mResEmailField.getText().toString().isEmpty() ||
-                mResPassField.getText().toString().isEmpty() || mResPassConfirmField.getText().toString().isEmpty()) {
+        if (mFirstNameField.getText().toString().isEmpty() || mLastNameField.getText().toString().isEmpty() ||
+                mEmailField.getText().toString().isEmpty() || mPasswordField.getText().toString().isEmpty() || mPasswordConfirmField.getText().toString().isEmpty()) {
 
             valid = false;
 
-            if (mResNameField.length() == 0) {
-                mResNameField.requestFocus();
-                mResNameField.setError("Please enter a name.");
+            if (mFirstNameField.length() == 0) {
+                mFirstNameField.requestFocus();
+                mFirstNameField.setError("Please enter a name.");
             }
 
-            if (mResDescField.length() == 0) {
-                mResDescField.requestFocus();
-                mResDescField.setError("Please enter a description.");
+            if (mLastNameField.length() == 0) {
+                mLastNameField.requestFocus();
+                mLastNameField.setError("Please enter a last name.");
             }
 
-            if (mResAddressField.length() == 0) {
-                mResAddressField.requestFocus();
-                mResAddressField.setError("Please enter an address.");
+            if (mEmailField.length() == 0) {
+                mEmailField.requestFocus();
+                mEmailField.setError("Please enter an email.");
             }
 
-            if (mResEmailField.length() == 0) {
-                mResEmailField.requestFocus();
-                mResEmailField.setError("Please enter an email.");
+            if (mPasswordField.length() == 0) {
+                mPasswordField.requestFocus();
+                mPasswordField.setError("Please enter a passwordCredentials.");
             }
 
-            if (mResPassField.length() == 0) {
-                mResPassField.requestFocus();
-                mResPassField.setError("Required.");
-            }
-
-            if (mResPassConfirmField.length() == 0) {
-                mResPassConfirmField.requestFocus();
-                mResPassConfirmField.setError("Required.");
+            if (mPasswordConfirmField.length() == 0) {
+                mPasswordConfirmField.requestFocus();
+                mPasswordConfirmField.setError("Required.");
             }
         } else { valid = true; }
 
-        if (!resPassConfirmVal.equals(resPassVal)) {
+        if (!passwordConfirmVal.equals(passwordVal)) {
             Toast.makeText(getActivity(), "Passwords do not match.", Toast.LENGTH_SHORT).show();
             valid = false;
         }
 
         return valid;
     }
-}
 
+}
