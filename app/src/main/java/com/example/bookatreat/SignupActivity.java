@@ -1,4 +1,4 @@
-package com.example.bookatreat.LoginSignUp;
+package com.example.bookatreat;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;

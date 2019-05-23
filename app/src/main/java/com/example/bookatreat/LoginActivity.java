@@ -1,4 +1,4 @@
-package com.example.bookatreat.LoginSignUp;
+package com.example.bookatreat;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,10 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
-import com.example.bookatreat.DataBaseHandler;
-import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.RestaurantActivity;
-import com.example.bookatreat.LoginSignUp.SignupActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
-import com.example.bookatreat.LoginSignUp.LoginActivity;
+import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurant.SignupRestaurantFrag;
 import com.google.android.gms.tasks.OnCompleteListener;
