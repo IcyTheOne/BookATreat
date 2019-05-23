@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.bookatreat.DataBaseHandler;
-import com.example.bookatreat.LoginActivity;
+import com.example.bookatreat.LoginSignUp.LoginActivity;
 import com.example.bookatreat.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +27,7 @@ public class CustomerSettingsFrag extends Fragment {
 
     private String username;
 
-    Button mSignout, mDeleteAcc;
+    Button mSignout, mDeleteAcc,mEditBTN;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
@@ -37,6 +37,7 @@ public class CustomerSettingsFrag extends Fragment {
 
         mSignout = view.findViewById(R.id.signOutBTN);
         mDeleteAcc = view.findViewById(R.id.deleteAccBTN);
+        mEditBTN = view.findViewById(R.id.editBTN);
 
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,8 @@ public class CustomerSettingsFrag extends Fragment {
                 deleteAcc();
             }
         });
+
+        //mEditBTN.setOnClickListener();
 
 
 
