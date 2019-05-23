@@ -100,10 +100,6 @@ public class SignupCustomerFrag extends Fragment{
                     Toast.makeText(getActivity(),"Passwords do not match.", Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(emailVal, passwordVal);
-                    emailCredentials = emailVal;
-                    passwordCredentials = passwordVal;
-                    db.saveUser(firstNameVal, lastNameVal, emailVal, passwordVal);
-                    db.emailVerification();
                 }
             }
         });
@@ -118,6 +114,9 @@ public class SignupCustomerFrag extends Fragment{
             return;
         }
 
+        emailCredentials = username;
+        passwordCredentials = password;
+
         mAuth.createUserWithEmailAndPassword(username, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -129,6 +128,8 @@ public class SignupCustomerFrag extends Fragment{
                                 //start Profile Activity here
                                 Toast.makeText(getActivity(), "registration successful", Toast.LENGTH_SHORT).show();
                                 //finish();
+                                db.saveUser(firstNameVal, lastNameVal, emailVal);
+                                db.emailVerification();
                                 startActivity(new Intent(getActivity(), CustomerActivity.class));
                             } else {
                                 Toast.makeText(getActivity(), "Couldn't register, try again", Toast.LENGTH_SHORT).show();

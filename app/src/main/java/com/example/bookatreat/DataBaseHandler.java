@@ -25,6 +25,7 @@ import java.util.Map;
 public class DataBaseHandler {
 
     public static String emailCredentials, passwordCredentials;
+    private String UID;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -42,10 +43,11 @@ public class DataBaseHandler {
     private CollectionReference restaurants = db.collection("restaurants");
 
     private static final String TAG = "CustomerSignupFrag";
+    private static final String KEY_ID = "UID";
+    private static final String KEY_TYPE = "Type";
     private static final String KEY_NAME = "Name";
     private static final String KEY_LAST_NAME = "Last Name";
     private static final String KEY_EMAIL = "Email";
-    private static final String KEY_PASSWORD = "Password";
     private static final String KEY_ADDRESS = "Address";
     private static final String KEY_DESCRIPTION = "Description";
 
@@ -69,12 +71,14 @@ public class DataBaseHandler {
         }
     }
 
-    public void saveUser(String firstNameVal, String lastNameVal, String emailVal, String passwordVal) {
+    public void saveUser(String firstNameVal, String lastNameVal, String emailVal) {
+        UID = fUser.getUid();
         Map<String, Object> user = new HashMap<>();
         user.put(KEY_NAME, firstNameVal);
         user.put(KEY_LAST_NAME, lastNameVal);
         user.put(KEY_EMAIL, emailVal);
-        user.put(KEY_PASSWORD, passwordVal);
+        user.put(KEY_ID, UID);
+        user.put(KEY_TYPE, USER_TYPE);
 
         users.document(emailVal)
                 .set(user)
@@ -92,13 +96,15 @@ public class DataBaseHandler {
                 });
     }
 
-    public void saveUser(String resNameVal, String resDescVal, String resEmailVal, String resPassVal, String resAddressVal) {
+    public void saveUser(String resNameVal, String resDescVal, String resEmailVal, String resAddressVal) {
+        UID = fUser.getUid();
         Map<String, Object> restaurant = new HashMap<>();
         restaurant.put(KEY_NAME, resNameVal);
         restaurant.put(KEY_DESCRIPTION, resDescVal);
         restaurant.put(KEY_EMAIL, resEmailVal);
-        restaurant.put(KEY_PASSWORD, resPassVal);
         restaurant.put(KEY_ADDRESS, resAddressVal);
+        restaurant.put(KEY_ID, UID);
+        restaurant.put(KEY_TYPE, USER_TYPE);
 
         restaurants.document(resEmailVal)
                 .set(restaurant)
