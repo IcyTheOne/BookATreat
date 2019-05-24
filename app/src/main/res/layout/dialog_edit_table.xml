@@ -67,12 +67,23 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/editTableBtn"
+        android:id="@+id/hourBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_below="@id/GuestsTV"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="27dp"
+        android:background="@color/colorAccent"
+        android:text="Choose time"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/editTableBtn2"
         android:layout_width="140dp"
         android:layout_height="36dp"
         android:layout_below="@id/GuestsTV"
-        android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
         android:background="@color/colorAccent"
         android:text="Edit"
         android:textColor="@android:color/white" />
@@ -87,14 +98,14 @@
         android:text="Edit and book"
         android:textColor="@android:color/white" />
 
-    <EditText
-        android:id="@+id/chooseTime"
-        android:layout_width="126dp"
+    <TextView
+        android:id="@+id/hourTextView"
+        android:layout_width="102dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/numberOfGuest"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="126dp"
+        android:layout_marginTop="24dp"
         android:layout_toRightOf="@id/hour_textView"
-        android:hint="Choose time" />
+        />
 
 </RelativeLayout>

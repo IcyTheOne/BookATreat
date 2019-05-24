@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -112,7 +114,7 @@ public class NewBookingFrag extends Fragment {
 
         final EditText tableId = mView.findViewById(R.id.tabelID2);
         final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
-        Button add = mView.findViewById(R.id.editTableBtn);
+        Button add = mView.findViewById(R.id.hourBtn);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
@@ -148,6 +150,33 @@ public class NewBookingFrag extends Fragment {
         final EditText tableId = mView.findViewById(R.id.tabelID2);
         final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
         Button book = mView.findViewById(R.id.bookTableBtn);
+
+        final TextView hour = mView.findViewById(R.id.hourTextView);
+        Button time = mView.findViewById(R.id.hourBtn);
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        hour.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+                    }
+                }, currentHour, currentMinute, false);
+
+                timePickerDialog.show();
+            }
+        });
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();

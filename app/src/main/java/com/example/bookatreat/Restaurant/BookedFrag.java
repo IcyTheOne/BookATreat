@@ -75,7 +75,7 @@ public class BookedFrag extends Fragment {
 
         final EditText tableId = mView.findViewById(R.id.tabelID2);
         final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
-        Button add = mView.findViewById(R.id.editTableBtn);
+        Button add = mView.findViewById(R.id.hourBtn);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
