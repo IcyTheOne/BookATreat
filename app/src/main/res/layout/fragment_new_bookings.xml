@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <Switch
-            android:id="@+id/tablesSwitch"
+            android:id="@+id/tablesSwitch2"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
@@ -121,7 +121,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/available_button"
+            android:id="@+id/unavailable_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
@@ -134,7 +134,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <ListView
-        android:id="@+id/list_view_new_book"
+        android:id="@+id/list_view_booked"
         android:layout_width="400dp"
         android:layout_height="520dp"
         android:layout_alignParentTop="true"

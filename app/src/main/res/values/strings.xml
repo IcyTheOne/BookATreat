@@ -60,6 +60,7 @@
     <!-- Manage Tables fragment -->
     <string name="manage_title_textview">Manage tables</string>
     <string name="manage_available_textview">Available tables</string>
+    <string name="manage_unavailable_textview">Unavailable tables</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

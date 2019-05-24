@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class BookedFrag extends Fragment {
     private DataBaseHandler dbHandler;
     private ArrayList<String> bookedTablesArr;
     private ListView bookedTablesList;
+    private Switch mTablesSwitch2;
 
 
     @Nullable
@@ -40,11 +43,11 @@ public class BookedFrag extends Fragment {
         dbHandler = new DataBaseHandler();
         bookedTablesList = view.findViewById(R.id.list_view_booked);
         bookedTablesArr = new ArrayList<>();
+        mTablesSwitch2 = view.findViewById(R.id.tablesSwitch2);
 
-        TextView btnToNewBooking = view.findViewById(R.id.button_new_booking);
-        btnToNewBooking.setOnClickListener(new View.OnClickListener() {
+        mTablesSwitch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 FragmentTransaction cusToRes = getFragmentManager().beginTransaction();
                 cusToRes.replace(R.id.container_restaurant, new NewBookingFrag());
                 cusToRes.commit();

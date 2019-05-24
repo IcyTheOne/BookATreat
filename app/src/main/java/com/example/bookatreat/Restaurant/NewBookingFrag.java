@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.bookatreat.Customer.CustomerSettingsFrag;
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,8 +42,8 @@ public class NewBookingFrag extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         dbHandler = new DataBaseHandler();
         arrNew = new ArrayList<>();
-        listNew = view.findViewById(R.id.list_view_new_book);
-        mTablesSwitch = view.findViewById(R.id.tablesSwitch);
+        listNew = view.findViewById(R.id.list_view_booked);
+        mTablesSwitch = view.findViewById(R.id.tablesSwitch2);
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
