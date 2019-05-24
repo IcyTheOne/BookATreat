@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="@+id/TopBar" />
 
         <TextView
-            android:id="@+id/settingsTextView"
+            android:id="@+id/manageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
