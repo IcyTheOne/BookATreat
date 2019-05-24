@@ -1,5 +1,12 @@
 package com.example.bookatreat.Customer;
 
+import android.app.AlertDialog;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.widget.AdapterView;
+
+import com.example.bookatreat.R;
+
 public class CustomerExampleItem {
     private int mImageResource;
     private String mRestaurantName, mRestaurantCuisine;
@@ -8,6 +15,8 @@ public class CustomerExampleItem {
         mImageResource = imageRes;
         mRestaurantName = resName;
         mRestaurantCuisine = resCuis;
+
+
     }
 
     public int getImageResource() {

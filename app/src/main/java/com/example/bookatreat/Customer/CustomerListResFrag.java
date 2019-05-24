@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,6 +48,8 @@ public class CustomerListResFrag extends Fragment {
     private CustomerExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
+    //made this
+    private ListView mRestaurantList;
 
     private static final String KEY_NAME = "Name";
 
@@ -63,6 +66,9 @@ public class CustomerListResFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_list_res, container, false);
 
+        //made this
+        final ListView mRestaurantList = view.findViewById(R.id.restaurantList);
+
         // Find views
         final ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
         final ImageButton mapButton = view.findViewById(R.id.mapsBtn);
@@ -76,6 +82,35 @@ public class CustomerListResFrag extends Fragment {
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         setUpFireBase();
+
+
+        // TRYING TO MAKE THE ITEMS CLICKABLE AND TO OPEN A NEW TABLE DIALOG
+        //START
+
+        ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mExampleList);
+        mRestaurantList.setAdapter(adapter);
+
+        mRestaurantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               // openEditTableDialog();
+            }
+        });
+
+
+
+
+
+
+
+
+
+        //END
+
+
+
+
 
         // Fill resList
         fillSearchList();
