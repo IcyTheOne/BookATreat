@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">BookATreat</string>
 
+    <string name="google_maps_api_key">AIzaSyBfvgbBv0Qjk5NFVYUSpFpfMKgtRw0KwMM</string>
+
     <!-- Login Strings -->
     <string name="login_title">Login</string>
     <string name="login_username">Username&#8230;</string>
