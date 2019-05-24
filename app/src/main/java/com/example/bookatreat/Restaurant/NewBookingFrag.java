@@ -1,6 +1,7 @@
 package com.example.bookatreat.Restaurant;
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
@@ -24,6 +27,7 @@ import com.example.bookatreat.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class NewBookingFrag extends Fragment {
@@ -33,6 +37,14 @@ public class NewBookingFrag extends Fragment {
     private ListView listNew;
     private ImageButton settingsButton;
     private Switch mTablesSwitch;
+
+    private EditText chooseTime;
+    private Button test;
+    private TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    String amPm;
 
     @Nullable
     @Override
@@ -77,9 +89,19 @@ public class NewBookingFrag extends Fragment {
 
         //TODO insert the data from DB to an array
 
+        arrNew.add("Table 1, 3 people");
+        arrNew.add("Table 4, 5 people");
+
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrNew);
         listNew.setAdapter(adapter);
 
+        listNew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openEditTableDialog();
+            }
+        });
 
         return view;
     }
@@ -88,15 +110,50 @@ public class NewBookingFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
 
-        final EditText tableId = mView.findViewById(R.id.TableID);
-        final EditText numberOfPeople = mView.findViewById(R.id.NumberOfGuests);
-        Button add = mView.findViewById(R.id.AddTableBTN);
+        final EditText tableId = mView.findViewById(R.id.tabelID2);
+        final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
+        Button add = mView.findViewById(R.id.editTableBtn);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
         dialog.show();
 
         add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tableId.getText().toString().isEmpty() || numberOfPeople.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //TODO insert the data to the DB
+
+                boolean success = dbHandler.add(tableId.getText().toString(), numberOfPeople.getText().toString());
+
+                dialog.dismiss();
+                if (success)
+                    Toast.makeText(getContext(), "New table added", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), "Error: unable to add the table.", Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+    }
+
+    public void openEditTableDialog() {
+        final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_edit_table, null);
+
+        final EditText tableId = mView.findViewById(R.id.tabelID2);
+        final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
+        Button book = mView.findViewById(R.id.bookTableBtn);
+
+        myBuild.setView(mView);
+        final AlertDialog dialog = myBuild.create();
+        dialog.show();
+
+        book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (tableId.getText().toString().isEmpty() || numberOfPeople.getText().toString().isEmpty()) {
