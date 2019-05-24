@@ -90,6 +90,8 @@ public class BookedFrag extends Fragment {
                     return;
                 }
 
+                //TODO insert the data to the DB
+
                 boolean success = dbHandler.add(tableId.getText().toString(), numberOfPeople.getText().toString());
 
                 dialog.dismiss();
