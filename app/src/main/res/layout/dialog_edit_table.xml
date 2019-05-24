@@ -8,11 +8,11 @@
 
     <TextView
         android:id="@+id/editTextView"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="Add new table"
+        android:text="Edit and book a table"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -45,12 +45,20 @@
         android:layout_marginTop="29dp"
         android:text="Number of people" />
 
+    <TextView
+        android:id="@+id/hour_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TableTV"
+        android:layout_marginTop="79dp"
+        android:text="Hour" />
+
     <EditText
-        android:id="@+id/numberOfGuest2"
+        android:id="@+id/numberOfGuest"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/GuestsTV"
-        android:layout_marginLeft="17dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="-12dp"
         android:layout_toRightOf="@id/GuestsTV"
         android:ems="10"
@@ -60,12 +68,33 @@
 
     <Button
         android:id="@+id/editTableBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="36dp"
         android:layout_below="@id/GuestsTV"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorAccent"
-        android:text="add"
+        android:text="Edit"
         android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/bookTableBtn"
+        android:layout_width="394dp"
+        android:layout_height="36dp"
+        android:layout_below="@id/GuestsTV"
+        android:layout_marginTop="118dp"
+        android:background="@color/colorAccent"
+        android:text="Edit and book"
+        android:textColor="@android:color/white" />
+
+    <EditText
+        android:id="@+id/chooseTime"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/numberOfGuest"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/hour_textView"
+        android:hint="Choose time" />
 
 </RelativeLayout>

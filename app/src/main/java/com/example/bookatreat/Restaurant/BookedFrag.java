@@ -16,7 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
@@ -74,9 +73,9 @@ public class BookedFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
 
-        final EditText tableId = mView.findViewById(R.id.TableID);
-        final EditText numberOfPeople = mView.findViewById(R.id.NumberOfGuests);
-        Button add = mView.findViewById(R.id.AddTableBTN);
+        final EditText tableId = mView.findViewById(R.id.tabelID2);
+        final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
+        Button add = mView.findViewById(R.id.editTableBtn);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
