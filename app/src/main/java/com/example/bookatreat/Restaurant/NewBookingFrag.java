@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerSettingsFrag;
@@ -31,6 +33,7 @@ public class NewBookingFrag extends Fragment {
     private ArrayList<String> arrNew;
     private ListView listNew;
     private ImageButton settingsButton;
+    private Switch mTablesSwitch;
 
     @Nullable
     @Override
@@ -41,9 +44,10 @@ public class NewBookingFrag extends Fragment {
         dbHandler = new DataBaseHandler();
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_new_book);
+        mTablesSwitch = view.findViewById(R.id.tablesSwitch);
 
         // Go to Settings
-        settingsButton = view.findViewById(R.id.restaurantSettingsBTN);
+        settingsButton = view.findViewById(R.id.SettingsBTN);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,10 +58,10 @@ public class NewBookingFrag extends Fragment {
             }
         });
 
-        Button btnToReserved = view.findViewById(R.id.bookedListBTN);
-        btnToReserved.setOnClickListener(new View.OnClickListener() {
+
+        mTablesSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 FragmentTransaction cusToRes2 = getFragmentManager().beginTransaction();
                 cusToRes2.replace(R.id.container_restaurant, new BookedFrag());
                 cusToRes2.commit();
