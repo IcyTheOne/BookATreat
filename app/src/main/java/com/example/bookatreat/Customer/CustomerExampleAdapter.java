@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bookatreat.R;
@@ -26,7 +25,7 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
         public ExampleViewHolder(@NonNull View itemView) {
             super(itemView);
             //mImageView = itemView.findViewById(R.id.customerStar);
-            mTextResName = itemView.findViewById(R.id.restaurantName);
+            mTextResName = itemView.findViewById(R.id.RestaurantName);
             mTextResDes = itemView.findViewById(R.id.restaurantDes);
         }
     }

@@ -56,6 +56,10 @@
 
     <!-- Messages Frag -->
     <string name="messages_title_textview">Messages</string>
+    <string name="restaurant_name_message_textview">Restaurant name</string>
+    <string name="restaurant_header_message_textview">Header</string>
+    <string name="restaurant_message_textview">This is where the message goes</string>
+
 
     <!-- Manage Tables fragment -->
     <string name="manage_title_textview">Manage tables</string>

@@ -1,14 +1,19 @@
 package com.example.bookatreat.Customer;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,39 +24,43 @@ import java.util.ArrayList;
 
 public class MessageFrag extends Fragment {
 
-
     private ArrayList<String> MessageArr;
+    private ListView messagesList;
+    private Button closeMessageBtn;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 
-        // Find IDs
-        ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
-
-        ListView messagesList = view.findViewById(R.id.MessagesList);
-
-
-
         MessageArr = new ArrayList<>();
 
+        // Find IDs
+        ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
+        messagesList = view.findViewById(R.id.MessagesList);
+        closeMessageBtn = view.findViewById(R.id.CloseMessageBtn);
+
+        //Items on list (delete later)
         MessageArr.add("TGI FRIDAY, CONFIRMATION");
+        MessageArr.add("EL NACIONALE, CONFIRMATION");
+        MessageArr.add("BURGER KING, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
+        MessageArr.add("MC DONALDS, CONFIRMATION");
 
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MessageArr);
         messagesList.setAdapter(adapter);
 
 
- /*       public void onItemClick(AdapterView <? > arg0, View arg1, int arg2,
-        long arg3) {
-            Log.v("clicked", (String)((TextView) arg1).getText());
-        }
-
-    });*/
-
-
-
         // Go to Settings
-        settingsButton.setOnClickListener(new View. OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -61,6 +70,40 @@ public class MessageFrag extends Fragment {
             }
         });
 
+
+
+
+        messagesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OpenMessageDialog();
+            }
+        });
         return view;
+
+    }
+
+
+    // The open message dialog method
+    public void OpenMessageDialog() {
+        final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_enlarge_message_table, null);
+
+        final TextView restaurantName = mView.findViewById(R.id.RestaurantName);
+        final TextView messageHeader = mView.findViewById(R.id.RestaurantMessageHeader);
+        final TextView fullMessage = mView.findViewById(R.id.RestaurantMessage);
+
+        myBuild.setView(mView);
+        final AlertDialog dialog = myBuild.create();
+        dialog.show();
+
+
+
+
     }
 }
+
+
+
+
