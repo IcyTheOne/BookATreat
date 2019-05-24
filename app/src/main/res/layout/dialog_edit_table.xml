@@ -54,7 +54,7 @@
         android:text="Hour" />
 
     <EditText
-        android:id="@+id/numberOfGuest"
+        android:id="@+id/numberOfGuest2"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/GuestsTV"
@@ -102,7 +102,7 @@
         android:id="@+id/hourTextView"
         android:layout_width="102dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/numberOfGuest"
+        android:layout_below="@id/numberOfGuest2"
         android:layout_marginLeft="126dp"
         android:layout_marginTop="24dp"
         android:layout_toRightOf="@id/hour_textView"
