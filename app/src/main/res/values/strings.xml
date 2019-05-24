@@ -6,7 +6,7 @@
     <string name="login_username">Username&#8230;</string>
     <string name="login_password">Password&#8230;</string>
     <string name="login_button">Login</string>
-    <string name="login_signup_button">Signup here&#8230;</string>
+    <string name="login_signup_button">Sign up here&#8230;</string>
     <string name="sign_out">Sign out&#8230;</string>
     <string name="delete_acc">Delete acc</string>
     <string name="edit_settings">Edit information</string>
@@ -36,6 +36,7 @@
     <string name="search_box_text">Cuisine, restaurant name...</string>
     <string name="maps_button_content_description">Maps Button</string>
     <string name="customer_favorites_content_description">Favorites Button</string>
+    <string name="customer_book_content_description">Book</string>
 
     <!-- Customer ToolBar -->
     <string name="toolbar_content_description">Button Bar</string>
