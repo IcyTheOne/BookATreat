@@ -48,8 +48,9 @@ public class CustomerListResFrag extends Fragment {
     private CustomerExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
+
     //made this
-    private ListView mRestaurantList;
+    //private ListView mRestaurantList;
 
     private static final String KEY_NAME = "Name";
 
@@ -67,7 +68,7 @@ public class CustomerListResFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_customer_list_res, container, false);
 
         //made this
-        final ListView mRestaurantList = view.findViewById(R.id.restaurantList);
+        //mRestaurantList = view.findViewById(R.id.restaurantList);
 
         // Find views
         final ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -87,7 +88,7 @@ public class CustomerListResFrag extends Fragment {
         // TRYING TO MAKE THE ITEMS CLICKABLE AND TO OPEN A NEW TABLE DIALOG
         //START
 
-        ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mExampleList);
+  /*      ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mExampleList);
         mRestaurantList.setAdapter(adapter);
 
         mRestaurantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,15 +98,7 @@ public class CustomerListResFrag extends Fragment {
                // openEditTableDialog();
             }
         });
-
-
-
-
-
-
-
-
-
+*/
         //END
 
 
