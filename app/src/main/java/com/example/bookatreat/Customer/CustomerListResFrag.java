@@ -8,13 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
@@ -39,7 +43,8 @@ import static com.example.bookatreat.DataBaseHandler.emailCredentials;
 
 public class CustomerListResFrag extends Fragment {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.Adapter mAdapter;
+    private CustomerExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
 
@@ -61,36 +66,37 @@ public class CustomerListResFrag extends Fragment {
         // Find views
         final ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
         final ImageButton mapButton = view.findViewById(R.id.mapsBtn);
+        final EditText searchBar = view.findViewById(R.id.searchBar);
 
-        // DU ARBEJDER HER
-
+        // Initialize ArrayList
         mExampleList = new ArrayList<>();
-
-//        restaurants.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@javax.annotation.Nullable QuerySnapshot documentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
-//                resList.clear();
-//
-//                for (DocumentSnapshot doc : documentSnapshots) {
-//                    resList.add(doc.getString(KEY_NAME));
-//                }
-//            }
-//        });
-//
-//        adapter = new CustomerExampleAdapter(resList);
-//        mRecyclerView.setAdapter(adapter);
-//
-//        ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_selectable_list_item, resList);
-//        adapter.notifyDataSetChanged();
 
         // Setup RecyclerView
         mRecyclerView = view.findViewById(R.id.restaurantList);
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         setUpFireBase();
+
         // Fill resList
         fillSearchList();
+
+        // Search Bar filtering
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         // Go to Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +121,17 @@ public class CustomerListResFrag extends Fragment {
         });
 
     return view;
+    }
+
+    private void filter(String editText){
+        ArrayList<Restaurants> filteredList = new ArrayList<>();
+
+        for(Restaurants item : mExampleList){
+            if(item.getName().toLowerCase().contains(editText.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        mAdapter.filterList(filteredList);
     }
 
     private void setUpFireBase(){
