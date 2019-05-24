@@ -31,7 +31,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
 public class NewBookingFrag extends Fragment {
     private FirebaseAuth mAuth;
     private DataBaseHandler dbHandler;
@@ -40,8 +39,6 @@ public class NewBookingFrag extends Fragment {
     private ImageButton settingsButton;
     private Switch mTablesSwitch;
 
-    private EditText chooseTime;
-    private Button test;
     private TimePickerDialog timePickerDialog;
     Calendar calendar;
     int currentHour;
@@ -147,8 +144,8 @@ public class NewBookingFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_edit_table, null);
 
-        final EditText tableId = mView.findViewById(R.id.tabelID2);
-        final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
+        final EditText tableId2 = mView.findViewById(R.id.tabelID2);
+        final EditText numberOfPeople2 = mView.findViewById(R.id.numberOfGuest2);
         Button book = mView.findViewById(R.id.bookTableBtn);
 
         final TextView hour = mView.findViewById(R.id.hourTextView);
@@ -185,14 +182,14 @@ public class NewBookingFrag extends Fragment {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tableId.getText().toString().isEmpty() || numberOfPeople.getText().toString().isEmpty()) {
+                if (tableId2.getText().toString().isEmpty() || numberOfPeople2.getText().toString().isEmpty()) {
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //TODO insert the data to the DB
 
-                boolean success = dbHandler.add(tableId.getText().toString(), numberOfPeople.getText().toString());
+                boolean success = dbHandler.add(tableId2.getText().toString(), numberOfPeople2.getText().toString());
 
                 dialog.dismiss();
                 if (success)
