@@ -1,5 +1,6 @@
 package com.example.bookatreat.Customer;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.R;
@@ -101,11 +104,46 @@ public class FavoritesFrag extends Fragment implements CustomerExampleAdapter.On
 //                });
 //    }
 
+    // The open Restaurants dialog method
+    public void OpenRestaurantDialog(final int position) {
+        final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_res_view, null);
+
+        final TextView resNameD = mView.findViewById(R.id.resNameDialog);
+        final TextView resDesD = mView.findViewById(R.id.resDesDialog);
+        final TextView resEmailD = mView.findViewById(R.id.resEmailDialog);
+        final TextView resAddD = mView.findViewById(R.id.resAddressDialog);
+        final ImageView favStar = mView.findViewById(R.id.favStar);
+
+        resNameD.setText(mFavList.get(position).getName());
+        resDesD.setText(mFavList.get(position).getDescription());
+        resAddD.setText(mFavList.get(position).getAddress());
+        resEmailD.setText(mFavList.get(position).getEmail());
+
+        //On Click of Star Symbol
+        favStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove position to FavoritesArray
+//                Restaurants favRes = mFavList.get(position);
+//                mFavList.add(favRes);
+            }
+        });
+
+
+        myBuild.setView(mView);
+        final AlertDialog dialog = myBuild.create();
+        dialog.show();
+    }
+
     @Override
     public void onResClick(int position) {
+        Log.d(TAG, "onResClick: Clicked Pos - " + position);
 
+        OpenRestaurantDialog(position);
     }
 }
+
 
 
 
