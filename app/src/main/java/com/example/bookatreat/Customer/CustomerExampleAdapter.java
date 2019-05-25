@@ -16,23 +16,38 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
 
     public CustomerListResFrag customerListResFrag;
     private ArrayList<Restaurants> mExampleList;
+    private OnResClickListener mOnResClickListener;
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+    public static class ExampleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //public ImageView mImageView;
         public TextView mTextResName;
         public TextView mTextResDes;
+        OnResClickListener onResClickListener;
 
-        public ExampleViewHolder(@NonNull View itemView) {
+        public ExampleViewHolder(@NonNull View itemView, OnResClickListener onResClickListener) {
             super(itemView);
             //mImageView = itemView.findViewById(R.id.customerStar);
             mTextResName = itemView.findViewById(R.id.RestaurantName);
             mTextResDes = itemView.findViewById(R.id.restaurantDes);
+            this.onResClickListener = onResClickListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onResClickListener.onResClick(getAdapterPosition());
         }
     }
 
-    public CustomerExampleAdapter(CustomerListResFrag customerListResFrag, ArrayList<Restaurants> mExampleList) {
+    public interface OnResClickListener {
+        void onResClick(int position);
+    }
+
+    public CustomerExampleAdapter(CustomerListResFrag customerListResFrag, ArrayList<Restaurants> mExampleList, OnResClickListener onResClickListener) {
         this.customerListResFrag = customerListResFrag;
         this.mExampleList = mExampleList;
+        this.mOnResClickListener = onResClickListener;
     }
 
     @NonNull
@@ -41,7 +56,7 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
         LayoutInflater layoutInflater = LayoutInflater.from(customerListResFrag.getContext());
         View view = layoutInflater.inflate(R.layout.customer_list_example_item,parent,false);
 
-        return new ExampleViewHolder(view);
+        return new ExampleViewHolder(view, mOnResClickListener);
     }
 
     @Override

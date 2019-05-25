@@ -1,6 +1,9 @@
 package com.example.bookatreat.Customer;
 
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,8 +21,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
@@ -42,12 +47,13 @@ import java.util.ArrayList;
 import static com.example.bookatreat.DataBaseHandler.emailCredentials;
 
 
-public class CustomerListResFrag extends Fragment {
+public class CustomerListResFrag extends Fragment implements CustomerExampleAdapter.OnResClickListener {
     private RecyclerView mRecyclerView;
     //private RecyclerView.Adapter mAdapter;
     private CustomerExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
+    private ArrayList<String> mFavArrList;
 
     //made this
     //private ListView mRestaurantList;
@@ -77,6 +83,7 @@ public class CustomerListResFrag extends Fragment {
 
         // Initialize ArrayList
         mExampleList = new ArrayList<>();
+        mFavArrList = new ArrayList<>();
 
         // Setup RecyclerView
         mRecyclerView = view.findViewById(R.id.restaurantList);
@@ -170,7 +177,7 @@ public class CustomerListResFrag extends Fragment {
         if(mExampleList.size()>0){
             mExampleList.clear();
         }
-
+        mAdapter = new CustomerExampleAdapter(CustomerListResFrag.this, mExampleList, this);
         db.collection("restaurants").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -178,7 +185,6 @@ public class CustomerListResFrag extends Fragment {
                     Restaurants restaurant = new Restaurants(querySnapshot.getString("Address"), querySnapshot.getString("Description"), querySnapshot.getString("Email"), querySnapshot.getString("Name"));
                     mExampleList.add(restaurant);
                 }
-                mAdapter = new CustomerExampleAdapter(CustomerListResFrag.this, mExampleList);
                 mRecyclerView.setAdapter(mAdapter);
             }
         })
@@ -191,4 +197,47 @@ public class CustomerListResFrag extends Fragment {
                 });
     }
 
+    // The open Restaurants dialog method
+    public void OpenRestaurantDialog(final int position) {
+        final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_res_view, null);
+
+        final TextView resNameD = mView.findViewById(R.id.resNameDialog);
+        final TextView resDesD = mView.findViewById(R.id.resDesDialog);
+        final TextView resEmailD = mView.findViewById(R.id.resEmailDialog);
+        final TextView resAddD = mView.findViewById(R.id.resAddressDialog);
+        final ImageView favStar = mView.findViewById(R.id.favStar);
+
+        resNameD.setText(mExampleList.get(position).getName());
+        resDesD.setText(mExampleList.get(position).getDescription());
+        resAddD.setText(mExampleList.get(position).getAddress());
+        resEmailD.setText(mExampleList.get(position).getEmail());
+
+        //On Click of Star Symbol
+        favStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Add position to FavoritesArray
+                String favRes = Integer.toString(position);
+                mFavArrList.add(favRes);
+
+            }
+        });
+
+
+        myBuild.setView(mView);
+        final AlertDialog dialog = myBuild.create();
+        dialog.show();
+    }
+
+    public ArrayList<Restaurants> getmExampleList() {
+        return mExampleList;
+    }
+
+    @Override
+    public void onResClick(int position) {
+        Log.d(TAG, "onResClick: Clicked Pos - " + position);
+
+        OpenRestaurantDialog(position);
+    }
 }
