@@ -37,7 +37,6 @@ public class MessageFrag extends Fragment {
         // Find IDs
         ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
         messagesList = view.findViewById(R.id.MessagesList);
-        closeMessageBtn = view.findViewById(R.id.CloseMessageBtn);
 
         //Items on list (delete later)
         MessageArr.add("TGI FRIDAY, CONFIRMATION");
@@ -45,14 +44,7 @@ public class MessageFrag extends Fragment {
         MessageArr.add("BURGER KING, CONFIRMATION");
         MessageArr.add("MC DONALDS, CONFIRMATION");
         MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
+
 
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, MessageArr);
@@ -72,7 +64,7 @@ public class MessageFrag extends Fragment {
 
 
 
-
+        // The on item click listener
         messagesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -90,18 +82,37 @@ public class MessageFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_enlarge_message_table, null);
 
-        final TextView restaurantName = mView.findViewById(R.id.RestaurantName);
-        final TextView messageHeader = mView.findViewById(R.id.RestaurantMessageHeader);
-        final TextView fullMessage = mView.findViewById(R.id.RestaurantMessage);
+         TextView restaurantName = mView.findViewById(R.id.RestaurantName);
+         TextView messageHeader = mView.findViewById(R.id.RestaurantMessageHeader);
+         TextView fullMessage = mView.findViewById(R.id.RestaurantMessage);
+         Button closeMessageBtn  = mView.findViewById(R.id.CloseMessageBtn);
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
         dialog.show();
 
+        // the textviews
+
+        restaurantName.setText("TGI FRIDAY");
+        messageHeader.setText("CONFIRMATION");
+        fullMessage.setText("This is where the message appears");
+
+
+  /*      restaurantName.setText(MessageFrag.get(position).getName());
+        messageHeader.setText(mExampleList.get(position).getDescription());
+        fullMessage.setText(mExampleList.get(position).getAddress());*/
+
+
+        closeMessageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+    } //end of opendialog method
 
 
 
-    }
 }
 
 
