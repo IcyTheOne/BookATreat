@@ -2,8 +2,6 @@ package com.example.bookatreat.Customer;
 
 
 import android.app.AlertDialog;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,64 +15,39 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-import static com.example.bookatreat.DataBaseHandler.emailCredentials;
-
 
 public class CustomerListResFrag extends Fragment implements CustomerExampleAdapter.OnResClickListener {
     private RecyclerView mRecyclerView;
-    //private RecyclerView.Adapter mAdapter;
     private CustomerExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
-    private ArrayList<String> mFavArrList;
-
-    //made this
-    //private ListView mRestaurantList;
-
-    private static final String KEY_NAME = "Name";
+    public static ArrayList<Restaurants> mFavArrList;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference restaurants = db.collection("restaurants");
 
-
     private static final String TAG = "CustomerListResFrag";
-
-    CustomerExampleAdapter adapter;
-
-    private String resName;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_list_res, container, false);
-
-        //made this
-        //mRestaurantList = view.findViewById(R.id.restaurantList);
 
         // Find views
         final ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -90,27 +63,6 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         setUpFireBase();
-
-
-        // TRYING TO MAKE THE ITEMS CLICKABLE AND TO OPEN A NEW TABLE DIALOG
-        //START
-
-  /*      ArrayAdapter adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mExampleList);
-        mRestaurantList.setAdapter(adapter);
-
-        mRestaurantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // openEditTableDialog();
-            }
-        });
-*/
-        //END
-
-
-
-
 
         // Fill resList
         fillSearchList();
@@ -197,6 +149,10 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
                 });
     }
 
+    public static ArrayList<Restaurants> getFavArrList() {
+        return mFavArrList;
+    }
+
     // The open Restaurants dialog method
     public void OpenRestaurantDialog(final int position) {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
@@ -218,9 +174,8 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
             @Override
             public void onClick(View v) {
                 // Add position to FavoritesArray
-                String favRes = Integer.toString(position);
+                Restaurants favRes = mExampleList.get(position);
                 mFavArrList.add(favRes);
-
             }
         });
 
@@ -228,10 +183,6 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
         dialog.show();
-    }
-
-    public ArrayList<Restaurants> getmExampleList() {
-        return mExampleList;
     }
 
     @Override
