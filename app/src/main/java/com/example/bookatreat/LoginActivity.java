@@ -23,18 +23,14 @@ import android.widget.Toast;
 
 import com.example.bookatreat.Customer.CustomerActivity;
 import com.example.bookatreat.Restaurant.RestaurantActivity;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-//import static com.example.bookatreat.Constants.ERROR_DIALOG_REQUEST;
-//import static com.example.bookatreat.Constants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
-//import static com.example.bookatreat.Constants.PERMISSIONS_REQUEST_ENABLE_GPS;
-//import static com.example.bookatreat.DataBaseHandler.USER_TYPE;
+import static com.example.bookatreat.DataBaseHandler.USER_TYPE;
 import static com.example.bookatreat.DataBaseHandler.emailCredentials;
 import static com.example.bookatreat.DataBaseHandler.passwordCredentials;
 
@@ -60,19 +56,13 @@ public class LoginActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        db.setUserType(1);
-//        if(checkMapServices()){
-//            if (mLocationPermissionGranted){
-//                db.setUserType(1);
-//            } else {
-//                getLocationPermission();
-//            }
-//        }
-//        Log.d(TAG, "USER_TYPE set to: " + USER_TYPE);
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        db.setUserType(1);
+
+        Log.d(TAG, "USER_TYPE set to: " + USER_TYPE);
+   }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

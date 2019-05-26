@@ -2,6 +2,7 @@ package com.example.bookatreat.Customer;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookatreat.MapsActivity;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurants;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -100,10 +102,15 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(), MapsActivity.class));
+
+                /*
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container_cus, new MapsViewFrag());
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
+                */
             }
         });
 

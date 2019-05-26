@@ -40,9 +40,11 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
 //        initGoogleMaps(savedInstanceState);
 
         Bundle mapViewBundle = null;
+
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
         }
+
         mMapView.onCreate(mapViewBundle);
 
         mMapView.getMapAsync(this);
