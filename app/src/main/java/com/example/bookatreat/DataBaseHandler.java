@@ -43,17 +43,56 @@ public class DataBaseHandler {
     private CollectionReference restaurants = db.collection("restaurants");
 
     private static final String TAG = "CustomerSignupFrag";
-    private static final String KEY_ID = "UID";
+    // private static final String KEY_ID = "UID";
     private static final String KEY_TYPE = "Type";
     private static final String KEY_NAME = "Name";
     private static final String KEY_LAST_NAME = "Last Name";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_ADDRESS = "Address";
     private static final String KEY_DESCRIPTION = "Description";
+    private static final String KEY_TABLE_ID = "Table number:";
+    private static final String KEY_TABLE_SIZE = "Guests:";
 
-    public boolean add(String tableId, String numOfPeople) {
+    public boolean addTable(String tableId, String size) {
         //TODO: add to database with try catch/ if else
-        return true;
+
+        CollectionReference tablesForOne = restaurants.document(emailCredentials).collection("Tables for 1");
+        CollectionReference tablesForTwo = restaurants.document(emailCredentials).collection("Tables for 2");
+        CollectionReference tablesForThree = restaurants.document(emailCredentials).collection("Tables for 3");
+        CollectionReference tablesForFour = restaurants.document(emailCredentials).collection("Tables for 4");
+
+        Map<String, Object> table = new HashMap<>();
+        table.put(KEY_TABLE_ID, tableId);
+        table.put(KEY_TABLE_SIZE, size);
+
+        if (size.equals("1")) {
+            DocumentReference tableForOne = tablesForOne.document(tableId);
+            tableForOne.set(table);
+            Log.d(TAG, "Table " + tableId + " added for: " + size + " people");
+            return true;
+        }
+
+        if (size.equals("2")) {
+            DocumentReference tableForTwo = tablesForTwo.document(tableId);
+            tableForTwo.set(table);
+            Log.d(TAG, "Table " + tableId + " added for: " + size + " people");
+            return true;
+        }
+
+        if (size.equals("3")) {
+            DocumentReference tableForThree = tablesForThree.document(tableId);
+            tableForThree.set(table);
+            Log.d(TAG, "Table " + tableId + " added for: " + size + " people");
+            return true;
+        }
+
+        if (size.equals("4")) {
+            DocumentReference tableForFour = tablesForFour.document(tableId);
+            tableForFour.set(table);
+            Log.d(TAG, "Table " + tableId + " added for: " + size + " people");
+            return true;
+        }
+        return false;
     }
 
     public void emailVerification() {
@@ -77,7 +116,7 @@ public class DataBaseHandler {
         user.put(KEY_NAME, firstNameVal);
         user.put(KEY_LAST_NAME, lastNameVal);
         user.put(KEY_EMAIL, emailVal);
-        user.put(KEY_ID, UID);
+        // user.put(KEY_ID, UID);
         user.put(KEY_TYPE, USER_TYPE);
 
         users.document(UID)
@@ -103,10 +142,10 @@ public class DataBaseHandler {
         restaurant.put(KEY_DESCRIPTION, resDescVal);
         restaurant.put(KEY_EMAIL, resEmailVal);
         restaurant.put(KEY_ADDRESS, resAddressVal);
-        restaurant.put(KEY_ID, UID);
+        // restaurant.put(KEY_ID, UID);
         restaurant.put(KEY_TYPE, USER_TYPE);
 
-        restaurants.document(resEmailVal)
+        restaurants.document(UID)
                 .set(restaurant)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -145,7 +184,7 @@ public class DataBaseHandler {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
+                            Log.d(TAG, "Email sent to: " + emailCredentials);
                         }
                     }
                 });
@@ -154,15 +193,11 @@ public class DataBaseHandler {
     public void delete() {
 
         if (USER_TYPE == 1) {
-            users.document(emailCredentials).delete();
+            users.document(UID).delete();
         }
 
         if (USER_TYPE == 2){
-            restaurants.document(emailCredentials).delete();
+            restaurants.document(UID).delete();
         }
-    }
-
-    public CollectionReference getRestaurants() {
-        return restaurants;
     }
 }

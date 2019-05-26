@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +53,7 @@ public class NewBookingFrag extends Fragment {
         dbHandler = new DataBaseHandler();
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_booked);
-        mTablesSwitch = view.findViewById(R.id.tablesSwitch2);
+        mTablesSwitch = view.findViewById(R.id.tableSwitch);
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -109,8 +108,8 @@ public class NewBookingFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
 
-        final EditText tableId = mView.findViewById(R.id.tabelID2);
-        final EditText numberOfPeople = mView.findViewById(R.id.numberOfGuest2);
+        final EditText tableId = mView.findViewById(R.id.tableID);
+        final EditText tableSize = mView.findViewById(R.id.tableSize);
         Button add = mView.findViewById(R.id.hourBtn);
 
         myBuild.setView(mView);
@@ -120,14 +119,18 @@ public class NewBookingFrag extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tableId.getText().toString().isEmpty() || numberOfPeople.getText().toString().isEmpty()) {
+
+                String tableIDVal = tableId.getText().toString().trim();
+                String tableSizeVal = tableSize.getText().toString().trim();
+
+                if (tableIDVal.equals("0") || tableSizeVal.equals("0")) {
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //TODO insert the data to the DB
 
-                boolean success = dbHandler.add(tableId.getText().toString(), numberOfPeople.getText().toString());
+                boolean success = dbHandler.addTable(tableIDVal, tableSizeVal);
 
                 dialog.dismiss();
                 if (success)
@@ -144,8 +147,8 @@ public class NewBookingFrag extends Fragment {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_edit_table, null);
 
-        final EditText tableId2 = mView.findViewById(R.id.tabelID2);
-        final EditText numberOfPeople2 = mView.findViewById(R.id.numberOfGuest2);
+        final EditText tableId = mView.findViewById(R.id.tableID);
+        final EditText tableSize = mView.findViewById(R.id.tableSize);
         Button book = mView.findViewById(R.id.bookTableBtn);
 
         final TextView hour = mView.findViewById(R.id.hourTextView);
@@ -182,22 +185,26 @@ public class NewBookingFrag extends Fragment {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tableId2.getText().toString().isEmpty() || numberOfPeople2.getText().toString().isEmpty()) {
+
+                String tableIDVal = tableId.getText().toString().trim();
+                String tableSizeVal = tableSize.getText().toString().trim();
+
+                if (tableIDVal.equals("0") || tableSizeVal.equals("0")) {
                     Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //TODO insert the data to the DB
 
-                boolean success = dbHandler.add(tableId2.getText().toString(), numberOfPeople2.getText().toString());
+                boolean success = dbHandler.addTable(tableIDVal, tableSizeVal);
 
                 dialog.dismiss();
-                if (success)
+
+                if (success) {
                     Toast.makeText(getContext(), "New table added", Toast.LENGTH_LONG).show();
-                else
+                } else {
                     Toast.makeText(getContext(), "Error: unable to add the table.", Toast.LENGTH_LONG).show();
-
-
+                }
             }
         });
     }

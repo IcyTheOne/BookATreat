@@ -25,7 +25,7 @@
         android:text="Table id" />
 
     <EditText
-        android:id="@+id/tabelID2"
+        android:id="@+id/tableID"
         android:layout_width="39dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/TableTV"
@@ -46,7 +46,7 @@
         android:text="Number of people" />
 
     <EditText
-        android:id="@+id/numberOfGuest2"
+        android:id="@+id/tableSize"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/GuestsTV"
