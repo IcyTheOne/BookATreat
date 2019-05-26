@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -30,20 +31,17 @@
             android:id="@+id/resPersonsText"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="40dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="44dp"
             android:text="@string/dialog_res_persons"
             android:textColor="#3587c7"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.405" />
+            app:layout_constraintBottom_toTopOf="@+id/resTimeButton"
+            app:layout_constraintEnd_toStartOf="@+id/resPersonsEdit"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/resTimeText"
@@ -166,38 +164,38 @@
 
         <TextView
             android:id="@+id/resAddBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_width="89dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:paddingRight="50dp"
             android:text="@string/dialog_res_address"
             android:textColor="#3587c7"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintBottom_toTopOf="@+id/resPersonsText"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/topBar2"
-            app:layout_constraintVertical_bias="0.321" />
+            app:layout_constraintTop_toBottomOf="@+id/resEmailBold"
+            app:layout_constraintVertical_bias="0.448" />
 
         <TextView
             android:id="@+id/resEmailBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/dialog_res_mail"
             android:textColor="#3587c7"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintBottom_toTopOf="@+id/resPersonsText"
+            app:layout_constraintEnd_toStartOf="@+id/resEmailDialog"
+            app:layout_constraintHorizontal_bias="0.065"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.271" />
+            app:layout_constraintTop_toBottomOf="@+id/resDesDialog"
+            app:layout_constraintVertical_bias="0.085" />
 
         <TextView
             android:id="@+id/resDesDialog"
@@ -234,8 +232,8 @@
 
         <TextView
             android:id="@+id/resAddressDialog"
-            android:layout_width="253dp"
-            android:layout_height="41dp"
+            android:layout_width="182dp"
+            android:layout_height="32dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -246,10 +244,10 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toEndOf="@+id/resAddBold"
             app:layout_constraintTop_toTopOf="@+id/topBar2"
-            app:layout_constraintVertical_bias="0.329" />
+            app:layout_constraintVertical_bias="0.332" />
 
         <TextView
             android:id="@+id/resNameDialog"
@@ -273,7 +271,8 @@
             app:layout_constraintStart_toStartOf="@+id/topBar2"
             app:layout_constraintTop_toTopOf="@+id/topBar2"
             app:layout_constraintVertical_bias="0.011" />
-    </android.support.constraint.ConstraintLayout><![CDATA[
+    </android.support.constraint.ConstraintLayout>
+    <![CDATA[
 
 
     -->
