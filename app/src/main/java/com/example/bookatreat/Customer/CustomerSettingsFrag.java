@@ -152,7 +152,18 @@ public class CustomerSettingsFrag extends Fragment {
             }
         });
 
-        //mEditBTN.
+        mEditBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_cus, new CustomerEditSettingsFrag());
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
+
+            }
+        });
+
 
 
 
