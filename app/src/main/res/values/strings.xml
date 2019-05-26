@@ -36,6 +36,7 @@
     <string name="dialog_res_description">Restaurant Description:</string>
     <string name="dialog_res_address">Address:</string>
     <string name="dialog_res_mail">E-Mail:</string>
+    <string name="dialog_res_persons">Persons:</string>
     <string name="search_box_text">Cuisine, restaurant name...</string>
     <string name="maps_button_content_description">Maps Button</string>
     <string name="customer_favorites_content_description">Favorites Button</string>

@@ -171,6 +171,18 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         final TextView resAddD = mView.findViewById(R.id.resAddressDialog);
         final ImageView favStar = mView.findViewById(R.id.favStar);
 
+/*        final TextView resPersonsTxt = mView.findViewById(R.id.resPersonsText);
+        final TextView resPersonsEdi = mView.findViewById(R.id.resPersonsEdit);
+        final TextView resTimeTxt = mView.findViewById(R.id.resTimeText);
+        final TextView resBookBtn = mView.findViewById(R.id.resBookButton);
+        final TextView resTimeBtn = mView.findViewById(R.id.resTimeButton);
+
+
+        //resTimeTxt.setText("Persons");
+        resPersonsTxt.setText("Persons:");*/
+
+
+
         resNameD.setText(mExampleList.get(position).getName());
         resDesD.setText(mExampleList.get(position).getDescription());
         resAddD.setText(mExampleList.get(position).getAddress());
@@ -185,7 +197,6 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
                 mFavArrList.add(favRes);
             }
         });
-
 
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
