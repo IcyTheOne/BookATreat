@@ -26,13 +26,14 @@ public class MessageFrag extends Fragment {
 
     private ArrayList<String> MessageArr;
     private ListView messagesList;
-    private Button closeMessageBtn;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 
         MessageArr = new ArrayList<>();
+
+
 
         // Find IDs
         ImageButton settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -42,7 +43,6 @@ public class MessageFrag extends Fragment {
         MessageArr.add("TGI FRIDAY, CONFIRMATION");
         MessageArr.add("EL NACIONALE, CONFIRMATION");
         MessageArr.add("BURGER KING, CONFIRMATION");
-        MessageArr.add("MC DONALDS, CONFIRMATION");
         MessageArr.add("MC DONALDS, CONFIRMATION");
 
 
@@ -92,6 +92,8 @@ public class MessageFrag extends Fragment {
         dialog.show();
 
         // the textviews
+
+        //resNameD.setText(mExampleList.get(position).getName());
 
         restaurantName.setText("TGI FRIDAY");
         messageHeader.setText("CONFIRMATION");
