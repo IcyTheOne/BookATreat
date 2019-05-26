@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +25,36 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.bookatreat.Customer.CustomerExampleAdapter;
+import com.example.bookatreat.Customer.CustomerListResFrag;
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
+import com.example.bookatreat.Restaurants;
+import com.example.bookatreat.Tables;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class NewBookingFrag extends Fragment {
+public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTableClickListener{
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private DataBaseHandler dbHandler;
-    private ArrayList<String> arrNew;
+    private ArrayList<Tables> arrNew;
     private ListView listNew;
     private ImageButton settingsButton;
     private Switch mTablesSwitch;
+
+    private RecyclerView mRecyclerView;
+    private RestExampleAdapter mAdapter;
+
+    private static final String TAG = "NewBookingFrag";
 
     private TimePickerDialog timePickerDialog;
     Calendar calendar;
@@ -54,6 +72,8 @@ public class NewBookingFrag extends Fragment {
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_booked);
         mTablesSwitch = view.findViewById(R.id.tableSwitch);
+
+        fillTablesList();
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -87,9 +107,6 @@ public class NewBookingFrag extends Fragment {
 
         //TODO insert the data from DB to an array
 
-        arrNew.add("Table 1, 3 people");
-        arrNew.add("Table 4, 5 people");
-
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrNew);
         listNew.setAdapter(adapter);
 
@@ -102,6 +119,34 @@ public class NewBookingFrag extends Fragment {
         });
 
         return view;
+    }
+
+    private void fillTablesList() {
+
+        if(arrNew.size() > 0) {
+            arrNew.clear();
+        }
+
+        mAdapter = new RestExampleAdapter(NewBookingFrag.this, arrNew, this);
+
+        db.collection("restaurants").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for(DocumentSnapshot querySnapshot: task.getResult()){
+                    Tables table = new Tables(querySnapshot.getString("Table ID"), querySnapshot.getString("Guests"));
+                    arrNew.add(table);
+                }
+
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Problem ---1---", Toast.LENGTH_SHORT).show();
+                        Log.v("---1---", e.getMessage());
+                    }
+                });
     }
 
     public void openAddNewTableDialog() {
@@ -207,5 +252,12 @@ public class NewBookingFrag extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onTableClick(int position) {
+        Log.d(TAG, "onTableClick: clicked table" + position);
+
+        openEditTableDialog();
     }
 }

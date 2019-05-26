@@ -85,7 +85,7 @@ public class FavoritesFrag extends Fragment implements CustomerExampleAdapter.On
 //            mFavList.clear();
 //        }
 //        mAdapter = new FavAdapter(FavoritesFrag.this, mFavList, this);
-//        db.collection("restaurants").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//        dbHandler.collection("restaurants").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 //                for(DocumentSnapshot querySnapshot: task.getResult()){

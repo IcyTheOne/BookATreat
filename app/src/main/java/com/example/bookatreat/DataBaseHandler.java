@@ -50,8 +50,8 @@ public class DataBaseHandler {
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_ADDRESS = "Address";
     private static final String KEY_DESCRIPTION = "Description";
-    private static final String KEY_TABLE_ID = "Table number:";
-    private static final String KEY_TABLE_SIZE = "Guests:";
+    private static final String KEY_TABLE_ID = "Table number";
+    private static final String KEY_TABLE_SIZE = "Guests";
 
     public boolean addTable(String tableId, String size) {
         //TODO: add to database with try catch/ if else
