@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    public static String username;
 
     private boolean mLocationPermissionGranted = false;
 
@@ -125,9 +126,9 @@ public class LoginActivity extends AppCompatActivity {
         // Click button to sign in to the app
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void  onClick(View v) {
 
-                String username = mUserNameField.getText().toString().trim();
+                username = mUserNameField.getText().toString().trim();
                 String passwordVal = mPasswordField.getText().toString().trim();
 
                 if (username.isEmpty() || passwordVal.isEmpty()) {

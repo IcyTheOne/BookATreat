@@ -80,7 +80,7 @@ public class DataBaseHandler {
         user.put(KEY_ID, UID);
         user.put(KEY_TYPE, USER_TYPE);
 
-        users.document(emailVal)
+        users.document(UID)
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
