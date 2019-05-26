@@ -115,7 +115,7 @@ public class RestaurantSettingsFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_cus, new RestaurantEditSettings());
+                ft.replace(R.id.container_restaurant, new RestaurantEditSettings());
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
             }
