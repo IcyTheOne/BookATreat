@@ -1,4 +1,4 @@
-package com.example.bookatreat.Customer;
+/**package com.example.bookatreat.Customer;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -129,3 +129,4 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
         mMapView.onLowMemory();
     }
 }
+*/

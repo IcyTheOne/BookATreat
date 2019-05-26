@@ -56,7 +56,7 @@
             android:textColor="#FFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/editAddress" />
 
         <Button
             android:id="@+id/deleteAccBTN"
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/deleteAccBTN" />
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/editName"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@id/TopBar" />
 
         <TextView
-            android:id="@+id/textViewDescription"
+            android:id="@+id/editDescription"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -112,7 +112,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewName" />
+            app:layout_constraintTop_toBottomOf="@id/editName" />
 
         <TextView
             android:id="@+id/textViewEmail"
@@ -126,9 +126,9 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewDescription" />
+            app:layout_constraintTop_toBottomOf="@id/editDescription" />
         <TextView
-            android:id="@+id/textViewAddress"
+            android:id="@+id/editAddress"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

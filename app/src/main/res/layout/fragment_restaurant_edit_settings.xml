@@ -39,52 +39,27 @@
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="@+id/TopBar"
             app:layout_constraintEnd_toEndOf="@+id/TopBar"
+            app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="@+id/TopBar"
-            app:layout_constraintTop_toTopOf="@+id/TopBar" />
+            app:layout_constraintTop_toTopOf="@+id/TopBar"
+            app:layout_constraintVertical_bias="0.47" />
+
 
         <Button
-            android:id="@+id/signOutBTN"
-            android:layout_width="213dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sign_out"
-            android:textColor="#FFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewEmail" />
-
-        <Button
-            android:id="@+id/deleteAccBTN"
+            android:id="@+id/editRestBTN"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:background="@color/colorPrimary"
-            android:text="@string/delete_acc"
+            android:text="@string/save_information"
             android:textColor="#FFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signOutBTN" />
+            app:layout_constraintTop_toBottomOf="@+id/editAddress" />
 
-        <Button
-            android:id="@+id/editBTN"
-            android:layout_width="213dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/edit_settings"
-            android:textColor="#FFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deleteAccBTN" />
-
-        <TextView
+        <EditText
             android:id="@+id/editName"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
@@ -98,12 +73,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/TopBar" />
 
-        <TextView
-            android:id="@+id/textViewLastName"
+        <EditText
+            android:id="@+id/editDescription"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/back"
             android:text=""
@@ -113,19 +88,68 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editName" />
 
-        <TextView
-            android:id="@+id/textViewEmail"
+        <EditText
+            android:id="@+id/editEmail"
             android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/back"
             android:text=""
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewLastName" />
+            app:layout_constraintTop_toBottomOf="@id/editDescription" />
+        <EditText
+            android:id="@+id/editAddress"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/back"
+            android:text=""
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editEmail" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            app:layout_constraintBottom_toTopOf="@+id/editAddress"
+            app:layout_constraintEnd_toEndOf="@+id/editAddress"
+            app:layout_constraintStart_toStartOf="@+id/editAddress" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            app:layout_constraintBottom_toTopOf="@+id/editEmail"
+            app:layout_constraintEnd_toEndOf="@+id/editEmail"
+            app:layout_constraintStart_toStartOf="@+id/editEmail" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            app:layout_constraintBottom_toTopOf="@+id/editDescription"
+            app:layout_constraintEnd_toEndOf="@+id/editDescription"
+            app:layout_constraintStart_toStartOf="@+id/editDescription" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            app:layout_constraintBottom_toTopOf="@+id/editName"
+            app:layout_constraintEnd_toEndOf="@+id/editName"
+            app:layout_constraintStart_toStartOf="@+id/editName" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -113,7 +113,7 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
             public void onClick(View v) {
 
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_cus, new MapsViewFrag());
+                //ft.replace(R.id.fragment_container_cus, new MapsViewFrag());
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
 

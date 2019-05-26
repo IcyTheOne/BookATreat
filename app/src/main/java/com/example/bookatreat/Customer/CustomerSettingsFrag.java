@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bookatreat.DataBaseHandler;
@@ -19,8 +18,6 @@ import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,10 +33,6 @@ public class CustomerSettingsFrag extends Fragment {
     private TextView mNameView;
     private TextView mLastNameView;
     private TextView mEmailView;
-    private EditText mNameEdit;
-    private EditText mLastNameEdit;
-    private EditText mEmailEdit;
-
     private static final String TAG = "CustomerSettingsFrag";
 
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -52,7 +45,7 @@ public class CustomerSettingsFrag extends Fragment {
 
     CustomerExampleAdapter mAdapter;
 
-    Button mSignout, mDeleteAcc,mEditBTN, mSaveButton;
+    Button mSignout, mDeleteAcc,mEditBTN;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
@@ -61,7 +54,7 @@ public class CustomerSettingsFrag extends Fragment {
         //Populate textViews of customerSettings with their information
         mAuth = FirebaseAuth.getInstance();
 
-        mNameView = (TextView) view.findViewById(R.id.textViewName);
+        mNameView = (TextView) view.findViewById(R.id.editName);
         mLastNameView = (TextView) view.findViewById(R.id.textViewLastName);
         mEmailView = (TextView) view.findViewById(R.id.textViewEmail);
 
@@ -96,7 +89,6 @@ public class CustomerSettingsFrag extends Fragment {
         mSignout = view.findViewById(R.id.signOutBTN);
         mDeleteAcc = view.findViewById(R.id.deleteAccBTN);
         mEditBTN = view.findViewById(R.id.editBTN);
-        mSaveButton = mview.findViewById(R.id.saveBTN);
 
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,42 +115,6 @@ public class CustomerSettingsFrag extends Fragment {
 
             }
         });
-
-        mNameEdit = mview.findViewById(R.id.editName);
-        mLastNameEdit = mview.findViewById(R.id.editLastName);
-        mEmailEdit = mview.findViewById(R.id.editEmail);
-
-        mSaveButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v){
-                //Add Rewrite data method
-
-                mDocumentReference.set(UID)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            String Name = mNameEdit.toString();
-
-                            @Override
-                            public void onSuccess(Void aVoid) {
-
-                                Log.d(TAG, "DocumentSnapshot successfully written!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writing document", e);
-                            }
-                        });
-
-
-            }
-
-
-
-        }
-
-        );
 
         return view;
     }
