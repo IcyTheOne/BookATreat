@@ -24,16 +24,17 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.17" />
+            app:layout_constraintVertical_bias="0.022" />
 
         <EditText
             android:id="@+id/signupRName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:autofillHints="no"
             android:ems="10"
@@ -42,16 +43,17 @@
             android:textColor="#3587c7"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.272"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/restaurantSwitch"
             tools:targetApi="o" />
 
         <EditText
             android:id="@+id/signupRDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="112dp"
             android:layout_marginEnd="8dp"
             android:autofillHints="no"
             android:ems="10"
@@ -60,16 +62,17 @@
             android:textColor="#3587c7"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.751"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupRName"
+            app:layout_constraintTop_toTopOf="parent"
             tools:targetApi="o" />
 
         <EditText
             android:id="@+id/signupPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:autofillHints="no"
             android:ems="10"
@@ -78,16 +81,17 @@
             android:textColor="#3587c7"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.274"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signupRDescription"
             tools:targetApi="o" />
 
         <EditText
             android:id="@+id/signupPassConfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="160dp"
             android:layout_marginEnd="8dp"
             android:autofillHints="no"
             android:ems="10"
@@ -96,14 +100,15 @@
             android:textColor="#3587c7"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.745"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupPassword"
+            app:layout_constraintTop_toTopOf="parent"
             tools:targetApi="o" />
 
         <EditText
             android:id="@+id/signupEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -114,6 +119,7 @@
             android:textColor="#3587c7"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.276"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signupPassConfirm"
             tools:targetApi="o" />
@@ -123,13 +129,13 @@
             android:layout_width="209dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="#3587c7"
             android:text="@string/signup_button"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signupRAddress" />
 
@@ -138,13 +144,14 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:text="@string/signup_existing_user"
             android:textColor="#3587c7"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signupBTN" />
 
@@ -153,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:checked="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -172,14 +179,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/restaurantSwitch"
             app:layout_constraintEnd_toStartOf="@+id/restaurantSwitch"
-            app:layout_constraintHorizontal_bias="0.879"
+            app:layout_constraintHorizontal_bias="0.876"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch" />
+            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch"
+            app:layout_constraintVertical_bias="0.272" />
 
         <TextView
             android:id="@+id/RestaurantTV"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
+            android:layout_height="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/signup_choice_restaurant"
@@ -188,16 +196,17 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/restaurantSwitch"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
+            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toEndOf="@+id/restaurantSwitch"
-            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch" />
+            app:layout_constraintTop_toTopOf="@+id/restaurantSwitch"
+            app:layout_constraintVertical_bias="0.375" />
 
         <EditText
             android:id="@+id/signupRAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="208dp"
             android:layout_marginEnd="8dp"
             android:autofillHints="no"
             android:ems="10"
@@ -205,8 +214,9 @@
             android:inputType="textPostalAddress"
             android:textColorHint="#3587c7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.764"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signupEmail"
+            app:layout_constraintTop_toTopOf="parent"
             tools:targetApi="o" />
 
         <TextView
@@ -214,12 +224,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:text="@string/placeholder"
             android:textColor="@color/fui_transparent"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/existingUser" />
     </android.support.constraint.ConstraintLayout>
