@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class restaurant_edit_settings extends Fragment {
+public class RestaurantEditSettings extends Fragment {
     private EditText mNameEdit;
     private EditText mAddress;
     private EditText mEmailEdit;
