@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -105,12 +107,20 @@ public class LoginActivity extends AppCompatActivity {
 
         mCheckBox = findViewById(R.id.checkBox);
 
+
         // Click text to go to sign up page
         mNewUserText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
 
+                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                final NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                if (mWifi.isConnected()) {
+                    startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unavaiable without WiFi connection", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
