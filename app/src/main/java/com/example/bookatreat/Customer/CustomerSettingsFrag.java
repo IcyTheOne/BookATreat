@@ -5,43 +5,30 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
-import com.example.bookatreat.Restaurants;
-import com.example.bookatreat.User;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.bookatreat.DataBaseHandler.USER_TYPE;
 
 
 public class CustomerSettingsFrag extends Fragment {
@@ -53,6 +40,9 @@ public class CustomerSettingsFrag extends Fragment {
     private TextView mNameView;
     private TextView mLastNameView;
     private TextView mEmailView;
+    private EditText mNameEdit;
+    private EditText mLastNameEdit;
+    private EditText mEmailEdit;
     private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
     private String TAG = "User ID is";
@@ -65,13 +55,14 @@ public class CustomerSettingsFrag extends Fragment {
     CustomerExampleAdapter mAdapter;
 
 
-    Button mSignout, mDeleteAcc,mEditBTN;
+    Button mSignout, mDeleteAcc,mEditBTN, mSaveButton;
 
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
+        View mview = inflater.inflate(R.layout.fragment_customer_edit_settings,container, false);
 
         Log.d(TAG, "USER ID IS                                                                " + uid);
 
@@ -112,31 +103,15 @@ public class CustomerSettingsFrag extends Fragment {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        //Link the buttons
 
         mSignout = view.findViewById(R.id.signOutBTN);
         mDeleteAcc = view.findViewById(R.id.deleteAccBTN);
         mEditBTN = view.findViewById(R.id.editBTN);
+        mSaveButton = mview.findViewById(R.id.saveBTN);
 
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +138,47 @@ public class CustomerSettingsFrag extends Fragment {
 
             }
         });
+        mNameEdit = mview.findViewById(R.id.editName);
+        mLastNameEdit = mview.findViewById(R.id.editLastName);
+        mEmailEdit = mview.findViewById(R.id.editEmail);
+
+
+        mSaveButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                //Add Rewrite data method
+
+                mDocumentReference.set(uid)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            String Name = mNameEdit.toString();
+
+
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+
+                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error writing document", e);
+                            }
+                        });
+
+
+            }
+
+
+
+        }
+
+
+
+
+        );
 
 
 

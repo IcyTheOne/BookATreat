@@ -49,9 +49,13 @@
     <string name="toolbar_calendar_content_description">Calendar Button</string>
     <string name="toolbar_message_content_description">Message Button</string>
 
-    <!-- Settings Button (In all toolbar frags) -->
+    <!-- Settings Button (In all toolbar frags)And settings strings -->
     <string name="settings_button_content_description">Settings Button</string>
     <string name="settings_title_textview">Settings</string>
+    <string name="save_information">Save Information</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">E-Mail</string>
 
     <!-- Calendar Frag -->
     <string name="calendar_title_textview">Calendar</string>
