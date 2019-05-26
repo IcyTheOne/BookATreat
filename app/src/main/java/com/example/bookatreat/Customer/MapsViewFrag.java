@@ -1,8 +1,11 @@
-/**package com.example.bookatreat.Customer;
+package com.example.bookatreat.Customer;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -11,18 +14,26 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.bookatreat.R;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.example.bookatreat.Constants.MAP_VIEW_BUNDLE_KEY;
+import static com.example.bookatreat.LoginActivity.latitude;
+import static com.example.bookatreat.LoginActivity.longitude;
 
 
 public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
 
     public MapView mMapView;
+    private GoogleMap mGoogleMap;
+    private LatLngBounds mMapBoundry;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,20 +48,11 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
         mMapView = view.findViewById(R.id.map_view);
 
         // Initiate the MapView Object
-//        initGoogleMaps(savedInstanceState);
+        initGoogleMaps(savedInstanceState);
 
-        Bundle mapViewBundle = null;
-
-        if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
-        }
-
-        mMapView.onCreate(mapViewBundle);
-
-        mMapView.getMapAsync(this);
 
         // Go to Settings
-        settingsButton.setOnClickListener(new View. OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -61,19 +63,31 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
         });
         return view;
     }
+    private void setCameraView(){
 
-//    private void initGoogleMaps(Bundle savedInstanceState){
-//        // *** IMPORTANT ***
-//        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
-//        // objects or sub-Bundles.
-//        Bundle mapViewBundle = null;
-//        if (savedInstanceState != null) {
-//            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
-//        }
-//        mMapView.onCreate(mapViewBundle);
-//
-//        mMapView.getMapAsync(this);
-//    }
+        double bottomBoundry = latitude - .1;
+        double leftBoundry = longitude - .1;
+        double topBoundry = latitude + .1;
+        double rightBoundry = longitude + .1;
+
+        mMapBoundry = new LatLngBounds(
+                new LatLng(bottomBoundry,leftBoundry),
+                new LatLng(topBoundry,rightBoundry)
+        );
+
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(mMapBoundry,0));
+    }
+
+    private void initGoogleMaps(Bundle savedInstanceState) {
+
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
+        }
+        mMapView.onCreate(mapViewBundle);
+
+        mMapView.getMapAsync(this);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -108,7 +122,13 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        map.setMyLocationEnabled(true);
+//        map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("Current Location"));
+        mGoogleMap = map;
+        setCameraView();
     }
 
     @Override
@@ -129,4 +149,3 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
         mMapView.onLowMemory();
     }
 }
-*/

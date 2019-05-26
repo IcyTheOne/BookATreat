@@ -1,5 +1,6 @@
 package com.example.bookatreat;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -31,11 +33,14 @@ import com.example.bookatreat.Restaurant.RestaurantActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.GeoPoint;
 
 import static com.example.bookatreat.Constants.ERROR_DIALOG_REQUEST;
 import static com.example.bookatreat.Constants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
@@ -58,8 +63,12 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     public static String username;
+    public static double longitude;
+    public static double latitude;
+
 
     private boolean mLocationPermissionGranted = false;
+    private FusedLocationProviderClient mFusedLocationClient;
 
     DataBaseHandler db = new DataBaseHandler();
 
@@ -72,9 +81,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        db.setUserType(1);
-
+        if (checkMapServices()){
+            if (mLocationPermissionGranted){
+                db.setUserType(1);
+                getLastKnownLocation();
+            }
+        }
         Log.d(TAG, "USER_TYPE set to: " + USER_TYPE);
+
     }
 
     @Override
@@ -86,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         try // Remove ActionBar
         {
@@ -186,6 +201,23 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                if (task.isSuccessful()){
+                    Location location = task.getResult();
+                    GeoPoint geoPoint = new GeoPoint(location.getLatitude(),location.getLongitude());
+                    longitude = location.getLongitude();
+                    latitude = location.getLatitude();
+                }
+            }
+        });
+    }
+
     private boolean checkMapServices() {
         if (isServicesOK()) {
             if (isMapsEnabled()) {
@@ -230,6 +262,7 @@ public class LoginActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;
             db.setUserType(1);
+            getLastKnownLocation();
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -281,6 +314,7 @@ public class LoginActivity extends AppCompatActivity {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
                 if (mLocationPermissionGranted) {
                     db.setUserType(1);
+                    getLastKnownLocation();
                 } else {
                     getLocationPermission();
                 }
