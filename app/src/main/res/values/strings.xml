@@ -5,13 +5,16 @@
 
     <!-- Login Strings -->
     <string name="login_title">Login</string>
-    <string name="login_username">Username&#8230;</string>
+    <string name="login_username">E-mail&#8230;</string>
     <string name="login_password">Password&#8230;</string>
     <string name="login_button">Login</string>
     <string name="login_signup_button">Sign up here&#8230;</string>
     <string name="sign_out">Sign out&#8230;</string>
     <string name="delete_acc">Delete acc</string>
     <string name="edit_settings">Edit information</string>
+    <string name="login_name">com.example.bookatreat.name</string>
+    <string name="login_checkbox">com.example.bookatreat.checkbox</string>
+    <string name="login_checkbox_text">Remember my email</string>
 
     <!-- Sign-up Strings -->
     <string name="signup_title">Sign up</string>

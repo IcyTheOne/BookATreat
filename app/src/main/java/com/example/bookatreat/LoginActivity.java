@@ -5,8 +5,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -45,7 +48,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextView mNewUserText;
     private Button mLoginButton;
     private Switch mLoginSwitch;
+    private CheckBox mCheckBox;
 
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
     private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -67,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         db.setUserType(1);
 
         Log.d(TAG, "USER_TYPE set to: " + USER_TYPE);
-   }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
         }
-
-        catch (NullPointerException e){}
 
         setContentView(R.layout.activity_login); // End of removing ActionBar
 
@@ -97,6 +102,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginButton = findViewById(R.id.loginBTN);
         mNewUserText = findViewById(R.id.signupHyperlink);
+
+        mCheckBox = findViewById(R.id.checkBox);
 
         // Click text to go to sign up page
         mNewUserText.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +128,22 @@ public class LoginActivity extends AppCompatActivity {
         // Click button to sign in to the app
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void  onClick(View v) {
+            public void onClick(View v) {
+
+                if (mCheckBox.isChecked()) {
+                    mEditor.putString(getString(R.string.login_checkbox), "True");
+                    mEditor.commit();
+
+                    String name = mUserNameField.getText().toString();
+                    mEditor.putString(getString(R.string.login_name), name);
+                    mEditor.commit();
+                } else {
+                    mEditor.putString(getString(R.string.login_checkbox), "False");
+                    mEditor.commit();
+
+                    mEditor.putString(getString(R.string.login_name), "");
+                    mEditor.commit();
+                }
 
                 username = mUserNameField.getText().toString().trim();
                 String passwordVal = mPasswordField.getText().toString().trim();
@@ -146,11 +168,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPreferences.edit();
+
+        chceckSharedPreferences();
+
+
     }
 
-    private boolean checkMapServices(){
-        if(isServicesOK()){
-            if(isMapsEnabled()){
+    private boolean checkMapServices() {
+        if (isServicesOK()) {
+            if (isMapsEnabled()) {
                 return true;
             }
         }
@@ -171,10 +199,10 @@ public class LoginActivity extends AppCompatActivity {
         alert.show();
     }
 
-    public boolean isMapsEnabled(){
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+    public boolean isMapsEnabled() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
             return false;
         }
@@ -199,22 +227,21 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isServicesOK(){
+    public boolean isServicesOK() {
         Log.d(TAG, "isServicesOK: checking google services version");
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(LoginActivity.this);
 
-        if(available == ConnectionResult.SUCCESS){
+        if (available == ConnectionResult.SUCCESS) {
             //everything is fine and the user can make map requests
             Log.d(TAG, "isServicesOK: Google Play Services is working");
             return true;
-        }
-        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
             //an error occured but we can resolve it
             Log.d(TAG, "isServicesOK: an error occured but we can fix it");
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(LoginActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-        }else{
+        } else {
             Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
         }
         return false;
@@ -242,10 +269,9 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, "onActivityResult: called.");
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
-                if(mLocationPermissionGranted){
+                if (mLocationPermissionGranted) {
                     db.setUserType(1);
-                }
-                else{
+                } else {
                     getLocationPermission();
                 }
             }
@@ -309,6 +335,19 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void chceckSharedPreferences() {
+        String checkbox = mPreferences.getString(getString(R.string.login_checkbox), "False");
+        String name = mPreferences.getString(getString(R.string.login_name), "");
+
+        mUserNameField.setText(name);
+
+        if (checkbox.equals("True")) {
+            mCheckBox.setChecked(true);
+        } else {
+            mCheckBox.setChecked(false);
+        }
     }
 }
 
