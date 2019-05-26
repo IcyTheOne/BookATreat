@@ -2,6 +2,7 @@ package com.example.bookatreat.Customer;
 
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.bookatreat.R;
@@ -32,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class CustomerListResFrag extends Fragment implements CustomerExampleAdapter.OnResClickListener {
@@ -40,6 +43,14 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Restaurants> mExampleList;
     public static ArrayList<Restaurants> mFavArrList;
+
+    // the timepicker fields
+    private TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    String amPm, UID;
+
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference restaurants = db.collection("restaurants");
@@ -166,15 +177,17 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         final TextView resAddD = mView.findViewById(R.id.resAddressDialog);
         final ImageView favStar = mView.findViewById(R.id.favStar);
 
-/*        final TextView resPersonsTxt = mView.findViewById(R.id.resPersonsText);
+        final TextView resPersonsTxt = mView.findViewById(R.id.resPersonsText);
         final TextView resPersonsEdi = mView.findViewById(R.id.resPersonsEdit);
         final TextView resTimeTxt = mView.findViewById(R.id.resTimeText);
-        final TextView resBookBtn = mView.findViewById(R.id.resBookButton);
         final TextView resTimeBtn = mView.findViewById(R.id.resTimeButton);
+        final TextView resCloseDialogBtn = mView.findViewById(R.id.resCloseDialogButton);
+        final TextView resBookBtn = mView.findViewById(R.id.resBookButton);
 
 
-        //resTimeTxt.setText("Persons");
-        resPersonsTxt.setText("Persons:");*/
+        resTimeTxt.setText("00:00");
+        resPersonsTxt.setText("Persons:");
+        resPersonsEdi.setText("0");
 
 
 
@@ -182,6 +195,14 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         resDesD.setText(mExampleList.get(position).getDescription());
         resAddD.setText(mExampleList.get(position).getAddress());
         resEmailD.setText(mExampleList.get(position).getEmail());
+
+        //On Click of book button
+
+        resBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         //On Click of Star Symbol
         favStar.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +217,46 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
         dialog.show();
+
+
+        //On Click Close dialog button
+
+         resCloseDialogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+
+            }
+        });
+
+
+        resTimeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+
+                // the timepicker dialog
+                timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        resTimeTxt.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+                    }
+                }, currentHour, currentMinute, false);
+
+                timePickerDialog.show();
+            }
+        });
+
+
     }
 
     @Override
