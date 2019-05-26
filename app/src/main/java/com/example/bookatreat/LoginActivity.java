@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private boolean checkMapServices(){
         if(isServicesOK()){
             if(isMapsEnabled()){
