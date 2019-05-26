@@ -1,6 +1,10 @@
 package com.example.bookatreat.Customer;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,13 +15,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.LoginActivity;
 import com.example.bookatreat.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +41,14 @@ public class CustomerSettingsFrag extends Fragment {
     private TextView mNameView;
     private TextView mLastNameView;
     private TextView mEmailView;
+    private TextView mBattery;
+
+    private EditText mNameEdit;
+    private EditText mLastNameEdit;
+    private EditText mEmailEdit;
+
+    private boolean overTenPer;
+
     private static final String TAG = "CustomerSettingsFrag";
 
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -45,7 +61,20 @@ public class CustomerSettingsFrag extends Fragment {
 
     CustomerExampleAdapter mAdapter;
 
-    Button mSignout, mDeleteAcc,mEditBTN;
+    Button mSignout, mDeleteAcc, mEditBTN, mSaveButton;
+
+    private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context ctxt, Intent intent) {
+            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+            mBattery.setText(String.valueOf(level) + "%");
+            if (level < 10) {
+                overTenPer = false;
+            } else {
+                overTenPer = true;
+            }
+        }
+    };
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
@@ -89,6 +118,7 @@ public class CustomerSettingsFrag extends Fragment {
         mSignout = view.findViewById(R.id.signOutBTN);
         mDeleteAcc = view.findViewById(R.id.deleteAccBTN);
         mEditBTN = view.findViewById(R.id.editBTN);
+        mSaveButton = mview.findViewById(R.id.saveBTN);
 
         mSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,17 +134,65 @@ public class CustomerSettingsFrag extends Fragment {
             }
         });
 
-        mEditBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //Battery mode
 
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_cus, new CustomerEditSettingsFrag());
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.commit();
+        mBattery = view.findViewById(R.id.battery_text);
+        getContext().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+
+            mEditBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (overTenPer) {
+
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.fragment_container_cus, new CustomerEditSettingsFrag());
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    ft.commit();
+                    } else {
+                        Toast.makeText(getContext(), "Your battery is too low to perform this action", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+
+
+
+        mNameEdit = mview.findViewById(R.id.editName);
+        mLastNameEdit = mview.findViewById(R.id.editLastName);
+        mEmailEdit = mview.findViewById(R.id.editEmail);
+
+        mSaveButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                //Add Rewrite data method
+
+                mDocumentReference.set(UID)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            String Name = mNameEdit.toString();
+
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error writing document", e);
+                            }
+                        });
+
 
             }
-        });
+
+
+
+        }
+
+        );
 
         return view;
     }
