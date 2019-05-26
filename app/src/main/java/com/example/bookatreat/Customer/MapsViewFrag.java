@@ -17,7 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import static com.example.bookatreat.Constants.MAPVIEW_BUNDLE_KEY;
+import static com.example.bookatreat.Constants.MAP_VIEW_BUNDLE_KEY;
 
 
 public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
@@ -41,7 +41,7 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
         }
         mMapView.onCreate(mapViewBundle);
 
@@ -59,13 +59,14 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
         });
         return view;
     }
+
 //    private void initGoogleMaps(Bundle savedInstanceState){
 //        // *** IMPORTANT ***
 //        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
 //        // objects or sub-Bundles.
 //        Bundle mapViewBundle = null;
 //        if (savedInstanceState != null) {
-//            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+//            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
 //        }
 //        mMapView.onCreate(mapViewBundle);
 //
@@ -76,10 +77,10 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        Bundle mapViewBundle = outState.getBundle(MAP_VIEW_BUNDLE_KEY);
         if (mapViewBundle == null) {
             mapViewBundle = new Bundle();
-            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+            outState.putBundle(MAP_VIEW_BUNDLE_KEY, mapViewBundle);
         }
 
         mMapView.onSaveInstanceState(mapViewBundle);
