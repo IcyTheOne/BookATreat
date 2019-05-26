@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,26 +25,44 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.bookatreat.Customer.CustomerExampleAdapter;
+import com.example.bookatreat.Customer.CustomerListResFrag;
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
+import com.example.bookatreat.Restaurants;
+import com.example.bookatreat.Tables;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class NewBookingFrag extends Fragment {
+public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTableClickListener{
     private FirebaseAuth mAuth;
+    private FirebaseUser fUser;
+    private FirebaseFirestore db;
     private DataBaseHandler dbHandler;
-    private ArrayList<String> arrNew;
+    private ArrayList<Tables> arrNew;
     private ListView listNew;
     private ImageButton settingsButton;
     private Switch mTablesSwitch;
+
+    private RecyclerView mRecyclerView;
+    private RestExampleAdapter mAdapter;
+
+    private static final String TAG = "NewBookingFrag";
 
     private TimePickerDialog timePickerDialog;
     Calendar calendar;
     int currentHour;
     int currentMinute;
-    String amPm;
+    String amPm, UID;
 
     @Nullable
     @Override
@@ -54,6 +74,10 @@ public class NewBookingFrag extends Fragment {
         arrNew = new ArrayList<>();
         listNew = view.findViewById(R.id.list_view_booked);
         mTablesSwitch = view.findViewById(R.id.tableSwitch);
+
+        if (fUser != null) {
+            UID = fUser.getUid();
+        }
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -86,9 +110,6 @@ public class NewBookingFrag extends Fragment {
         });
 
         //TODO insert the data from DB to an array
-
-        arrNew.add("Table 1, 3 people");
-        arrNew.add("Table 4, 5 people");
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrNew);
         listNew.setAdapter(adapter);
@@ -133,12 +154,12 @@ public class NewBookingFrag extends Fragment {
                 boolean success = dbHandler.addTable(tableIDVal, tableSizeVal);
 
                 dialog.dismiss();
-                if (success)
+
+                if (success) {
                     Toast.makeText(getContext(), "New table added", Toast.LENGTH_LONG).show();
-                else
+                } else {
                     Toast.makeText(getContext(), "Error: unable to add the table.", Toast.LENGTH_LONG).show();
-
-
+                }
             }
         });
     }
@@ -207,5 +228,12 @@ public class NewBookingFrag extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onTableClick(int position) {
+        Log.d(TAG, "onTableClick: clicked table" + position);
+
+        openEditTableDialog();
     }
 }

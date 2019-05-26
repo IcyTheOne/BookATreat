@@ -24,53 +24,39 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
 public class CustomerSettingsFrag extends Fragment {
     private FirebaseAuth mAuth;
 
-
-    DataBaseHandler db = new DataBaseHandler();
-    private DatabaseReference mDatabase;
+    DataBaseHandler dbHandler = new DataBaseHandler();
     private TextView mNameView;
     private TextView mLastNameView;
     private TextView mEmailView;
     private EditText mNameEdit;
     private EditText mLastNameEdit;
     private EditText mEmailEdit;
-    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    private static final String TAG = "CustomerSettingsFrag";
+
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-    private String TAG = "User ID is";
-    private FirebaseFirestore dab = FirebaseFirestore.getInstance();
-    private CollectionReference users = dab.collection("users");
-    private DocumentReference mDocumentReference = dab.collection("users").document(uid);
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private CollectionReference users = db.collection("users");
 
+    private String UID = FirebaseAuth.getInstance().getUid();
+    DocumentReference mDocumentReference = users.document(UID);
 
     CustomerExampleAdapter mAdapter;
 
-
     Button mSignout, mDeleteAcc,mEditBTN, mSaveButton;
-
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
         View mview = inflater.inflate(R.layout.fragment_customer_edit_settings,container, false);
-
-        Log.d(TAG, "USER ID IS                                                                " + uid);
-
-
-
-
-
-
 
         //Populate textViews of customerSettings with their information
         mAuth = FirebaseAuth.getInstance();
@@ -107,7 +93,6 @@ public class CustomerSettingsFrag extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         //Link the buttons
-
         mSignout = view.findViewById(R.id.signOutBTN);
         mDeleteAcc = view.findViewById(R.id.deleteAccBTN);
         mEditBTN = view.findViewById(R.id.editBTN);
@@ -138,10 +123,10 @@ public class CustomerSettingsFrag extends Fragment {
 
             }
         });
+
         mNameEdit = mview.findViewById(R.id.editName);
         mLastNameEdit = mview.findViewById(R.id.editLastName);
         mEmailEdit = mview.findViewById(R.id.editEmail);
-
 
         mSaveButton.setOnClickListener(new View.OnClickListener(){
 
@@ -149,14 +134,12 @@ public class CustomerSettingsFrag extends Fragment {
             public void onClick(View v){
                 //Add Rewrite data method
 
-                mDocumentReference.set(uid)
+                mDocumentReference.set(UID)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             String Name = mNameEdit.toString();
 
-
                             @Override
                             public void onSuccess(Void aVoid) {
-
 
                                 Log.d(TAG, "DocumentSnapshot successfully written!");
                             }
@@ -175,17 +158,7 @@ public class CustomerSettingsFrag extends Fragment {
 
         }
 
-
-
-
         );
-
-
-
-
-
-
-
 
         return view;
     }
@@ -204,7 +177,7 @@ public class CustomerSettingsFrag extends Fragment {
     }
 
     public void deleteAcc() {
-        db.delete();
+        dbHandler.delete();
 
         AuthUI.getInstance()
                 .delete(getActivity())

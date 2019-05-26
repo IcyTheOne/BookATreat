@@ -2,7 +2,7 @@ package com.example.bookatreat;
 
 public class Restaurants {
 
-    String Address, Description, Email, Name;
+    private String Address, Description, Email, Name;
 
     public Restaurants(String Address, String Description, String Email, String Name) {
         this.Name = Name;
