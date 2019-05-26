@@ -47,7 +47,8 @@ public class CustomerSettingsFrag extends Fragment {
 
     private CollectionReference users = db.collection("users");
 
-    private String UID;
+    private String UID = FirebaseAuth.getInstance().getUid();
+    DocumentReference mDocumentReference = users.document(UID);
 
     CustomerExampleAdapter mAdapter;
 
@@ -56,13 +57,6 @@ public class CustomerSettingsFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_settings, container, false);
         View mview = inflater.inflate(R.layout.fragment_customer_edit_settings,container, false);
-
-        if (fUser != null) {
-            UID = fUser.getUid();
-            Log.d(TAG, "USER ID IS: " + UID);
-        }
-
-        final DocumentReference mDocumentReference = users.document(UID);
 
         //Populate textViews of customerSettings with their information
         mAuth = FirebaseAuth.getInstance();

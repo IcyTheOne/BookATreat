@@ -53,13 +53,21 @@ public class DataBaseHandler {
     private static final String KEY_TABLE_ID = "Table number";
     private static final String KEY_TABLE_SIZE = "Guests";
 
+    private void setUID() {
+        if (fUser != null) {
+            UID = fUser.getUid();
+        }
+    }
+
     public boolean addTable(String tableId, String size) {
         //TODO: add to database with try catch/ if else
 
-        CollectionReference tablesForOne = restaurants.document(emailCredentials).collection("Tables for 1");
-        CollectionReference tablesForTwo = restaurants.document(emailCredentials).collection("Tables for 2");
-        CollectionReference tablesForThree = restaurants.document(emailCredentials).collection("Tables for 3");
-        CollectionReference tablesForFour = restaurants.document(emailCredentials).collection("Tables for 4");
+        setUID();
+
+        CollectionReference tablesForOne = restaurants.document(UID).collection("Tables for 1");
+        CollectionReference tablesForTwo = restaurants.document(UID).collection("Tables for 2");
+        CollectionReference tablesForThree = restaurants.document(UID).collection("Tables for 3");
+        CollectionReference tablesForFour = restaurants.document(UID).collection("Tables for 4");
 
         Map<String, Object> table = new HashMap<>();
         table.put(KEY_TABLE_ID, tableId);
@@ -111,7 +119,7 @@ public class DataBaseHandler {
     }
 
     public void saveUser(String firstNameVal, String lastNameVal, String emailVal) {
-        UID = fUser.getUid();
+        setUID();
         Map<String, Object> user = new HashMap<>();
         user.put(KEY_NAME, firstNameVal);
         user.put(KEY_LAST_NAME, lastNameVal);
@@ -136,7 +144,7 @@ public class DataBaseHandler {
     }
 
     public void saveUser(String resNameVal, String resDescVal, String resEmailVal, String resAddressVal) {
-        UID = fUser.getUid();
+        setUID();
         Map<String, Object> restaurant = new HashMap<>();
         restaurant.put(KEY_NAME, resNameVal);
         restaurant.put(KEY_DESCRIPTION, resDescVal);

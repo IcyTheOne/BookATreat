@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,6 +45,7 @@ import java.util.Calendar;
 
 public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTableClickListener{
     private FirebaseAuth mAuth;
+    private FirebaseUser fUser;
     private FirebaseFirestore db;
     private DataBaseHandler dbHandler;
     private ArrayList<Tables> arrNew;
@@ -60,7 +62,7 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
     Calendar calendar;
     int currentHour;
     int currentMinute;
-    String amPm;
+    String amPm, UID;
 
     @Nullable
     @Override
@@ -73,7 +75,9 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
         listNew = view.findViewById(R.id.list_view_booked);
         mTablesSwitch = view.findViewById(R.id.tableSwitch);
 
-        fillTablesList();
+        if (fUser != null) {
+            UID = fUser.getUid();
+        }
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -121,34 +125,6 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
         return view;
     }
 
-    private void fillTablesList() {
-
-        if(arrNew.size() > 0) {
-            arrNew.clear();
-        }
-
-        mAdapter = new RestExampleAdapter(NewBookingFrag.this, arrNew, this);
-
-        db.collection("restaurants").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for(DocumentSnapshot querySnapshot: task.getResult()){
-                    Tables table = new Tables(querySnapshot.getString("Table ID"), querySnapshot.getString("Guests"));
-                    arrNew.add(table);
-                }
-
-                mRecyclerView.setAdapter(mAdapter);
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Problem ---1---", Toast.LENGTH_SHORT).show();
-                        Log.v("---1---", e.getMessage());
-                    }
-                });
-    }
-
     public void openAddNewTableDialog() {
         final AlertDialog.Builder myBuild = new AlertDialog.Builder(getContext());
         View mView = getLayoutInflater().inflate(R.layout.dialog_new_table, null);
@@ -178,12 +154,12 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
                 boolean success = dbHandler.addTable(tableIDVal, tableSizeVal);
 
                 dialog.dismiss();
-                if (success)
+
+                if (success) {
                     Toast.makeText(getContext(), "New table added", Toast.LENGTH_LONG).show();
-                else
+                } else {
                     Toast.makeText(getContext(), "Error: unable to add the table.", Toast.LENGTH_LONG).show();
-
-
+                }
             }
         });
     }
