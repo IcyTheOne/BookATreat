@@ -24,6 +24,20 @@ public class CustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_search);
 
+        // the stuff that should be send to messages
+/*
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction t = manager.beginTransaction();
+        CustomerListResFrag m11 = new CustomerListResFrag();
+        MessageFrag m12 = new MessageFrag();
+        t.add(R.id.resNameDialog,m11);
+        t.add(R.id.resTimeText,m12);
+        t.commit();
+*/
+
+
+
+
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
