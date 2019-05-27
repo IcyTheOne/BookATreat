@@ -81,46 +81,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@color/colorPrimary" />
 
-        <ImageButton
-            android:id="@+id/CalendarBTN"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="63dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@android:color/white"
-            android:contentDescription="@string/toolbar_calendar_content_description"
-            android:src="@android:drawable/ic_menu_today"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.639"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageButton
-            android:id="@+id/FavoritesBTN"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="67dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@android:color/white"
-            android:contentDescription="@string/toolbar_favorites_content_description"
-            android:src="@android:drawable/btn_star"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.384"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
         <TextView
             android:id="@+id/unavailable_textview"
             android:layout_width="wrap_content"
