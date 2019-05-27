@@ -1,6 +1,8 @@
 package com.example.bookatreat;
 
-public class Restaurants {
+import java.io.Serializable;
+
+public class Restaurants implements Serializable {
 
     private String Address, Description, Email, Name;
 

@@ -3,7 +3,6 @@ package com.example.bookatreat.Customer;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -189,6 +188,9 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         resTimeTxt.setText("00:00");
         resPersonsTxt.setText("Persons:");
         resPersonsEdi.setText("0");
+
+
+
         resNameD.setText(mExampleList.get(position).getName());
         resDesD.setText(mExampleList.get(position).getDescription());
         resAddD.setText(mExampleList.get(position).getAddress());
@@ -199,17 +201,6 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         resBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.d(TAG, "Button book was clicked");
-
-/*                String name = resNameD.getText().toString();
-                String mail = resTimeTxt.getText().toString();
-                String address = resPersonsEdi.getText().toString();*/
-
-
-
-
-
             }
         });
 

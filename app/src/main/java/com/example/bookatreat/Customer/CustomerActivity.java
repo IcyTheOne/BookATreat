@@ -1,5 +1,6 @@
 package com.example.bookatreat.Customer;
 
+import android.content.Context;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,24 @@ import android.widget.ImageButton;
 
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
+import com.example.bookatreat.Restaurants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Writer;
+import java.util.ArrayList;
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -102,4 +119,5 @@ public class CustomerActivity extends AppCompatActivity {
         });
 
     }
+
 }
