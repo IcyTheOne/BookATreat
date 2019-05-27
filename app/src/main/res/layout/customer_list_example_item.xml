@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/RestaurantName"
             android:layout_marginStart="6dp"
-            android:text="asdfasdf"
+            android:text="asds"
             android:textSize="14sp"
             android:textStyle="italic" />
 

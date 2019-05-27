@@ -147,7 +147,7 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for(DocumentSnapshot querySnapshot: task.getResult()){
-                    Restaurants restaurant = new Restaurants(querySnapshot.getString("Address"), querySnapshot.getString("Description"), querySnapshot.getString("Email"), querySnapshot.getString("Name") querySnapshot.getString("UID"));
+                    Restaurants restaurant = new Restaurants(querySnapshot.getString("Address"), querySnapshot.getString("Description"), querySnapshot.getString("Email"), querySnapshot.getString("Name"));
                     mExampleList.add(restaurant);
                 }
                 mRecyclerView.setAdapter(mAdapter);
@@ -200,12 +200,12 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
             public void onClick(View v) {
 
 
-
-
             // create new document with resEmailD
                 //create theese fields
                 // resTimeTxt
                 //
+
+
 
 
 

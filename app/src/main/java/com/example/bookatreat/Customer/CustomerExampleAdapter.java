@@ -62,7 +62,11 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int  position) {
         holder.mTextResName.setText(mExampleList.get(position).getName());
+        holder.mTextResDes.setText(mExampleList.get(position).getDescription());
     }
+
+
+
 
     @Override
     public int getItemCount() {
