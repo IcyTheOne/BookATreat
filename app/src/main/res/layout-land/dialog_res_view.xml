@@ -69,7 +69,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="#3587c7"
-            android:text="Choose time"
+            android:text="@string/edit_choose_time"
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -115,21 +115,21 @@
 
         <Button
             android:id="@+id/resBookButton"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_width="121dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="#3587c7"
-            android:text="Book"
+            android:text="@string/res_book"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.141"
+            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.854" />
+            app:layout_constraintVertical_bias="0.882" />
 
         <ImageView
             android:id="@+id/topBar2"

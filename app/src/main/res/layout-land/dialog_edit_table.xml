@@ -10,9 +10,12 @@
         android:id="@+id/editTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:text="Edit and book a table"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="83dp"
+        android:text="@string/edit_edit_and_book_text"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -22,20 +25,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextView"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="261dp"
-        android:layout_marginTop="36dp"
-        android:text="Table id" />
+        android:layout_marginStart="277dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/edit_table_id" />
 
     <EditText
         android:id="@+id/tableID"
         android:layout_width="39dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/TableTV"
-        android:layout_marginLeft="42dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="-12dp"
         android:layout_toRightOf="@id/TableTV"
         android:ems="10"
-        android:hint="id"
+        android:hint="@string/edit_table_id_hint"
         android:inputType="number"
         android:textSize="14sp" />
 
@@ -47,7 +50,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="256dp"
         android:layout_marginTop="25dp"
-        android:text="Number of people" />
+        android:text="@string/edit_number_of_people" />
 
     <TextView
         android:id="@+id/hour_textView"
@@ -57,7 +60,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="241dp"
         android:layout_marginTop="72dp"
-        android:text="Hour" />
+        android:text="@string/edit_hour" />
 
     <EditText
         android:id="@+id/tableSize"
@@ -68,7 +71,7 @@
         android:layout_marginTop="-12dp"
         android:layout_toRightOf="@id/GuestsTV"
         android:ems="10"
-        android:hint="num"
+        android:hint="@string/edit_number_of_people_hint"
         android:inputType="number"
         android:textSize="14sp" />
 
@@ -82,7 +85,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:background="@color/colorAccent"
-        android:text="Choose time"
+        android:text="@string/edit_choose_time"
         android:textColor="@android:color/white" />
 
     <Button
@@ -94,7 +97,7 @@
         android:layout_marginStart="292dp"
         android:layout_marginTop="68dp"
         android:background="@color/colorAccent"
-        android:text="Edit"
+        android:text="@string/edit_edit_button"
         android:textColor="@android:color/white" />
 
     <Button
@@ -106,7 +109,7 @@
         android:layout_marginStart="159dp"
         android:layout_marginTop="111dp"
         android:background="@color/colorAccent"
-        android:text="Edit and book"
+        android:text="@string/edit_edit_and_book"
         android:textColor="@android:color/white" />
 
     <TextView

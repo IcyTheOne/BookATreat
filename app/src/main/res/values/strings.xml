@@ -81,6 +81,23 @@
     <string name="manage_available_textview">Available tables</string>
     <string name="manage_unavailable_textview">Unavailable tables</string>
 
+    <!-- Add table dialog -->
+    <string name="add_new_table_header">Add new table</string>
+    <string name="add_new_table_button">Add</string>
+    <string name="res_book">Book</string>
+
+
+    <!-- Edit table dialog -->
+    <string name="edit_table_id">Table id</string>
+    <string name="edit_table_id_hint">id</string>
+    <string name="edit_number_of_people">Number of people</string>
+    <string name="edit_number_of_people_hint">num</string>
+    <string name="edit_hour">Hour</string>
+    <string name="edit_choose_time">Choose time</string>
+    <string name="edit_edit_button">Edit</string>
+    <string name="edit_edit_and_book">Edit and book</string>
+    <string name="edit_edit_and_book_text">Edit and book a table</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="placeholder">placeholder</string>

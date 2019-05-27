@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:text="Edit and book a table"
+        android:text="@string/edit_edit_and_book_text"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextView"
         android:layout_marginTop="35dp"
-        android:text="Table id" />
+        android:text="@string/edit_table_id" />
 
     <EditText
         android:id="@+id/tableID"
@@ -33,7 +33,7 @@
         android:layout_marginTop="-9dp"
         android:layout_toRightOf="@id/TableTV"
         android:ems="10"
-        android:hint="id"
+        android:hint="@string/edit_table_id_hint"
         android:inputType="number"
         android:textSize="14sp" />
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/TableTV"
         android:layout_marginTop="29dp"
-        android:text="Number of people" />
+        android:text="@string/edit_number_of_people" />
 
     <TextView
         android:id="@+id/hour_textView"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/TableTV"
         android:layout_marginTop="79dp"
-        android:text="Hour" />
+        android:text="@string/edit_hour" />
 
     <EditText
         android:id="@+id/tableSize"
@@ -62,7 +62,7 @@
         android:layout_marginTop="-12dp"
         android:layout_toRightOf="@id/GuestsTV"
         android:ems="10"
-        android:hint="num"
+        android:hint="@string/edit_number_of_people_hint"
         android:inputType="number"
         android:textSize="14sp" />
 
@@ -74,7 +74,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="27dp"
         android:background="@color/colorAccent"
-        android:text="Choose time"
+        android:text="@string/edit_choose_time"
         android:textColor="@android:color/white" />
 
     <Button
@@ -85,7 +85,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:background="@color/colorAccent"
-        android:text="Edit"
+        android:text="@string/edit_edit_button"
         android:textColor="@android:color/white" />
 
     <Button
@@ -95,7 +95,7 @@
         android:layout_below="@id/GuestsTV"
         android:layout_marginTop="118dp"
         android:background="@color/colorAccent"
-        android:text="Edit and book"
+        android:text="@string/edit_edit_and_book"
         android:textColor="@android:color/white" />
 
     <TextView
