@@ -148,8 +148,8 @@ public class FavoritesFrag extends Fragment implements CustomerExampleAdapter.On
             @Override
             public void onClick(View v) {
                 // Remove position to FavoritesArray
-//                Restaurants favRes = mFavList.get(position);
-//                mFavList.add(favRes);
+                Restaurants favRes = mFavList.get(position);
+                mFavList.remove(favRes);
             }
         });
 

@@ -184,12 +184,9 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         final TextView resCloseDialogBtn = mView.findViewById(R.id.resCloseDialogButton);
         final TextView resBookBtn = mView.findViewById(R.id.resBookButton);
 
-
         resTimeTxt.setText("00:00");
         resPersonsTxt.setText("Persons:");
         resPersonsEdi.setText("0");
-
-
 
         resNameD.setText(mExampleList.get(position).getName());
         resDesD.setText(mExampleList.get(position).getDescription());
@@ -255,8 +252,6 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
                 timePickerDialog.show();
             }
         });
-
-
     }
 
     @Override
