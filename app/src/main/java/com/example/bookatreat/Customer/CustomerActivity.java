@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -77,11 +78,14 @@ public class CustomerActivity extends AppCompatActivity {
         ImageButton favoritesButton = findViewById(R.id.FavoritesBTN);
 
 
+
         // Click listeners
         //Restaurant search
+
         restaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent restaurantIntent = new Intent(getBaseContext(), CustomerActivity.class);
                 startActivity(restaurantIntent);
 
@@ -92,9 +96,10 @@ public class CustomerActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
-                toCalendar.replace(R.id.fragment_container_cus, new CalendarFrag());
-                toCalendar.commit();
+                    Log.i("Info", "Not 1, begin trans");
+                    FragmentTransaction toCalendar = getSupportFragmentManager().beginTransaction();
+                    toCalendar.replace(R.id.fragment_container_cus, new CalendarFrag()).addToBackStack("tag");
+                    toCalendar.commit();
             }
         });
 
@@ -102,9 +107,10 @@ public class CustomerActivity extends AppCompatActivity {
         favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction toFavorites = getSupportFragmentManager().beginTransaction();
-                toFavorites.replace(R.id.fragment_container_cus, new FavoritesFrag());
-                toFavorites.commit();
+                    FragmentTransaction toFavorites = getSupportFragmentManager().beginTransaction();
+                    toFavorites.replace(R.id.fragment_container_cus, new FavoritesFrag()).addToBackStack("tag");
+                    toFavorites.commit();
+
             }
         });
 
@@ -112,10 +118,10 @@ public class CustomerActivity extends AppCompatActivity {
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction toMessages = getSupportFragmentManager().beginTransaction();
-                toMessages.replace(R.id.fragment_container_cus, new MessageFrag());
-                toMessages.commit();
-            }
+                    FragmentTransaction toMessages = getSupportFragmentManager().beginTransaction();
+                    toMessages.replace(R.id.fragment_container_cus, new MessageFrag()).addToBackStack("tag");
+                    toMessages.commit();
+                }
         });
 
     }

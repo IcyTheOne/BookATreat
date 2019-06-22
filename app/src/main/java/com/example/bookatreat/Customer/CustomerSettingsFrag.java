@@ -41,7 +41,6 @@ public class CustomerSettingsFrag extends Fragment {
     private TextView mNameView;
     private TextView mLastNameView;
     private TextView mEmailView;
-    private TextView mBattery;
 
     private EditText mNameEdit;
     private EditText mLastNameEdit;
@@ -67,7 +66,6 @@ public class CustomerSettingsFrag extends Fragment {
         @Override
         public void onReceive(Context ctxt, Intent intent) {
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            mBattery.setText(String.valueOf(level) + "%");
             if (level < 10) {
                 overTenPer = false;
             } else {
@@ -136,7 +134,6 @@ public class CustomerSettingsFrag extends Fragment {
 
         //Battery mode
 
-        mBattery = view.findViewById(R.id.battery_text);
         getContext().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
 

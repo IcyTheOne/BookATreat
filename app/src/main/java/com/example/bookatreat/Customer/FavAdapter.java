@@ -54,7 +54,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ExampleViewHolde
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(favoritesFrag.getContext());
-        View view = layoutInflater.inflate(R.layout.customer_list_example_item,parent,false);
+        View view = layoutInflater.inflate(R.layout.customer_list_example_item2,parent,false);
 
         return new ExampleViewHolder(view, mOnResClickListener);
     }
