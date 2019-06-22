@@ -202,12 +202,30 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         });
 
         //On Click of Star Symbol
+
         favStar.setOnClickListener(new View.OnClickListener() {
+            boolean white = true;
+            boolean isNotFav = true;
             @Override
             public void onClick(View v) {
                 // Add position to FavoritesArray
-                Restaurants favRes = mExampleList.get(position);
-                mFavArrList.add(favRes);
+
+                if (white) {
+                    if (isNotFav) {
+                        Restaurants favRes = mExampleList.get(position);
+                        mFavArrList.add(favRes);
+                        isNotFav = false;
+                    }
+                    favStar.setImageResource(R.drawable.ic_star_border);
+                    white = false;
+                } else {
+                    favStar.setImageResource(R.drawable.ic_star_white);
+//                    mFavArrList.remove(favRes);
+                    white = true;
+                }
+
+
+
             }
         });
 
