@@ -144,7 +144,6 @@ public class LoginActivity extends AppCompatActivity {
         mForgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 setCredentials();
                 forgotPassword();
             }
