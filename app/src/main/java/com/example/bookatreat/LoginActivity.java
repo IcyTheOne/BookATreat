@@ -144,22 +144,9 @@ public class LoginActivity extends AppCompatActivity {
         mForgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                emailCredentials = mUserNameField.getText().toString();
 
-                auth.sendPasswordResetEmail(emailCredentials)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Email sent to: " + emailCredentials);
-                                    Toast.makeText(getApplicationContext(), "Email sent.", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Log.d(TAG, "No email was sent.");
-                                    Toast.makeText(getApplicationContext(), "Something ain't right.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                setCredentials();
+                forgotPassword();
             }
         });
 
@@ -397,10 +384,21 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent to: " + emailCredentials);
-                            Toast.makeText(LoginActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Email sent.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.d(TAG, "No email was sent.");
+                            Toast.makeText(getApplicationContext(), "Something ain't right.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    public void setCredentials() {
+        emailCredentials = mUserNameField.getText().toString();
+        Log.d(TAG, "Email set to: " + emailCredentials);
+
+        //passwordCredentials = mPasswordField.getText().toString();
+        //Log.d(TAG, "Pass set to: " + passwordCredentials);
     }
 
     public void chceckSharedPreferences() {
