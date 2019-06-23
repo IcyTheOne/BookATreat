@@ -126,11 +126,13 @@ public class MapsViewFrag extends Fragment implements OnMapReadyCallback {
             return;
         }
         map.setMyLocationEnabled(true);
+
         map.addMarker(new MarkerOptions().position(new LatLng(55.673260, 12.582140)).title("Soren K"));
         map.addMarker(new MarkerOptions().position(new LatLng(55.672330, 12.588910)).title("Kadeau København"));
         map.addMarker(new MarkerOptions().position(new LatLng(55.675890,12.594040 )).title("Kanalen"));
+
         mGoogleMap = map;
-        setCameraView();
+//        setCameraView();
     }
 
     @Override
