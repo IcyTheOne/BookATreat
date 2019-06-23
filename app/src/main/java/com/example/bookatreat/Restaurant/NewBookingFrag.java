@@ -117,7 +117,7 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
                 ft.replace(R.id.container_restaurant, new RestaurantSettingsFrag());
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
-            }
+        }
         });
 
 
