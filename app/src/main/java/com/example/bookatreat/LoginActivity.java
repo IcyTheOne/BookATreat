@@ -52,7 +52,7 @@ import static com.example.bookatreat.DataBaseHandler.passwordCredentials;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mUserNameField, mPasswordField;
-    private TextView mNewUserText;
+    private TextView mNewUserText, mForgotPasswordText;
     private Button mLoginButton;
     private Switch mLoginSwitch;
     private CheckBox mCheckBox;
@@ -119,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginButton = findViewById(R.id.loginBTN);
         mNewUserText = findViewById(R.id.signupHyperlink);
+        mForgotPasswordText = findViewById(R.id.forgotPassHyperlink);
 
         mCheckBox = findViewById(R.id.checkBox);
 
@@ -136,6 +137,29 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Unavaiable without WiFi connection", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        // Click text to get sent an email for restoring password
+        mForgotPasswordText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                emailCredentials = mUserNameField.getText().toString();
+
+                auth.sendPasswordResetEmail(emailCredentials)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent to: " + emailCredentials);
+                                    Toast.makeText(getApplicationContext(), "Email sent.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.d(TAG, "No email was sent.");
+                                    Toast.makeText(getApplicationContext(), "Something ain't right.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
@@ -162,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                     String name = mUserNameField.getText().toString();
                     mEditor.putString(getString(R.string.login_name), name);
                     mEditor.commit();
+
                 } else {
                     mEditor.putString(getString(R.string.login_checkbox), "False");
                     mEditor.commit();
@@ -198,7 +223,6 @@ public class LoginActivity extends AppCompatActivity {
         mEditor = mPreferences.edit();
 
         chceckSharedPreferences();
-
 
     }
 
