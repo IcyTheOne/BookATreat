@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
+
 import com.example.bookatreat.Restaurants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -124,6 +125,14 @@ public class CustomerActivity extends AppCompatActivity {
                 }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_cus, new CustomerListResFrag());
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
+        //
     }
 
 }
