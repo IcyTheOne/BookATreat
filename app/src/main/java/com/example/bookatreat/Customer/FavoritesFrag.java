@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -137,6 +138,7 @@ public class FavoritesFrag extends Fragment implements CustomerExampleAdapter.On
         final TextView resEmailD = mView.findViewById(R.id.resEmailDialog);
         final TextView resAddD = mView.findViewById(R.id.resAddressDialog);
         final ImageView favStar = mView.findViewById(R.id.favStar);
+        final Button closeDialog = mView.findViewById(R.id.resCloseDialogButton);
 
         resNameD.setText(mFavList.get(position).getName());
         resDesD.setText(mFavList.get(position).getDescription());
@@ -154,9 +156,17 @@ public class FavoritesFrag extends Fragment implements CustomerExampleAdapter.On
         });
 
 
+
         myBuild.setView(mView);
         final AlertDialog dialog = myBuild.create();
         dialog.show();
+
+        closeDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
     }
 
     @Override
