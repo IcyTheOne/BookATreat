@@ -35,5 +35,6 @@ public class RestaurantActivity extends AppCompatActivity {
         ft.replace(R.id.container_restaurant, new NewBookingFrag());
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
+        //
     }
 }
