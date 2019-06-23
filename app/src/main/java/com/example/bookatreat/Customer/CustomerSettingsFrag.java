@@ -136,16 +136,15 @@ public class CustomerSettingsFrag extends Fragment {
 
         getContext().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
-
-            mEditBTN.setOnClickListener(new View.OnClickListener() {
+        mEditBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (overTenPer) {
 
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.fragment_container_cus, new CustomerEditSettingsFrag());
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    ft.commit();
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragment_container_cus, new CustomerEditSettingsFrag());
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        ft.commit();
                     } else {
                         Toast.makeText(getContext(), "Your battery is too low to perform this action", Toast.LENGTH_LONG).show();
                     }
@@ -181,7 +180,6 @@ public class CustomerSettingsFrag extends Fragment {
                                 Log.w(TAG, "Error writing document", e);
                             }
                         });
-
 
             }
 
