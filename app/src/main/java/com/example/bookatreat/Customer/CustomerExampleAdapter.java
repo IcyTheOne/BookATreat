@@ -66,8 +66,6 @@ public class CustomerExampleAdapter extends RecyclerView.Adapter<CustomerExample
     }
 
 
-
-
     @Override
     public int getItemCount() {
         return mExampleList.size();

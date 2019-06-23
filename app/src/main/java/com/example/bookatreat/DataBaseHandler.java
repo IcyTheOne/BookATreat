@@ -25,7 +25,7 @@ import java.util.Map;
 public class DataBaseHandler {
 
     public static String emailCredentials, passwordCredentials;
-    private String UID;
+    public static String UID;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -53,10 +53,18 @@ public class DataBaseHandler {
     private static final String KEY_TABLE_ID = "Table number";
     private static final String KEY_TABLE_SIZE = "Guests";
 
-    private void setUID() {
+    public void setUID() {
         if (fUser != null) {
             UID = fUser.getUid();
         }
+    }
+
+    public void addDefaultTables() {
+        addTable("0", "0");
+        addTable("1", "1");
+        addTable("2", "2");
+        addTable("3", "3");
+        addTable("4", "4");
     }
 
     public boolean addTable(String tableId, String size) {
@@ -64,6 +72,7 @@ public class DataBaseHandler {
 
         setUID();
 
+        CollectionReference defaultTable = restaurants.document(UID).collection("Default table");
         CollectionReference tablesForOne = restaurants.document(UID).collection("Tables for 1");
         CollectionReference tablesForTwo = restaurants.document(UID).collection("Tables for 2");
         CollectionReference tablesForThree = restaurants.document(UID).collection("Tables for 3");
@@ -72,6 +81,10 @@ public class DataBaseHandler {
         Map<String, Object> table = new HashMap<>();
         table.put(KEY_TABLE_ID, tableId);
         table.put(KEY_TABLE_SIZE, size);
+
+        if (size.equals("0")) {
+            DocumentReference dft = defaultTable.document(tableId);
+        }
 
         if (size.equals("1")) {
             DocumentReference tableForOne = tablesForOne.document(tableId);

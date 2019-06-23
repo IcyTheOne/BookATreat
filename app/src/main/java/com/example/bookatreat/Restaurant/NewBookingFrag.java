@@ -72,12 +72,7 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_bookings, container, false);
         // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        dbHandler = new DataBaseHandler();
-        arrNew = new ArrayList<>();
-        listNew = view.findViewById(R.id.list_view_booked);
-        mTablesSwitch = view.findViewById(R.id.tableSwitch);
-/**
+
         CollectionReference restaurants = db.collection("restaurants");
 
         CollectionReference tablesForOne = restaurants.document(UID).collection("Tables for 1");
@@ -85,24 +80,28 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
         CollectionReference tablesForThree = restaurants.document(UID).collection("Tables for 3");
         CollectionReference tablesForFour = restaurants.document(UID).collection("Tables for 4");
 
-
+        mAuth = FirebaseAuth.getInstance();
+        dbHandler = new DataBaseHandler();
+        arrNew = new ArrayList<>();
+        listNew = view.findViewById(R.id.list_view_booked);
+        mTablesSwitch = view.findViewById(R.id.tableSwitch);
         tablesForOne.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()){for (QueryDocumentSnapshot document : task.getResult()){
-//                    String numberOfSeats = document.get("Guests") + "";
-//                    String tableID = document.get("Table number") + "";
-//                    Tables table1 = new Tables(numberOfSeats, tableID);
-//                    arrNew.add(table1);
-//
-//                }
-//
-//            }else {
-//                    Log.d(TAG, "Error gettings tables for 1");
-//                }
+                if (task.isSuccessful()){for (QueryDocumentSnapshot document : task.getResult()){
+                    String numberOfSeats = document.get("Guests") + "";
+                    String tableID = document.get("Table number") + "";
+                    Tables table1 = new Tables(numberOfSeats, tableID);
+                    arrNew.add(table1);
+
+                }
+
+            }else {
+                    Log.d(TAG, "Error gettings tables for 1");
+                }
             }
         });
-*/
+
 
         if (fUser != null) {
             UID = fUser.getUid();
@@ -117,7 +116,7 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
                 ft.replace(R.id.container_restaurant, new RestaurantSettingsFrag());
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.commit();
-        }
+            }
         });
 
 
