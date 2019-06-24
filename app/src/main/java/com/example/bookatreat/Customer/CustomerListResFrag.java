@@ -195,11 +195,7 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
 
         //On Click of book button
 
-        resBookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+
 
         //On Click of Star Symbol
 
@@ -233,6 +229,13 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
         final AlertDialog dialog = myBuild.create();
         dialog.show();
 
+
+        resBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
 
         //On Click Close dialog button
 
