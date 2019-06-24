@@ -53,10 +53,10 @@ public class CustomerSettingsFrag extends Fragment {
     private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private CollectionReference users = db.collection("users");
+    private String UID = fUser.getUid();
 
-    private String UID = FirebaseAuth.getInstance().getUid();
-    DocumentReference mDocumentReference = users.document(UID);
+    private CollectionReference users = db.collection("users");
+    private DocumentReference mDocumentReference = users.document(UID);
 
     CustomerExampleAdapter mAdapter;
 

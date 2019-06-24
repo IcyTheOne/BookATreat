@@ -55,8 +55,6 @@ public class CustomerActivity extends AppCompatActivity {
 */
 
 
-
-
         try // Remove ActionBar
         {
             this.getSupportActionBar().hide();
