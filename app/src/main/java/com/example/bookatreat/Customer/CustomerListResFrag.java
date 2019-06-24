@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
 import com.example.bookatreat.Restaurants;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,9 +54,16 @@ public class CustomerListResFrag extends Fragment implements CustomerExampleAdap
 
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DataBaseHandler dbHandler = new DataBaseHandler();
     private CollectionReference restaurants = db.collection("restaurants");
 
     private static final String TAG = "CustomerListResFrag";
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dbHandler.setUserType(1);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_list_res, container, false);

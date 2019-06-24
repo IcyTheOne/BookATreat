@@ -16,6 +16,8 @@
     <string name="login_checkbox">com.example.bookatreat.checkbox</string>
     <string name="forgot_password">Forgot password..?</string>
     <string name="login_checkbox_text">Remember my email</string>
+    <string name="email_sent">Email sent.</string>
+    <string name="invalid_email">Your email address is invalid</string>
 
     <!-- Sign-up Strings -->
     <string name="signup_title">Sign up</string>

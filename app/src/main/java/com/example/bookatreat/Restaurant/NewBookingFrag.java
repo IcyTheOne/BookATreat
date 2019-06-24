@@ -25,20 +25,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.bookatreat.Customer.CustomerExampleAdapter;
-import com.example.bookatreat.Customer.CustomerListResFrag;
 import com.example.bookatreat.DataBaseHandler;
 import com.example.bookatreat.R;
-import com.example.bookatreat.Restaurants;
 import com.example.bookatreat.Tables;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.collect.Table;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,12 +40,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static com.example.bookatreat.DataBaseHandler.arrNew;
+
 public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTableClickListener{
     private FirebaseAuth mAuth;
     private FirebaseUser fUser;
     private FirebaseFirestore db;
     private DataBaseHandler dbHandler;
-    private ArrayList<Tables> arrNew;
+    private ArrayList<Tables> newArr;
     private ListView listNew;
     private ImageButton settingsButton;
     private Switch mTablesSwitch;
@@ -60,6 +56,8 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
     private RestExampleAdapter mAdapter;
 
     private static final String TAG = "NewBookingFrag";
+
+    private CollectionReference restaurants;
 
     private TimePickerDialog timePickerDialog;
     Calendar calendar;
@@ -73,39 +71,16 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
         View view = inflater.inflate(R.layout.fragment_new_bookings, container, false);
         // Initialize Firebase Auth
 
-        CollectionReference restaurants = db.collection("restaurants");
-
-        CollectionReference tablesForOne = restaurants.document(UID).collection("Tables for 1");
-        CollectionReference tablesForTwo = restaurants.document(UID).collection("Tables for 2");
-        CollectionReference tablesForThree = restaurants.document(UID).collection("Tables for 3");
-        CollectionReference tablesForFour = restaurants.document(UID).collection("Tables for 4");
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        restaurants = db.collection("restaurants");
         dbHandler = new DataBaseHandler();
-        arrNew = new ArrayList<>();
+        newArr = arrNew;
         listNew = view.findViewById(R.id.list_view_booked);
         mTablesSwitch = view.findViewById(R.id.tableSwitch);
-        tablesForOne.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){for (QueryDocumentSnapshot document : task.getResult()){
-                    String numberOfSeats = document.get("Guests") + "";
-                    String tableID = document.get("Table number") + "";
-                    Tables table1 = new Tables(numberOfSeats, tableID);
-                    arrNew.add(table1);
 
-                }
-
-            }else {
-                    Log.d(TAG, "Error gettings tables for 1");
-                }
-            }
-        });
-
-
-        if (fUser != null) {
-            UID = fUser.getUid();
-        }
+        dbHandler.fillTablesList();
 
         // Go to Settings
         settingsButton = view.findViewById(R.id.SettingsBTN);
@@ -139,7 +114,7 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
 
         //TODO insert the data from DB to an array
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, arrNew);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, newArr);
         listNew.setAdapter(adapter);
 
         listNew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -263,5 +238,29 @@ public class NewBookingFrag extends Fragment implements RestExampleAdapter.OnTab
         Log.d(TAG, "onTableClick: clicked table" + position);
 
         openEditTableDialog();
+    }
+
+    public void fillTablesList() {
+
+        CollectionReference tablesForOne = restaurants.document(UID).collection("Tables for 1");
+        CollectionReference tablesForTwo = restaurants.document(UID).collection("Tables for 2");
+        CollectionReference tablesForThree = restaurants.document(UID).collection("Tables for 3");
+        CollectionReference tablesForFour = restaurants.document(UID).collection("Tables for 4");
+
+        tablesForOne.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){for (QueryDocumentSnapshot document : task.getResult()){
+                    String numberOfSeats = document.get("Guests") + "";
+                    String tableID = document.get("Table number") + "";
+                    Tables table1 = new Tables(numberOfSeats, tableID);
+                    newArr.add(table1);
+                }
+
+                }else {
+                    Log.d(TAG, "Error getting tables for 1");
+                }
+            }
+        });
     }
 }

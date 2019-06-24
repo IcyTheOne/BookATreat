@@ -82,9 +82,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        db.setUserType(1);
         if (checkMapServices()){
             if (mLocationPermissionGranted){
-                db.setUserType(1);
                 getLastKnownLocation();
             }
         }
@@ -383,10 +383,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent to: " + emailCredentials);
-                            Toast.makeText(getApplicationContext(), "Email sent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.email_sent, Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "No email was sent.");
-                            Toast.makeText(getApplicationContext(), "Something ain't right.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.invalid_email, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

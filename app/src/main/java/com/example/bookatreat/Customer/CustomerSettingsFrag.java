@@ -92,13 +92,23 @@ public class CustomerSettingsFrag extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         String Name = document.getString("Name");
-                        mNameView.setText(Name);
                         String LastName = document.getString("Last Name");
-                        mLastNameView.setText(LastName);
                         String Email = document.getString("Email");
-                        mEmailView.setText(Email);
+
+                        if (Name != null) {
+                            mNameView.setText(Name);
+                        }
+
+                        if (LastName != null) {
+                            mLastNameView.setText(LastName);
+                        }
+
+                        if (Email != null) {
+                            mEmailView.setText(Email);
+                        }
 
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
                     } else {
                         Log.d(TAG, "No such document");
                     }
